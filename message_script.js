@@ -44,9 +44,9 @@ function getItems(callback) {
 }
 
 
-function postItem(id, messageEntered){
-    var body = {'ID':id, 'Message': messageEntered}; //maybe should get user to enter date message sent or name too?
-
+function postItem(messageEntered){
+    var body = {'Message': messageEntered}; //maybe should get user to enter date message sent or name too?
+    console.log("helloooo");
     console.log([body]);
 
     makeRequest('POST', '/item', body, function (data) {
