@@ -1,3 +1,5 @@
+
+
 var input = document.querySelector('#clear_message_button');
 var textarea = document.querySelector('#user-inputs-new-message');
 
@@ -22,8 +24,28 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
-function postItem(messageEntered){
-    var body = {'Message': messageEntered}; //maybe should get user to enter date message sent or name too?
+function getItems(callback) {
+    makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+        //var items = data.body['items'];//object['properties of the object']
+        var jsonData = JSON.parse(data);
+        //console.log(items);
+        console.log(jsonData.body);
+        //console.log(items)
+        //console.log(data);
+        //callback(jsonData.body.items);//if the request was successful then callback(items)
+        callback(jsonData.body); //without this the html of your calendar doesn't load
+
+
+
+    }, function () {
+        console.log("An error occured in getItems");
+        callback([]);// if the request ws unsuccessful then callback an empty array and state in the console that an error has occured
+    });
+}
+
+
+function postItem(id, messageEntered){
+    var body = {'ID':id, 'Message': messageEntered}; //maybe should get user to enter date message sent or name too?
 
     console.log([body]);
 
