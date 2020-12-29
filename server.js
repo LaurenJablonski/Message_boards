@@ -49,6 +49,7 @@ const server = http.createServer((request,response) => {//create a server using 
         response.setHeader('Access-Control-Allow-Origin', '*');
 
         let data = []; //the new item that's being added
+        console.log(data);
 
         request.on('data', chunk => { //request object is a stream => stream allows us to process data  by listening to the streams data and end events
             data += chunk;
@@ -91,6 +92,7 @@ const server = http.createServer((request,response) => {//create a server using 
 
 
 
+
 });
 
 
@@ -101,6 +103,35 @@ server.listen(8000,function(error) {//tells the server to listen on port 8000
         console.log('server is listening on port 8000')
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
