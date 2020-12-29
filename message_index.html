@@ -6,43 +6,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="messages_style.css">
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
 
-    <script>
-        tinymce.init({
-            selector: "#user-inputs-new-message",
-            plugins: "emoticons",
-            toolbar: "emoticons",
-            toolbar_location: "bottom",
-            menubar: false  //if set this to true then can attach fils etc
-        });
-    </script>
+<!--    <script>-->
+<!--        tinymce.init({-->
+<!--            selector: "#user-inputs-new-message",-->
+<!--            plugins: "emoticons",-->
+<!--            toolbar: "emoticons",-->
+<!--            toolbar_location: "bottom",-->
+<!--            menubar: false  //if set this to true then can attach files etc-->
+<!--        });-->
+<!--    </script>-->
 
 </head>
 <body>
-<!--<div class="bg-for-user-input" style="background-image: url('birthday_image3.png');">-->
-<!--<div class = "container-for-user-input">-->
-<!--    <div class = "wrap-user-form">-->
-<!--        <form class="form-where-user-enters-message">-->
-<!--        <span class="form-title">-->
-<!--        Write your birthday message for Christa here:-->
-<!--        </span>-->
-<!--            <textarea id="userEntersNewMessage" class="input2" name="message"></textarea>-->
-
-<!--                <div class="container-for-submitting-form-btn">-->
-<!--                <div class="wrap-submitting-form-btn">-->
-<!--                <div class="submitting-form-bgbtn"></div>-->
-<!--                    <button class="submission-form-btn">-->
-<!--                    Post your message-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</div>-->
-<div id="app"></div>
-
 <form id="writeBirthdayMessages">
 
 <div id="Modal">
@@ -51,7 +28,8 @@
         </div>
         <textarea rows = "10" cols="82" id="user-inputs-new-message" type="text" placeholder="Write your message here....."></textarea> <!-- the textarea tag must be on the same line otherwise the placeholder does not show -->
 
-        <input type="button" id="button" value="Post your message">
+        <input type="button" id="button" value="Post your message" onclick="postMessage()">
+        <input type="button" id="clear_message_button" value="Discard message" >
 
 
 

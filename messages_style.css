@@ -75,8 +75,8 @@ body {
 
        margin: 0;
        position: relative;
-       top: 30px;
-       left: 36%;
+       top: 25px;
+       left: 7%;
 }
 
 #button:hover{
@@ -84,6 +84,35 @@ body {
 
 }
 
+#clear_message_button {
+    text-align: center;
+    background-color: #6b4d15;
+    border: none;
+    border-radius: 3px;
+    color: white;
+
+
+    font-family: "Lato", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 180px;
+    height: 40px;
+
+    margin: 0;
+    position: relative;
+    top: 25px;
+    left: 33%;
+}
+
+#clear_message_button:hover{
+    transform: scale(1.1);
+
+}
 
 
 
