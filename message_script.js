@@ -3,16 +3,16 @@
 var input = document.querySelector('#clear_message_button');
 var textarea = document.querySelector('#user-inputs-new-message');
 
-input.addEventListener('click', function () {
-    textarea.value = '';
-}, false);
+// input.addEventListener('click', function () {
+//     textarea.value = '';
+// }, false);
 
 function getToken() {
     return 'lauren2';
 }
 
 function makeRequest(method, resource, body, successCb, errorCb) {
-    var baseUrl = 'http://localhost:8000';
+    var baseUrl = 'http://localhost:8080';
     //console.log(JSON.stringify(body));
     $.ajax({ //ajax= techinique for accessing web servers from a webpage so this is where the connection is being made to the API. It sends teh http requests easily and quickly as you don't have to reload the page.
         method: method,
@@ -77,4 +77,36 @@ function postMessage() {
     }
 }
 
+function getMessages(){
+    $.getJSON( "message_dictionary.json", function( data ) {
+        $.each( data, function( key, val ) {
+            console.log("hiya");
+        });
+    });
+}
 
+fetch('http://localhost:8080/messageboard.html')
+    .then(function (response) {
+        // The JSON data will arrive here
+        console.log("JSON data arrives");
+        return response.json();
+    })
+    .then(function (items) {
+        appendData(items);
+        console.log("here you are appending the data");
+    })
+    .catch(function (err) {
+        // If an error occured, you will catch it here
+        console.log(err);
+    });
+
+function appendData(items) {
+    var mainContainer = document.getElementById("myData");
+    //div.innerHTML = 'Message: ' + items['Message'];
+    for (var i = 0; i < items.length; i++) {
+        var div = document.createElement("div");
+
+        div.innerHTML = 'Message: ' + items[i].Message;
+        mainContainer.appendChild(div);
+    }
+}

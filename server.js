@@ -5,7 +5,7 @@ const server = http.createServer((request,response) => {//create a server using 
 
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
-    const items = require("./message_dictionary"); //this reads the json file
+    const items = require("./message_dictionary.json"); //this reads the json file
 
 
     if (request.method === 'OPTIONS') {
@@ -75,6 +75,8 @@ const server = http.createServer((request,response) => {//create a server using 
 
             fs.writeFile("message_dictionary.json", JSON.stringify(items), err => {
                 console.log("success writing to the dictionary")
+                // var showItems = JSON.stringify(items);
+                // document.getElementById("buttonToShowJSON").innerHTML = showItems;
 
             })
 
@@ -88,11 +90,11 @@ const server = http.createServer((request,response) => {//create a server using 
     }
 })
 
-server.listen(8000,function(error) {//tells the server to listen on port 8000
+server.listen(8080,function(error) {//tells the server to listen on port 8080
     if (error) {
         console.log('something went wrong', error)
     } else {
-        console.log('server is listening on port 8000')
+        console.log('server is listening on port 8080')
     }
 });
 
