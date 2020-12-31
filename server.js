@@ -15,7 +15,7 @@ const server = http.createServer((request,response) => {//create a server using 
             response.setHeader('Access-Control-Allow-Origin', '*'); // allows any origin to access the server
             response.setHeader('Access-Control-Allow-Headers', '*');
             response.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-            response.setHeader('Content-Type', 'text/html');
+            response.setHeader('Content-Type', 'application/json'); //or application/json??
             response.statuscode = 404;
             response.end();
             return response; //doing return response shows you the server response
@@ -35,12 +35,15 @@ const server = http.createServer((request,response) => {//create a server using 
             //url,
             body: items
         }
-
-        response.write(JSON.stringify(responseBody))
         console.log(responseBody);
+        response.write(JSON.stringify(responseBody))
+
 
         response.end(); //end the response
         return responseBody;
+
+
+
 
 
     }
