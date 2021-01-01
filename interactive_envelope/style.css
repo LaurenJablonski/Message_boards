@@ -9,7 +9,7 @@ body{
 .wrapper{
     position:absolute;
     top:50%;
-    left:50%;
+    left:20%;
     transform: translate(-50%,-50%);
 }
 
@@ -17,7 +17,7 @@ body{
 .mail{
     width: 300px;
     height: 200px;
-    background: #ff8789;
+    background: #00bfff;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -31,9 +31,9 @@ body{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #ff393c;
+    border-right: 150px solid #00bfff;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #ff393c; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid  #00bfff; /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -45,13 +45,14 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #ff5355;
+    border-left: 150px solid #00bfff;
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #ff5355;
+    border-bottom: 100px solid #00bfff;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
+
 }
 
 .cover:before{
@@ -61,12 +62,13 @@ body{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #ff8789;
+    border-top: 100px solid #0080ff;
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
     transform: rotateX(0deg);
     transition: all 1s 1s ease;
+
 
 }
 
@@ -99,6 +101,199 @@ body{
 }
 
 .mail:hover .letter{
+    top: -200px; /* this controls how much the letter comes out of the envelope */
+    transition: all 1s 1s ease;
+}
+.wrapper2{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.mail2{
+    width: 300px;
+    height: 200px;
+    background: #78FAC9;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.mail2:before{
+    content:"";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid #78FAC9;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid  #78FAC9; /* 100px as thats half the value of the height */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 5;
+
+}
+
+.mail2:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid #78FAC9;
+    border-right: 150px solid transparent;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #78FAC9;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 4;
+
+}
+
+.cover2:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #1AE598;
+    border-bottom: 100px solid transparent;
+    z-index: 6;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: all 1s 1s ease;
+
+}
+
+.letter2{
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 10px;
+    background: #dedede;
+    width: 280px;
+    height: 180px;
+    border-radius: 20px;
+    transition: all 1s ease;
+}
+
+.letter2 h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #798992;
+    font-weight: 900;
+
+}
+
+.mail2:hover .cover2:before{
+    transform: rotateX(180deg);
+    transition: all 1s ease;
+}
+
+.mail2:hover .letter2{
+    top: -200px; /* this controls how much the letter comes out of the envelope */
+    transition: all 1s 1s ease;
+}
+
+.wrapper3{
+    position:absolute;
+    top:50%;
+    left:80%;
+    transform: translate(-50%,-50%);
+}
+
+.mail3{
+    width: 300px;
+    height: 200px;
+    background: #F7C3F2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.mail3:before{
+    content:"";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid #F7C3F2;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid  #F7C3F2; /* 100px as thats half the value of the height */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 5;
+
+}
+
+.mail3:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid #F7C3F2;
+    border-right: 150px solid transparent;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #F7C3F2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 4;
+
+}
+
+.cover3:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #FAADF3;
+    border-bottom: 100px solid transparent;
+    z-index: 6;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: all 1s 1s ease;
+
+}
+
+.letter3{
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 10px;
+    background: #dedede;
+    width: 280px;
+    height: 180px;
+    border-radius: 20px;
+    transition: all 1s ease;
+}
+
+.letter3 h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #798992;
+    font-weight: 900;
+
+}
+
+.mail3:hover .cover3:before{
+    transform: rotateX(180deg);
+    transition: all 1s ease;
+}
+
+.mail3:hover .letter3{
     top: -200px; /* this controls how much the letter comes out of the envelope */
     transition: all 1s 1s ease;
 }

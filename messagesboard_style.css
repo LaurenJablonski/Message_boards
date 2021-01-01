@@ -6,6 +6,10 @@ body {
     min-height: 100vh;
 }
 
+p{
+    font-size: 400px;
+}
+
 h1{
     font-weight: 400;
     font-style: normal;
@@ -14,9 +18,9 @@ h1{
     height: 5px;
     width: 100%;
     display:inline-block;
-    padding-top:1rem; /* this adjusts the position of the header up and down */
+    padding-top:3rem; /* this adjusts the position of the header up and down */
     text-align: center;
-    font-size: 60px;
+    font-size: 70px;
     font-style: italic;
 
 
@@ -24,9 +28,10 @@ h1{
 
 .header-img{
     width: 100%;
-    height: 400px;
-    background: url('images/birthday_image.jpg');
+    height: 300px; /* this changes how big the image of the balloons is */
+    background: url('images/birthday_image8.png');
     background-size: cover;
+    background-position: -0px,-800px;
 
 }
 
@@ -39,9 +44,361 @@ h1{
     height: 50px;
     text-align:center;
     padding-top:1rem;
-    font-size: 24px;
+    font-size: 16px;
+
 }
 
 *{
+    margin:0;
+    padding:0;
+}
+body{
+    background:url('images/backdrop.jpg')
+}
 
+.wrapper{
+    position:absolute;
+    top:70%;
+    left:20%;
+    transform: translate(-50%,-50%);
+}
+
+
+.mail{
+    width: 300px;
+    height: 200px;
+    background: #95E0E8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.mail:before{
+    content:"";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid #95E0E8;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid  #95E0E8; /* 100px as thats half the value of the height */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 5;
+
+}
+
+.mail:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid #95E0E8;
+    border-right: 150px solid transparent;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #95E0E8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 4;
+
+}
+
+.cover:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #7ED4E6;
+    border-bottom: 100px solid transparent;
+    z-index: 6;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: all 0.05s 0.05s ease;
+
+
+}
+
+.letter{
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 10px;
+    background: white;
+    width: 280px;
+    height: 180px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.letter textarea{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: black;
+    font-weight: 900;
+    border-radius: 20px;
+
+}
+
+.letter2 textarea{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: black;
+    font-weight: 900;
+    border-radius: 20px;
+
+}
+
+.letter3 textarea{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: black;
+    font-weight: 900;
+    border-radius: 20px;
+
+}
+
+#where_messages_appear {
+    text-align: center;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    border-radius: 20px;
+    resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*/
+    border-color: white;
+
+}
+
+.mail:hover .cover:before{
+    transform: rotateX(180deg);
+    transition: all 0.75s ease;
+}
+
+.mail:hover .letter{
+    top: -200px; /* this controls how much the letter comes out of the envelope */
+    transition: all 1s 1s ease;
+}
+.wrapper2{
+    position:absolute;
+    top:70%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.mail2{
+    width: 300px;
+    height: 200px;
+    background: #93DFB8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.mail2:before{
+    content:"";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid #93DFB8;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid  #93DFB8; /* 100px as thats half the value of the height */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 5;
+
+}
+
+.mail2:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid #93DFB8;
+    border-right: 150px solid transparent;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #93DFB8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 4;
+
+}
+
+#where_messages_appear2 {
+    text-align: center;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    border-radius: 20px;
+    resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*/
+    border-color: white;
+
+}
+
+.cover2:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #5FA777;
+    border-bottom: 100px solid transparent;
+    z-index: 6;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: all 0.05s 0.05s ease;
+
+}
+
+.letter2{
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 10px;
+    background: white;
+    width: 280px;
+    height: 180px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.letter2 h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #798992;
+    font-weight: 900;
+
+}
+
+.mail2:hover .cover2:before{
+    transform: rotateX(180deg);
+    transition: all 0.75s ease;
+}
+
+.mail2:hover .letter2{
+    top: -200px; /* this controls how much the letter comes out of the envelope */
+    transition: all 1s 1s ease;
+}
+
+.wrapper3{
+    position:absolute;
+    top:70%;
+    left:80%;
+    transform: translate(-50%,-50%);
+}
+
+.mail3{
+    width: 300px;
+    height: 200px;
+    background: #F7C3F2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.mail3:before{
+    content:"";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid #F7C3F2;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid  #F7C3F2; /* 100px as thats half the value of the height */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 5;
+
+}
+
+.mail3:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid #F7C3F2;
+    border-right: 150px solid transparent;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #F7C3F2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 4;
+
+}
+
+#where_messages_appear3 {
+    text-align: center;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    border-radius: 20px;
+    resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*/
+    border-color: white;
+
+}
+
+.cover3:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #EBB0D7;
+    border-bottom: 100px solid transparent;
+    z-index: 6;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: all 0.05s 0.05s ease;
+
+}
+
+.letter3{
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    left: 10px;
+    background: white;
+    width: 280px;
+    height: 180px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.letter3 h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: #798992;
+    font-weight: 900;
+
+}
+
+.mail3:hover .cover3:before{
+    transform: rotateX(180deg);
+    transition: all 0.75s ease;
+}
+
+.mail3:hover .letter3{
+    top: -200px; /* this controls how much the letter comes out of the envelope */
+    transition: all 1s 1s ease;
 }
