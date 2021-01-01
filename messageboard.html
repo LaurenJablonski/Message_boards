@@ -17,16 +17,18 @@
 
 </div>
 
-<!--<input type="button" id="buttonToShowJSON" value="click to show messages" onclick="getMessages()">-->
+<!--<input type="button" id="press_to_post_message" value="Add message" onclick="message_index.html">-->
+<a href="message_index.html" target="_blank"><button type="button" id="press_to_post_message"> + Add message</button></a>
+
 <div id="myData"></div>
 
+<!-- now here's the code for the interactive envelopes -->
 <div class="wrapper">
     <div class="mail">
         <div class="cover"></div>
         <div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">Message 1</textarea></div>
     </div>
 </div>
-
 <div class="wrapper2">
     <div class="mail2">
         <div class="cover2"></div>
@@ -40,6 +42,8 @@
         <div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear3">Message 3 </textarea></div>
     </div>
 </div>
+
+
 
 <script src="message_script.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
