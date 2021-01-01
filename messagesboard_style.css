@@ -148,7 +148,7 @@ body{
     z-index: 6;
     transform-origin: top;
     transform: rotateX(0deg);
-    transition: all 0.05s 0.05s ease;
+    transition: all 0.5s 0.5s ease;
 
 
 }
@@ -290,7 +290,7 @@ body{
     z-index: 6;
     transform-origin: top;
     transform: rotateX(0deg);
-    transition: all 0.05s 0.05s ease;
+    transition: all 0.5s 0.5s ease;
 
 }
 
@@ -397,7 +397,7 @@ body{
     z-index: 6;
     transform-origin: top;
     transform: rotateX(0deg);
-    transition: all 0.05s 0.05s ease;
+    transition: all 0.5s 0.5s ease;
 
 }
 

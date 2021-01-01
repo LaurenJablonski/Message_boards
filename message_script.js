@@ -85,30 +85,30 @@ function getMessages(){
     });
 }
 
-// fetch('message_dictionary.json') // not sure if this should be this or http://localhost:8080/messageboard.html or http://localhost:8080/message_dictionary.json
-//     .then(function (response) {
-//         // The JSON data will arrive here
-//         console.log("JSON data arrives");
-//         //console.log(response);
-//         return response.json();
-//     })
-//     .then(function (items) {
-//         appendData(items);
-//         console.log("here you are appending the data");
-//     })
-//     .catch(function (err) {
-//         // If an error occured, you will catch it here
-//         console.log(err);
-//     });
-//
-// function appendData(items) {
-//     var mainContainer = document.getElementById("myData");
-//     //div.innerHTML = 'Message: ' + items['Message'];
-//     for (var i = 0; i < items.length; i++) {
-//         var div = document.createElement("div");
-//
-//         div.innerHTML = 'Message: ' + items[i].Message;
-//         mainContainer.appendChild(div);
-//     }
-// }
+fetch('message_dictionary.json') // not sure if this should be this or http://localhost:8080/messageboard.html or http://localhost:8080/message_dictionary.json
+    .then(function (response) {
+        // The JSON data will arrive here
+        console.log("JSON data arrives");
+        //console.log(response);
+        return response.json();
+    })
+    .then(function (items) {
+        appendData(items);
+        console.log("here you are appending the data");
+    })
+    .catch(function (err) {
+        // If an error occured, you will catch it here
+        console.log(err);
+    });
+
+function appendData(items) {
+    var mainContainer = document.getElementById("myData");
+    //div.innerHTML = 'Message: ' + items['Message'];
+    for (var i = 0; i < items.length; i++) {
+        var div = document.createElement("div");
+
+        div.innerHTML = 'Message: ' + items[i].Message;
+        mainContainer.appendChild(div);
+    }
+}
 
