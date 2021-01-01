@@ -50,7 +50,7 @@ h1{
 
 #press_to_post_message {
     text-align: center;
-    background-color: 	#606060;
+    background-color: 	#404040;
     border: none;
     border-radius: 3px;
     color: 	white;
@@ -75,6 +75,7 @@ h1{
 
 #press_to_post_message:hover{
     transform: scale(1.1);
+    cursor: pointer;
 
 }
 

@@ -81,6 +81,7 @@ body {
 
 #button:hover{
     transform: scale(1.1);
+    cursor: pointer;
 
 }
 
@@ -111,6 +112,7 @@ body {
 
 #clear_message_button:hover{
     transform: scale(1.1);
+    cursor: pointer;
 
 }
 
