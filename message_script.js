@@ -70,6 +70,7 @@ function postMessage(items) {
         alert("Please enter a message!");
     } else {
         postItem(messageEntered);
+        //self.close();
         console.log("the message inputted by the user is:" + messageEntered);
         console.log("thanks for submitting a message");
         document.getElementById("user_inputs_new_message").value = "";
@@ -93,8 +94,8 @@ function postMessage(items) {
 function showItems(data) {
     console.log("you are reaching showItems");
     var displayMessages = document.getElementById("whereToDisplayMessages");
-    var shareInfoLength = data.length;
-    for (var i = 0; i < shareInfoLength; i++) { // instead of length we could put the id of the last entered message
+    var lengthOfMessages = data.length;
+    for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
         var div = document.createElement("div");
         div.innerHTML = 'Message: ' + data[i].Message; //i['Message'];
         displayMessages.appendChild(div);
