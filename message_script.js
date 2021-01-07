@@ -30,13 +30,7 @@ function getItems(items) {
         var jsonData = JSON.parse(data);
         //console.log(items);
         console.log("this is the jsonData.body" + JSON.stringify(jsonData.body));
-        //console.log("this is the jsonData" + JSON.stringify(jsonData));
-        //console.log(items)
-        //console.log(data);
-        //callback(jsonData.body.items);//if the request was successful then callback(items)
-        //callback(JSON.stringify(jsonData.body)); //without this the html of your calendar doesn't load
-        //createItemTable(items)
-        document.getElementById("json").textContent= JSON.stringify(jsonData,undefined,2);
+        showItems(jsonData.body)
 
 
 
@@ -56,6 +50,8 @@ function postItem(messageEntered){
         console.log('success');
         getItems(body);
         console.log([body]);
+        // showItems(body);
+        // showItems(items);
 
     }, function () {
         console.log("An error occured in postItem");
@@ -66,7 +62,7 @@ function postItem(messageEntered){
 
 
 
-function postMessage() {
+function postMessage(items) {
 
     let messageEntered = document.getElementById("user_inputs_new_message").value;//gets the data entered by the user
 
@@ -77,12 +73,45 @@ function postMessage() {
         console.log("the message inputted by the user is:" + messageEntered);
         console.log("thanks for submitting a message");
         document.getElementById("user_inputs_new_message").value = "";
+        //showItems(items);
 
         // addItem(todoItemname, todoItemDesc, todoItemDate);
         // clearAndRefresh();//if name, description and due date have been added then clear the form and refresh the page.
 
     }
 }
+
+//var data = [{"ID":1,"Message":"Happy Birthday Christa!! I hope you have a wonderful day!"},{"ID":2,"Message":"We hope you have a lovely day Christa"},{"ID":3,"Message":"hallllllllllllllllllooooooooooooooooooooo"},{"Message":"cxcxcxcx","ID":4},{"Message":"Message  5 testing","ID":5}];
+
+//var obj = JSON.stringify(items);
+
+// shareInfoLength = data.shareMessages.length;
+// for ( i = 0; i < shareInfoLength; i++) {
+//     alert(Object.keys(data.shareMessages[i]).length);
+// }
+
+function showItems(data) {
+    console.log("you are reaching showItems");
+    var displayMessages = document.getElementById("whereToDisplayMessages");
+    var shareInfoLength = data.length;
+    for (var i = 0; i < shareInfoLength; i++) { // instead of length we could put the id of the last entered message
+        var div = document.createElement("div");
+        div.innerHTML = 'Message: ' + data[i].Message; //i['Message'];
+        displayMessages.appendChild(div);
+    }
+}
+
+
+
+//     function showItems(items) {
+//     console.log("you are reaching showItems");
+//     var displayMessages = document.getElementById("whereToDisplayMessages");
+//     for ( i = 0; i < Object.keys(obj.items[i]).length; i++) { // instead of length we could put the id of the last entered message
+//         var div = document.createElement("div");
+//         div.innerHTML = 'Message: ' + data[i].message;
+//         displayMessages.appendChild(div);
+//     }
+// }
 
 // var arrayOfItemIDs = []
 // function createItemTable(items) {
