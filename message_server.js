@@ -36,6 +36,8 @@ const server = http.createServer((request,response) => {//create a server using 
             body: items
         }
 
+        console.log("the items are:" + items);
+
         response.write(JSON.stringify(responseBody))
         console.log(responseBody);
 

@@ -54,7 +54,7 @@ body {
 }
 
 /*Button*/
-#button {
+#post_message_button {
        text-align: center;
        background-color: #6b4d15;
        border: none;
@@ -79,7 +79,7 @@ body {
        left: 7%;
 }
 
-#button:hover{
+#post_message_button:hover{
     transform: scale(1.1);
     cursor: pointer;
 
