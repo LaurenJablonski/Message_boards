@@ -1,5 +1,3 @@
-
-
 var input = document.querySelector('#clear_message_button');
 var textarea = document.querySelector('#user_inputs_new_message');
 
@@ -24,13 +22,13 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
-function getItems(items) {
+function getItems() {
     makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         //var items = data.body['items'];//object['properties of the object']
         var jsonData = JSON.parse(data);
         //console.log(items);
         console.log("this is the jsonData.body" + JSON.stringify(jsonData.body));
-        showItems(jsonData.body)
+        showItems(jsonData.body);
 
 
 
@@ -76,8 +74,6 @@ function postMessage(items) {
         document.getElementById("user_inputs_new_message").value = "";
         //showItems(items);
 
-        // addItem(todoItemname, todoItemDesc, todoItemDate);
-        // clearAndRefresh();//if name, description and due date have been added then clear the form and refresh the page.
 
     }
 }
@@ -102,55 +98,6 @@ function showItems(data) {
     }
 }
 
-
-
-//     function showItems(items) {
-//     console.log("you are reaching showItems");
-//     var displayMessages = document.getElementById("whereToDisplayMessages");
-//     for ( i = 0; i < Object.keys(obj.items[i]).length; i++) { // instead of length we could put the id of the last entered message
-//         var div = document.createElement("div");
-//         div.innerHTML = 'Message: ' + data[i].message;
-//         displayMessages.appendChild(div);
-//     }
-// }
-
-// var arrayOfItemIDs = []
-// function createItemTable(items) {
-//     //alert(JSON.stringify(items[2]['DueDate']));
-//     var list = '<table id="toDoTable" style="width:100%" position:absolute ><tr><th style="text-align:center">Messagessss</th></tr>';
-//     var now = new Date();
-//
-//     items.forEach(i => {
-//         arrayOfItemIDs.push(i.ID)
-//
-//
-//         // as you pass through the loop these items are sdded to the page
-//         element = '<div>'
-//         element += '<td>' + i['Message'] + '</td>'; // shouldn't this be changed to dictionary?
-//         element += '</div>'
-//         list += element
-//     });
-
-//
-//     $(this).element += '</table>';// add the element to the table
-//     $('#list').html(list);
-// }
-
-// var globalItems = []
-//
-// function refreshList() {
-//     getItems(function (items) {
-//         globalItems = items
-//         createItemTable(items);
-//     });
-// }
-
-
-
-
-
-//
-// window.onload = function loading() {
-//
-//     refreshList()
-// } ;
+$().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
+    getItems();
+});
