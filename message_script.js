@@ -88,15 +88,37 @@ function postMessage(items) {
 // }
 
 function showItems(data) {
-    console.log("you are reaching showItems");
-    var displayMessages = document.getElementById("whereToDisplayMessages");
+    //var showingTheMessages = document.getElementsByClassName('definingmessages');
+    //var list = "document.getElementsByClassName('definingmessages')";
+    var list = ' <div id="mymessages" '
+
+
+       console.log("you are reaching showItems");
+    //var displayMessages = document.getElementById("whereToDisplayMessages");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
-        var div = document.createElement("div");
-        div.innerHTML = 'Message: ' + data[i].Message; //i['Message'];
-        displayMessages.appendChild(div);
-    }
+        data.forEach(function(){
+             element = '<div>'
+             element += '<div class="letter">' + 'Message:' + data[i].Message + '</div>';
+             element += '</div>'
+        });
+        $("body").append(element);
+    };
 }
+
+
+//         })
+//         //var div = document.createElement("div");
+//         element += 'Message: ' + data[i].Message;
+//         // var one = docume.getElementById("where_messages_appear")
+//         // var div1 = document.replaceChild()
+//         //div.innerHTML = 'Message: ' + data[i].Message; //i['Message'];
+//         //showingTheMessages.appendChild(div);
+//         list += element
+//     }
+//     $(this).element += '</div>';// add the element to the table
+//     $('#list').html(list);
+// }
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
