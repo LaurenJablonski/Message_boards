@@ -90,19 +90,21 @@ function postMessage(items) {
 function showItems(data) {
     //var showingTheMessages = document.getElementsByClassName('definingmessages');
     //var list = "document.getElementsByClassName('definingmessages')";
-    var list = ' <div id="mymessages" '
+    //var list = ' <div id="mymessages" '
 
 
        console.log("you are reaching showItems");
     //var displayMessages = document.getElementById("whereToDisplayMessages");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
-        data.forEach(function(){
-             element = '<div>'
-             element += '<div class="letter">' + 'Message:' + data[i].Message + '</div>';
-             element += '</div>'
+        data.forEach(i => {
+             element = 'Message:' + i['Message'];
         });
-        $("body").append(element);
+
+        document.getElementById("where_messages_appear2").innerHTML = element;
+        //var node = document.getElementById("new");
+        //document.getElementById("letter").appendChild(node);
+        //$("body").append(element);
     };
 }
 
