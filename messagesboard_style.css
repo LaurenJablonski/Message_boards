@@ -102,7 +102,7 @@ body{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
-    transform-style: preserve-3d;
+    transform-style: preserve-3d; /*The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., elements.*/
     cursor: pointer;
 }
 
@@ -132,7 +132,7 @@ body{
     border-bottom: 100px solid #95E0E8;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    z-index: 4;
+    z-index: 4; /*gets or returns the stack order of a positioned element - the higher the stack property the more infront it is */
 
 }
 

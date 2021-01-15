@@ -1,8 +1,12 @@
 const http = require('http'); // you get the http library in node.js. Note you have to use require in node.js in order to get a library. This includes the http library into our code inside the http variable
 const fs = require('fs');// this allows us to read another file in our code. this variable fs allows us to do all the file handling that we need to do
+var static = require('node-static');
+var file = new(static.Server)('.');
 
 const server = http.createServer((request,response) => {//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
-
+    file.serve(request, response);
+    //response.writeHead(200, { 'content-type': 'text/html' })
+    //fs.createReadStream('messageboard.html').pipe(response)
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
     const items = require("./message_dictionary"); //this reads the json file

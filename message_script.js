@@ -1,6 +1,8 @@
 var input = document.querySelector('#clear_message_button');
 var textarea = document.querySelector('#user_inputs_new_message');
 
+var arrayOfItemIDs = []
+
 // input.addEventListener('click', function () {
 //     textarea.value = '';
 // }, false);
@@ -93,34 +95,44 @@ function showItems(data) {
     //var list = ' <div id="mymessages" '
 
 
-       console.log("you are reaching showItems");
+    console.log("you are reaching showItems");
     //var displayMessages = document.getElementById("whereToDisplayMessages");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
-        data.forEach(i => {
-             element = 'Message:' + i['Message'];
-        });
 
-        document.getElementById("where_messages_appear2").innerHTML = element;
-        //var node = document.getElementById("new");
-        //document.getElementById("letter").appendChild(node);
-        //$("body").append(element);
+            element = 'Message:' + data[i]['Message'];
+
+
+            document.getElementById("where_messages_appear2").innerHTML = element;
+
     };
 }
 
-
-//         })
-//         //var div = document.createElement("div");
-//         element += 'Message: ' + data[i].Message;
-//         // var one = docume.getElementById("where_messages_appear")
-//         // var div1 = document.replaceChild()
-//         //div.innerHTML = 'Message: ' + data[i].Message; //i['Message'];
-//         //showingTheMessages.appendChild(div);
-//         list += element
-//     }
-//     $(this).element += '</div>';// add the element to the table
-//     $('#list').html(list);
+// function showItems(data) {
+//     var showingTheMessages = document.getElementsByClassName('definingmessages');
+//
+//     console.log("you are reaching showItems");
+//     //var displayMessages = document.getElementById("whereToDisplayMessages");
+//     var lengthOfMessages = data.length;
+//     for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
+//
+//             //arrayOfItemIDs.push(i.ID)
+//
+//             element = '<div>'
+//             element += 'Message:' + i['Message'];
+//             element += '</div>'
+//             showingTheMessages += element;
+//
+//
+//         //document.getElementById("where_messages_appear2").innerHTML = element;
+//
+//         $(this).element += document.getElementById("definingmessages");
+//         // $(this).element += document.getElementsByClassName("definingmessages");// add the element to the table
+//         $('#definingmessages').html(showingTheMessages);
+//
+//     };
 // }
+
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
