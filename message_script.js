@@ -81,21 +81,25 @@ function postMessage(items) {
 }
 
 function showItems(data) {
-    var list = '<div class="mail"><div class="cover"></div> <div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
+    var list = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
 
     console.log("you are reaching showItems");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) {
-            element = '<div>'
-            element += '<div>' + 'Message:' + data[i]['Message'] +'</div>';
-            element += '</textarea></div>'
+            element = list;
+            element += 'Message:' + data[i]['Message'];
+            element += '</textarea></div>';
             console.log("this is hte element" + element);
             list += element;
             console.log("the list" + list);
+            $(this).element += '</div></div>';
+            $('#whereToDisplayMessages').html(list);
+
+
 
     };
-    $(this).element += '</div>';
-    $('#whereToDisplayMessages').html(list);
+
+
 }
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
