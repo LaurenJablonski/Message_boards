@@ -81,23 +81,32 @@ function postMessage(items) {
 }
 
 function showItems(data) {
-    var list = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
+    var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
     console.log("you are reaching showItems");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) {
-            element = list;
-            element += 'Message:' + data[i]['Message'];
+        if ()
+
+
+            //element = '<div>';
+            element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
+            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
             element += '</textarea></div>';
-            console.log("this is hte element" + element);
             list += element;
+            console.log("this is hte element" + element);
             console.log("the list" + list);
-            $(this).element += '</div></div>';
-            $('#whereToDisplayMessages').html(list);
+            $(this).element += '</div>';
+            $('#whereToDisplayMessages').prepend(element);
+
 
 
 
     };
+
+
+
+
 
 
 }
