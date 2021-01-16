@@ -86,22 +86,38 @@ function showItems(data) {
     console.log("you are reaching showItems");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) {
-        if ()
-
-
-            //element = '<div>';
+        if (i%1 == 0){ //even
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
             element += '</textarea></div>';
             list += element;
-            console.log("this is hte element" + element);
-            console.log("the list" + list);
-            $(this).element += '</div>';
-            $('#whereToDisplayMessages').prepend(element);
+
+        }
+        if (i%2 == 0){ //multiple of 3 but not even
+            element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
+            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += '</textarea></div>';
+            list += element;
+
+        }
+
+        if (i%3 == 0){ //multiple of 3 but not even
+            element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
+            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += '</textarea></div>';
+            list += element;
+
+        }
+        if (i%4 == 0){//odd
+            element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
+            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += '</textarea></div>';
+            list += element;
 
 
-
-
+        }
+        $(this).element += '</div>';
+        $('#whereToDisplayMessages').prepend(element);
     };
 
 
