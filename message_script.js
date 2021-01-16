@@ -12,7 +12,7 @@ function getToken() {
 }
 
 function makeRequest(method, resource, body, successCb, errorCb) {
-    var baseUrl = 'http://localhost:8080';
+    var baseUrl = 'http://localhost:8000';
     //console.log(JSON.stringify(body));
     $.ajax({ //ajax= techinique for accessing web servers from a webpage so this is where the connection is being made to the API. It sends teh http requests easily and quickly as you don't have to reload the page.
         method: method,
@@ -80,59 +80,23 @@ function postMessage(items) {
     }
 }
 
-//var data = [{"ID":1,"Message":"Happy Birthday Christa!! I hope you have a wonderful day!"},{"ID":2,"Message":"We hope you have a lovely day Christa"},{"ID":3,"Message":"hallllllllllllllllllooooooooooooooooooooo"},{"Message":"cxcxcxcx","ID":4},{"Message":"Message  5 testing","ID":5}];
-
-//var obj = JSON.stringify(items);
-
-// shareInfoLength = data.shareMessages.length;
-// for ( i = 0; i < shareInfoLength; i++) {
-//     alert(Object.keys(data.shareMessages[i]).length);
-// }
-
 function showItems(data) {
-    //var showingTheMessages = document.getElementsByClassName('definingmessages');
-    //var list = "document.getElementsByClassName('definingmessages')";
-    //var list = ' <div id="mymessages" '
-
+    var list = '<div class="mail"><div class="cover"></div> <div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
 
     console.log("you are reaching showItems");
-    //var displayMessages = document.getElementById("whereToDisplayMessages");
     var lengthOfMessages = data.length;
-    for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
-
-            element = 'Message:' + data[i]['Message'];
-
-
-            document.getElementById("where_messages_appear2").innerHTML = element;
+    for (var i = 0; i < lengthOfMessages; i++) {
+            element = '<div>'
+            element += '<div>' + 'Message:' + data[i]['Message'] +'</div>';
+            element += '</textarea></div>'
+            console.log("this is hte element" + element);
+            list += element;
+            console.log("the list" + list);
 
     };
+    $(this).element += '</div>';
+    $('#whereToDisplayMessages').html(list);
 }
-
-// function showItems(data) {
-//     var showingTheMessages = document.getElementsByClassName('definingmessages');
-//
-//     console.log("you are reaching showItems");
-//     //var displayMessages = document.getElementById("whereToDisplayMessages");
-//     var lengthOfMessages = data.length;
-//     for (var i = 0; i < lengthOfMessages; i++) { // instead of length we could put the id of the last entered message
-//
-//             //arrayOfItemIDs.push(i.ID)
-//
-//             element = '<div>'
-//             element += 'Message:' + i['Message'];
-//             element += '</div>'
-//             showingTheMessages += element;
-//
-//
-//         //document.getElementById("where_messages_appear2").innerHTML = element;
-//
-//         $(this).element += document.getElementById("definingmessages");
-//         // $(this).element += document.getElementsByClassName("definingmessages");// add the element to the table
-//         $('#definingmessages').html(showingTheMessages);
-//
-//     };
-// }
-
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
