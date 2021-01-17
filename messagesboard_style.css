@@ -542,3 +542,16 @@ body{
     top: -200px; /* this controls how much the letter comes out of the envelope */
     transition: all 1s 1s ease;
 }
+
+#whereToDisplayMessages {
+    position: absolute;
+    z-index: 9;
+}
+
+#whereToDisplayMessagesheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+}

@@ -62,7 +62,7 @@ function postItem(messageEntered){
 
 
 
-function postMessage(items) {
+function postMessage() {
 
     let messageEntered = document.getElementById("user_inputs_new_message").value;//gets the data entered by the user
 
@@ -88,14 +88,14 @@ function showItems(data) {
     for (var i = 0; i < lengthOfMessages; i++) {
         if (i%1 == 0){ //even
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
 
         }
         if (i%2 == 0){ //multiple of 3 but not even
             element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
 
@@ -103,14 +103,14 @@ function showItems(data) {
 
         if (i%3 == 0){ //multiple of 3 but not even
             element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
 
         }
         if (i%4 == 0){//odd
             element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += '<div>' + 'Message:' + data[i]['Message'] + '</div>';
+            element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
 
@@ -119,12 +119,50 @@ function showItems(data) {
         $(this).element += '</div>';
         $('#whereToDisplayMessages').prepend(element);
     };
+}
 
+// Make the DIV element draggable:
+dragElement(document.getElementById("whereToDisplayMessages"));
 
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        // if present, the header is where you move the DIV from:
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        // otherwise, move the DIV from anywhere inside the DIV:
+        elmnt.onmousedown = dragMouseDown;
+    }
 
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+    }
 
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
 
-
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
 }
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
