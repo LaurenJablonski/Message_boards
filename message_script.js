@@ -59,6 +59,38 @@ function postItem(messageEntered){
     });
 }
 
+function myFunction(button) {
+    var x = document.getElementsByClassName("display-4 font-weight-bold");
+    if (x.contentEditable == "true") {
+        x.contentEditable = "false";
+        button.innerHTML = "Enable content of p to be editable!";
+    } else {
+        x.contentEditable = "true";
+        button.innerHTML = "Disable content of p to be editable!";
+    }
+}
+
+function myFunction(button) {
+    var x = document.getElementsByClassName("display-4 font-weight-bold");
+    if (x.contentEditable == "true") {
+        x.contentEditable = "false";
+        button.innerHTML = "Enable content of p to be editable!";
+    } else {
+        x.contentEditable = "true";
+        button.innerHTML = "Disable content of p to be editable!";
+    }
+}
+
+function myFunction(button) {
+    var x = document.getElementsByClassName("birthday-date");
+    if (x.contentEditable == "true") {
+        x.contentEditable = "false";
+        button.innerHTML = "Enable content of p to be editable!";
+    } else {
+        x.contentEditable = "true";
+        button.innerHTML = "Disable content of p to be editable!";
+    }
+}
 
 
 
@@ -90,7 +122,10 @@ function showItems(data) {
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
             element += '</textarea></div>';
+
             list += element;
+
+
 
         }
         if (i%2 == 0){ //multiple of 3 but not even
@@ -98,6 +133,7 @@ function showItems(data) {
             element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
+
 
         }
 
@@ -107,22 +143,25 @@ function showItems(data) {
             element += '</textarea></div>';
             list += element;
 
+
         }
         if (i%4 == 0){//odd
             element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
+            dragElement(document.getElementById("whereToDisplayMessages"));
+
 
 
         }
-        $(this).element += '</div>';
+        $(this).element += '    </div>';
         $('#whereToDisplayMessages').prepend(element);
     };
 }
-
-// Make the DIV element draggable:
 dragElement(document.getElementById("whereToDisplayMessages"));
+// Make the DIV element draggable:
+
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -164,6 +203,8 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 }
+
+
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();

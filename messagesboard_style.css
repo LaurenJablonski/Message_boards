@@ -8,6 +8,10 @@ body {
 
 p{
     font-size: 400px;
+    height: 0.25em;
+    line-height:0.5em;
+    overflow:hidden;
+    margin: 0 auto;
 }
 
 h1{
@@ -22,9 +26,12 @@ h1{
     text-align: center;
     font-size: 70px;
     font-style: italic;
-
-
+    height: 1em;
+    line-height:0.75em;
+    overflow:hidden;
+    margin: 0 auto;
 }
+
 
 .header-img{
     width: 100%;
