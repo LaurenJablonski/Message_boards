@@ -3,7 +3,7 @@ const fs = require('fs');// this allows us to read another file in our code. thi
 var static = require('node-static');
 var file = new(static.Server)('.');
 
-const server = http.createServer((request,response) => {//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
+http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
     //response.writeHead(200, { 'content-type': 'text/html' })
     //fs.createReadStream('messageboard.html').pipe(response)
@@ -12,31 +12,28 @@ const server = http.createServer((request,response) => {//create a server using 
     const items = require("./message_dictionary"); //this reads the json file
 
 
-    if (request.method === 'OPTIONS') {
-
-        var handleCors = function (request, response) {
-            console.log("its a preflight request");
-            response.setHeader('Access-Control-Allow-Origin', '*'); // allows any origin to access the server
-            response.setHeader('Access-Control-Allow-Headers', '*');
-            response.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-            response.setHeader('Content-Type', 'text/html');
-            response.statuscode = 404;
-            response.end();
-            return response; //doing return response shows you the server response
-        }
-        handleCors(request, response); //Without this the initial request is OPTIONS, but with it the initial request is GET
-    }
+    // if (request.method === 'OPTIONS') {
+    //
+    //     var handleCors = function (request, response) {
+    //         console.log("its a preflight request");
+    //         response.setHeader('Access-Control-Allow-Origin', '*'); // allows any origin to access the server
+    //         response.setHeader('Access-Control-Allow-Headers', '*');
+    //         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+    //         response.setHeader('Content-Type', 'text/html');
+    //         response.statuscode = 404;
+    //         response.end();
+    //         return response; //doing return response shows you the server response
+    //     }
+    //     handleCors(request, response); //Without this the initial request is OPTIONS, but with it the initial request is GET
+    // }
 
 
     if (request.method === 'GET' && request.url === '/item') {
         console.log("hello world");
-        response.setHeader('Access-Control-Allow-Origin', '*');
+       //response.setHeader('Access-Control-Allow-Origin', '*');
 
 
         const responseBody = {
-            //headers,
-            //method,
-            //url,
             body: items
         }
 
@@ -52,7 +49,7 @@ const server = http.createServer((request,response) => {//create a server using 
     }
 
     if (request.method === 'POST') {
-        response.setHeader('Access-Control-Allow-Origin', '*');
+        //response.setHeader('Access-Control-Allow-Origin', '*');
 
         let data = []; //the new item that's being added
 
@@ -97,16 +94,18 @@ const server = http.createServer((request,response) => {//create a server using 
 
 
 
+}).listen(8000, function(){
+    console.log("server listening on port 8000");
 });
 
 
-server.listen(8000,function(error) {//tells the server to listen on port 8000
-    if (error) {
-        console.log('something went wrong', error)
-    } else {
-        console.log('server is listening on port 8000')
-    }
-});
+// server.listen(8000,function(error) {//tells the server to listen on port 8000
+//     if (error) {
+//         console.log('something went wrong', error)
+//     } else {
+//         console.log('server is listening on port 8000')
+//     }
+// });
 
 
 

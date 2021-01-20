@@ -122,8 +122,9 @@ function showItems(data) {
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
             element += '</textarea></div>';
-
+            dragElement(document.getElementById("whereToDisplayMessages"));
             list += element;
+
 
 
 
@@ -150,7 +151,7 @@ function showItems(data) {
             element += data[i]['Message'];
             element += '</textarea></div>';
             list += element;
-            dragElement(document.getElementById("whereToDisplayMessages"));
+            //dragElement(document.getElementById("whereToDisplayMessages"));
 
 
 
@@ -160,7 +161,7 @@ function showItems(data) {
     };
 }
 dragElement(document.getElementById("whereToDisplayMessages"));
-// Make the DIV element draggable:
+//Make the DIV element draggable:
 
 
 function dragElement(elmnt) {
@@ -202,10 +203,11 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
+};
 
 
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
+    //showItems(data);
 });
