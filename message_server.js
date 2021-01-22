@@ -2,6 +2,42 @@ const http = require('http'); // you get the http library in node.js. Note you h
 const fs = require('fs');// this allows us to read another file in our code. this variable fs allows us to do all the file handling that we need to do
 var static = require('node-static');
 var file = new(static.Server)('.');
+const sqlite3 = require('sqlite3').verbose()
+const DB_PATH = './sqlite.db'
+
+const DB = new sqlite3.Database(DB_PATH, function(err){
+    if (err) {
+        console.log(err)
+        return
+    }
+    console.log('Connected to ' + DB_PATH + ' database.')
+});
+
+
+
+// ADD THIS CODE BELOW
+    DB.exec('PRAGMA foreign_keys = ON;', function(error)  {
+        if (error){
+            console.error("Pragma statement didn't work.")
+        } else {
+            console.log("Foreign Key Enforcement is on.")
+        }
+    });
+
+
+
+dbSchema = `CREATE TABLE IF NOT EXISTS Messages (
+        id integer NOT NULL PRIMARY KEY,
+        message text NOT NULL UNIQUE        
+    );`
+
+
+DB.exec(dbSchema, function(err){
+    if (err) {
+        console.log(err)
+    }
+});
+//DB.close()
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
