@@ -13,9 +13,6 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
     console.log('Connected to ' + DB_PATH + ' database.')
 });
 
-
-
-// ADD THIS CODE BELOW
     DB.exec('PRAGMA foreign_keys = ON;', function(error)  {
         if (error){
             console.error("Pragma statement didn't work.")
@@ -24,12 +21,21 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
         }
     });
 
-
-
+    //create the table to store the messages
 dbSchema = `CREATE TABLE IF NOT EXISTS Messages (
         id integer NOT NULL PRIMARY KEY,
         message text NOT NULL UNIQUE        
     );`
+
+// now add new items to the table
+DB.run(`INSERT INTO Messages(message) VALUES(?)`, ['testing message 2'], function(err) {
+    if (err) {
+        return console.log(err.message);
+    }
+    // get the last insert id
+    console.log(`A row has been inserted with rowid ${this.lastID}`);
+});
+
 
 
 DB.exec(dbSchema, function(err){
@@ -37,51 +43,46 @@ DB.exec(dbSchema, function(err){
         console.log(err)
     }
 });
-//DB.close()
+
+//DB.close();
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
-    //response.writeHead(200, { 'content-type': 'text/html' })
-    //fs.createReadStream('messageboard.html').pipe(response)
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
-    const items = require("./message_dictionary"); //this reads the json file
+    //const items = require("./sqlite);
 
 
-    // if (request.method === 'OPTIONS') {
-    //
-    //     var handleCors = function (request, response) {
-    //         console.log("its a preflight request");
-    //         response.setHeader('Access-Control-Allow-Origin', '*'); // allows any origin to access the server
-    //         response.setHeader('Access-Control-Allow-Headers', '*');
-    //         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-    //         response.setHeader('Content-Type', 'text/html');
-    //         response.statuscode = 404;
-    //         response.end();
-    //         return response; //doing return response shows you the server response
-    //     }
-    //     handleCors(request, response); //Without this the initial request is OPTIONS, but with it the initial request is GET
-    // }
 
-
-    if (request.method === 'GET' && request.url === '/item') {
+    if (request.method === 'GET') {
         console.log("hello world");
-       //response.setHeader('Access-Control-Allow-Origin', '*');
+       //response.setHeader('Content-Type','text/html');
+
+        let sql = `SELECT message FROM Messages`;
+        DB.all(sql, [], (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            rows.forEach((row) => {
+
+                const responseBody = {
+                    body: row.message
+                }
+
+                response.write(JSON.stringify(rows)); //without the JSON.stringify bit you can't see the messages in the console
+                //response.write(fs.readFileSync("index.html"));
 
 
-        const responseBody = {
-            body: items
-        }
-
-        console.log("the items are:" + items);
-
-        response.write(JSON.stringify(responseBody))
-        console.log(responseBody);
-
-        response.end(); //end the response
-        return responseBody;
 
 
+
+                //response.write(JSON.stringify(responseBody))
+                //console.log(responseBody);
+                response.end(); //end the response
+            });
+
+
+        });
     }
 
     if (request.method === 'POST') {

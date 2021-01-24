@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "message_script.js",
   "dependencies": {
+    "express": "^4.17.1",
+    "node": "^15.4.0",
     "node-static": "^0.7.11",
     "sqlite": "^4.0.19",
     "sqlite3": "^5.0.1"

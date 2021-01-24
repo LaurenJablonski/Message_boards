@@ -24,8 +24,9 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
-function getItems() {
-    makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+function getItems(data) {
+    makeRequest('GET','/items',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+        console.log("this is get items");
         //var items = data.body['items'];//object['properties of the object']
         var jsonData = JSON.parse(data);
         //console.log(items);
