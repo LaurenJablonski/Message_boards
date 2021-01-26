@@ -49,7 +49,7 @@ function registerMessages(message, username) {
     });
 }
 
-//registerMessages("happy bday", "Lauren")
+//registerMessages("message 3", "Christa")
 
 function printUserMessage(message) {
     console.log("User's message is: " + message)
@@ -70,9 +70,31 @@ function findUserByUsername(username) {
     });
 }
 
-findUserByUsername('Lauren')
+//findUserByUsername('Jessie')
 
+//now we are going to take the previous get query and modify it to return all user emails
 
+function listUserMessages(userMesages) {
+    userMesages.forEach(message => {
+        console.log(message.message)
+    });
+}
+
+function getUserMessages() {
+    var sql = 'SELECT message '
+    sql += 'FROM newMessages '
+
+    DB.all(sql, [], function(error, rows) {
+        if (error) {
+            console.log(error)
+            return
+        }
+
+        listUserMessages(rows)
+    });
+}
+
+getUserMessages()
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
