@@ -11,7 +11,7 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
         return
     }
     console.log('Connected to ' + DB_PATH + ' database.')
-});
+
 
     DB.exec('PRAGMA foreign_keys = ON;', function(error)  {
         if (error){
@@ -20,69 +20,87 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
             console.log("Foreign Key Enforcement is on.")
         }
     });
-
-    //create the table to store the messages
-dbSchema = `CREATE TABLE IF NOT EXISTS Messages (
-        id integer NOT NULL PRIMARY KEY,
-        message text NOT NULL UNIQUE        
-    );`
-
-// now add new items to the table
-DB.run(`INSERT INTO Messages(message) VALUES(?)`, ['testing message 2'], function(err) {
-    if (err) {
-        return console.log(err.message);
-    }
-    // get the last insert id
-    console.log(`A row has been inserted with rowid ${this.lastID}`);
 });
 
-
+//create the table to store the messages was UNIQUE at the end of message causing the error before
+dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
+            id INTEGER NOT NULL PRIMARY KEY,
+            message TEXT NOT NULL,
+            username TEXT NOT NULL
+        );`
 
 DB.exec(dbSchema, function(err){
-    if (err) {
-        console.log(err)
-    }
+        if (err) {
+            console.log("the error is" + err)
+        }
 });
 
-//DB.close();
+function registerMessages(message, username) {
+    var sql= "INSERT INTO newMessages (message, username) "
+    sql += "VALUES (? ,?) "
+
+    DB.run(sql, [message, username], function(error) {
+        if (error) {
+            console.log(error)
+        } else {
+            console.log("Last ID: " + this.lastID)
+            console.log("# of Row Changes: " + this.changes)
+        }
+    });
+}
+
+//registerMessages("happy bday", "Lauren")
+
+function printUserMessage(message) {
+    console.log("User's message is: " + message)
+}
+
+function findUserByUsername(username) {
+    var sql = 'SELECT message '
+    sql += 'FROM newMessages '
+    sql += 'WHERE username = ? '
+
+    DB.get(sql, username, function(error, row) {
+        if (error) {
+            console.log(error)
+            return
+        }
+
+        printUserMessage(row.message)
+    });
+}
+
+findUserByUsername('Lauren')
+
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
+    //console.log(request.url);
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
+    //console.log(request.headers);
     //const items = require("./sqlite);
+    const items = require("./message_dictionary");
 
 
 
-    if (request.method === 'GET') {
+    if (request.method === 'GET' && request.url === '/item') {
         console.log("hello world");
-       //response.setHeader('Content-Type','text/html');
+       //response.setHeader('Content-Type','application/json');
 
-        let sql = `SELECT message FROM Messages`;
-        DB.all(sql, [], (err, rows) => {
-            if (err) {
-                throw err;
-            }
-            rows.forEach((row) => {
+        const responseBody = {
+            body: items
+        }
 
-                const responseBody = {
-                    body: row.message
-                }
+        console.log("the items are:" + items);
 
-                response.write(JSON.stringify(rows)); //without the JSON.stringify bit you can't see the messages in the console
-                //response.write(fs.readFileSync("index.html"));
+        response.write(JSON.stringify(responseBody))
+        console.log(responseBody);
+
+        response.end(); //end the response
+        return responseBody;
 
 
-
-
-
-                //response.write(JSON.stringify(responseBody))
-                //console.log(responseBody);
-                response.end(); //end the response
-            });
-
-
-        });
     }
 
     if (request.method === 'POST') {
@@ -128,12 +146,15 @@ http.createServer(function(request,response){//create a server using the http li
 
 
     }
-
-
-
 }).listen(8000, function(){
     console.log("server listening on port 8000");
 });
+
+
+
+// .listen(8000, function(){
+//     console.log("server listening on port 8000");
+// });
 
 
 // server.listen(8000,function(error) {//tells the server to listen on port 8000

@@ -25,7 +25,7 @@ function makeRequest(method, resource, body, successCb, errorCb) {
 }
 
 function getItems(data) {
-    makeRequest('GET','/items',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+    makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
         //var items = data.body['items'];//object['properties of the object']
         var jsonData = JSON.parse(data);
@@ -42,14 +42,14 @@ function getItems(data) {
 }
 
 
-function postItem(messageEntered){
-    var body = {'Message': messageEntered}; //maybe should get user to enter date message sent or name too?
+function postItem(messageEntered, nameOfUser){
+    var body = {'Message': messageEntered, 'Name': nameOfUser}; //maybe should get user to enter date message sent or name too?
     console.log("helloooo");
     console.log([body]); //the message that the user entered is showing in the console of the page where it's written but I think this needs to be written in the console of the message board
 
     makeRequest('POST', '/item', body, function (data) {
         console.log('success');
-        getItems(body);
+        //getItems(body);
         console.log([body]);
         // showItems(body);
         // showItems(items);
@@ -98,15 +98,21 @@ function myFunction(button) {
 function postMessage() {
 
     let messageEntered = document.getElementById("user_inputs_new_message").value;//gets the data entered by the user
+    let nameOfUser =  document.getElementById("nameTextboxID").value;
 
     if (messageEntered == "" || messageEntered == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter a message!");
-    } else {
-        postItem(messageEntered);
+    }
+    if (nameOfUser == "" || nameOfUser == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+        alert("Please enter a name!");
+    }else {
+        postItem(messageEntered, nameOfUser);
         //self.close();
         console.log("the message inputted by the user is:" + messageEntered);
+        console.log("the name of user is:" + nameOfUser);
         console.log("thanks for submitting a message");
         document.getElementById("user_inputs_new_message").value = "";
+        document.getElementById("nameTextboxID").value = "";
         //showItems(items);
 
 
@@ -117,11 +123,12 @@ function showItems(data) {
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
     console.log("you are reaching showItems");
-    var lengthOfMessages = data.length;
+    var lengthOfMessages = data.message.length;
     for (var i = 0; i < lengthOfMessages; i++) {
         if (i%1 == 0){ //even
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
+            element += data[i]['Name'];
             element += '</textarea></div>';
             dragElement(document.getElementById("whereToDisplayMessages"));
             list += element;
@@ -133,6 +140,7 @@ function showItems(data) {
         if (i%2 == 0){ //multiple of 3 but not even
             element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
+            element += data[i]['Name'];
             element += '</textarea></div>';
             list += element;
 
@@ -142,6 +150,7 @@ function showItems(data) {
         if (i%3 == 0){ //multiple of 3 but not even
             element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
+            element += data[i]['Name'];
             element += '</textarea></div>';
             list += element;
 
@@ -150,6 +159,7 @@ function showItems(data) {
         if (i%4 == 0){//odd
             element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
+            element += data[i]['Name'];
             element += '</textarea></div>';
             list += element;
             //dragElement(document.getElementById("whereToDisplayMessages"));
@@ -212,3 +222,5 @@ $().ready(function () { //* this function means that when the page has finished 
     getItems();
     //showItems(data);
 });
+
+
