@@ -27,10 +27,10 @@ function makeRequest(method, resource, body, successCb, errorCb) {
 function getItems(data) {
     makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
+        console.log(data);
         //var items = data.body['items'];//object['properties of the object']
-        var jsonData = JSON.parse(data);
-        //console.log(items);
-        console.log("this is the jsonData.body" + JSON.stringify(jsonData.body));
+        var jsonData = JSON.stringify(data);
+        console.log("this is the jsonData.body" + JSON.parse(jsonData.body));
         showItems(jsonData.body);
 
 
@@ -123,7 +123,8 @@ function showItems(data) {
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
     console.log("you are reaching showItems");
-    var lengthOfMessages = data.message.length;
+    console.log("the data is" + data[message]);
+    var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) {
         if (i%1 == 0){ //even
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';

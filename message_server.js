@@ -22,7 +22,7 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
     });
 });
 
-//create the table to store the messages was UNIQUE at the end of message causing the error before
+//here we create the table to store hte messages - note changed name to newMessages as added a new column for the name
 dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
             id INTEGER NOT NULL PRIMARY KEY,
             message TEXT NOT NULL,
@@ -35,6 +35,7 @@ DB.exec(dbSchema, function(err){
         }
 });
 
+// think this bit will go in the POST request
 function registerMessages(message, username) {
     var sql= "INSERT INTO newMessages (message, username) "
     sql += "VALUES (? ,?) "
@@ -51,76 +52,96 @@ function registerMessages(message, username) {
 
 //registerMessages("message 3", "Christa")
 
-function printUserMessage(message) {
-    console.log("User's message is: " + message)
-}
+//the below gets one message from the username
+// function printUserMessage(message) {
+//     console.log("User's message is: " + message)
+// }
+//
+// function findUserByUsername(username) {
+//     var sql = 'SELECT message '
+//     sql += 'FROM newMessages '
+//     sql += 'WHERE username = ? '
+//
+//     DB.get(sql, username, function(error, row) {
+//         if (error) {
+//             console.log(error)
+//             return
+//         }
+//
+//         printUserMessage(row.message)
+//     });
+// }
+//
+// //findUserByUsername('Jessie')
 
-function findUserByUsername(username) {
-    var sql = 'SELECT message '
-    sql += 'FROM newMessages '
-    sql += 'WHERE username = ? '
+//now this is where we return all the messages from the database
 
-    DB.get(sql, username, function(error, row) {
-        if (error) {
-            console.log(error)
-            return
-        }
+// function listUserMessages(userMesages) {
+//     userMesages.forEach(message => {
+//         //console.log(message) //this is whats allowing you to see hte messages in the terminal
+//         return message
+//
+//     });
+//}
 
-        printUserMessage(row.message)
-    });
-}
 
-//findUserByUsername('Jessie')
 
-//now we are going to take the previous get query and modify it to return all user emails
 
-function listUserMessages(userMesages) {
-    userMesages.forEach(message => {
-        console.log(message.message)
-    });
-}
-
-function getUserMessages() {
-    var sql = 'SELECT message '
-    sql += 'FROM newMessages '
-
-    DB.all(sql, [], function(error, rows) {
-        if (error) {
-            console.log(error)
-            return
-        }
-
-        listUserMessages(rows)
-    });
-}
-
-getUserMessages()
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
-    //console.log(request.url);
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
-    //console.log(request.headers);
-    //const items = require("./sqlite);
-    const items = require("./message_dictionary");
-
-
 
     if (request.method === 'GET' && request.url === '/item') {
-        console.log("hello world");
-       //response.setHeader('Content-Type','application/json');
 
-        const responseBody = {
-            body: items
+        console.log("hello world");
+
+        async function toGetMessages() {
+
+
+            var sql = 'SELECT *'
+            sql += 'FROM newMessages '
+
+             DB.all(sql, [], await function (error, rows) {
+                if (error) {
+                    console.log("errrorrrrr");
+                    console.log("the error is" + error)
+                    return error
+
+                }
+
+                //console.log(rows);
+                var showRows = rows;
+                //console.log(showRows);
+                var showRowsInString = JSON.stringify(showRows);
+                console.log(showRowsInString);
+                //var buf = Buffer.from(JSON.stringify(showRows));
+                return showRowsInString
+
+
+
+            });
         }
 
-        console.log("the items are:" + items);
+        // toGetMessages().then( function(){
+        //     var send = toGetMessages();
+        //     console.log("send is: " + send);
+        //     console.log(Promise.resolve(send));
+        //
+        // });
 
-        response.write(JSON.stringify(responseBody))
-        console.log(responseBody);
+        var send = toGetMessages();
+        console.log("send is: " + send);
+        console.log(Promise.resolve(send));
 
-        response.end(); //end the response
-        return responseBody;
+
+        //console.log(showMessages())
+
+        //response.write(send);
+        //response.end();
+            //return showRows;
+
+
 
 
     }
