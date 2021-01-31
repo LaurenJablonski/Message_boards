@@ -13,10 +13,6 @@ body {
     overflow: hidden;
 }
 
-p{
-    font-size: 100px;
-}
-
 #formTitle {
     font-size: 39px;
     padding: 40px; /*this changes the position of the title*/
@@ -39,11 +35,11 @@ p{
 #Modal {
     background: white;
     border-radius: 25px;
-    padding: 500px;
+    padding: 50px;
     width: 600px;
     position: relative;
     left:575px;
-    top: 500px;
+    top: 200px;
 
 }
 
@@ -57,8 +53,7 @@ p{
     margin-bottom: 5px;
 }
 
-/*Button*/
-#post_message_button {
+#click_to_go_back_to_board {
     text-align: center;
     background-color: #6b4d15;
     border: none;
@@ -80,45 +75,17 @@ p{
     margin: 0;
     position: relative;
     top: 25px;
-    left: 7%;
+    left: 38%;
 }
 
-#post_message_button:hover{
+#click_to_go_back_to_board:hover{
     transform: scale(1.1);
     cursor: pointer;
 
 }
 
-#clear_message_button {
-    text-align: center;
-    background-color: #6b4d15;
-    border: none;
-    border-radius: 3px;
-    color: white;
 
 
-    font-family: "Lato", sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    justify-content: center;
-
-    outline: none;
-    padding: 10px 9px 10px 11px;
-    text-transform: uppercase;
-    width: 180px;
-    height: 40px;
-
-    margin: 0;
-    position: relative;
-    top: 25px;
-    left: 33%;
-}
-
-#clear_message_button:hover{
-    transform: scale(1.1);
-    cursor: pointer;
-
-}
 
 
 
