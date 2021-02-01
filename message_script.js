@@ -102,10 +102,9 @@ function postMessage() {
         alert("Please enter a message!");
     } else {
         postItem(messageEntered);
-        //self.close();
+
         console.log("the message inputted by the user is:" + messageEntered);
         console.log("thanks for submitting a message");
-        //document.getElementById("user_inputs_new_message").value = "";
         window.location.replace("/thank_you.html");
         //showItems(items);
 
@@ -119,11 +118,17 @@ function showItems(data) {
     console.log("you are reaching showItems");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) {
+
         if (i%1 == 0){ //even
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
             element += '</textarea></div>';
             //dragElement(document.getElementById("whereToDisplayMessages"));
+
+            $('.mail').css({
+                left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail').width()),
+                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail').height())
+            });
             list += element;
 
 
@@ -135,8 +140,6 @@ function showItems(data) {
 
             element += data[i]['Message'];
             element += '</textarea></div>';
-<<<<<<< HEAD
-
 
 
             $('.mail3').css({
@@ -144,48 +147,39 @@ function showItems(data) {
                 top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail3').height())
             });
             list += element;
-
-
-
-
-=======
-            list += element;
-
-
->>>>>>> parent of f1cf334... the envelpes are randomly displayed vertically but not horizontally, not sure how to do this?
         }
 
         if (i%3 == 0){ //multiple of 3 but not even
             element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
             element += '</textarea></div>';
+
+            $('.mail4').css({
+                left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail4').width()),
+                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail4').height())
+            });
             list += element;
 
 
         }
         if (i%4 == 0){//odd
             element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['Message'];
-            element += '</textarea></div>';
-<<<<<<< HEAD
             $('.mail2').css({
                 left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail2').width()),
                 top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail2').height())
             });
-=======
->>>>>>> parent of f1cf334... the envelpes are randomly displayed vertically but not horizontally, not sure how to do this?
+            element += data[i]['Message'];
+            element += '</textarea></div>';
+
+
+
             list += element;
             //dragElement(document.getElementById("whereToDisplayMessages"));
 
 
 
         }
-<<<<<<< HEAD
 
-
-        //$(this).element += '    <div>';
-=======
->>>>>>> parent of f1cf334... the envelpes are randomly displayed vertically but not horizontally, not sure how to do this?
         $(this).element += '    </div>';
         $('#whereToDisplayMessages').prepend(element);
     };
