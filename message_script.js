@@ -140,13 +140,18 @@ function showItems(data) {
         }
         if (i%2 == 0){ //multiple of 3 but not even
             element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
+
             element += data[i]['Message'];
             element += '</textarea></div>';
+
+
+
             $('.mail3').css({
                 left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail3').width()),
                 top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail3').height())
             });
             list += element;
+
 
 
 
@@ -171,7 +176,7 @@ function showItems(data) {
             element += '</textarea></div>';
             $('.mail2').css({
                 left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail2').width()),
-                //top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail2').height())
+                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail2').height())
             });
             list += element;
             //dragElement(document.getElementById("whereToDisplayMessages"));
@@ -182,6 +187,7 @@ function showItems(data) {
         }
 
 
+        //$(this).element += '    <div>';
         $(this).element += '    </div>';
         $('#whereToDisplayMessages').prepend(element);
     };
