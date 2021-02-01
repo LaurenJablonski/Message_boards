@@ -108,7 +108,7 @@ body{
     background: #95E0E8;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    position: relative;
+    /*position: relative;*/
     transform-style: preserve-3d; /*The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., elements.*/
     cursor: pointer;
 }
