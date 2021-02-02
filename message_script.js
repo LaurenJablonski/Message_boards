@@ -114,120 +114,73 @@ function postMessage() {
 
 function showItems(data) {
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
+    console.log(data);
 
     console.log("you are reaching showItems");
     var lengthOfMessages = data.length;
     for (var i = 0; i < lengthOfMessages; i++) {
 
-        if (i%1 == 0){ //even
+        if (i % 1 == 0) { //even
+
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['Message'];
             element += '</textarea></div>';
-            //dragElement(document.getElementById("whereToDisplayMessages"));
 
             $('.mail').css({
-                left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail').width()),
-                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail').height())
+                left: Math.random() * ($('#whereToDisplayMessages').width() - $('.mail').width()),
+                top: Math.random() * ($('#whereToDisplayMessages').height() - $('.mail').height())
+
             });
             list += element;
 
-
-
-
         }
-        if (i%2 == 0){ //multiple of 3 but not even
+        if (i % 2 == 0) { //multiple of 3 but not even
             element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
 
             element += data[i]['Message'];
             element += '</textarea></div>';
-
-
             $('.mail3').css({
-                left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail3').width()),
-                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail3').height())
+                left: Math.random() * ($('#whereToDisplayMessages').width() - $('.mail3').width()),
+                top: Math.random() * ($('#whereToDisplayMessages').height() - $('.mail3').height())
             });
             list += element;
         }
 
-        if (i%3 == 0){ //multiple of 3 but not even
+        if (i % 3 == 0) { //multiple of 3 but not even
             element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
+
             element += data[i]['Message'];
             element += '</textarea></div>';
-
             $('.mail4').css({
-                left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail4').width()),
-                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail4').height())
+                left: Math.random() * ($('#whereToDisplayMessages').width() - $('.mail4').width()),
+                top: Math.random() * ($('#whereToDisplayMessages').height() - $('.mail4').height())
             });
+
             list += element;
 
 
         }
-        if (i%4 == 0){//odd
+        if (i % 4 == 0) {//odd
             element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            $('.mail2').css({
-                left : Math.random() * ($('#whereToDisplayMessages').width() - $('.mail2').width()),
-                top : Math.random() * ($('#whereToDisplayMessages').height() - $('.mail2').height())
-            });
+
             element += data[i]['Message'];
             element += '</textarea></div>';
 
-
+            $('.mail2').css({
+                left: Math.random() * ($('#whereToDisplayMessages').width() - $('.mail2').width()),
+                top: Math.random() * ($('#whereToDisplayMessages').height() - $('.mail2').height())
+            });
 
             list += element;
-            //dragElement(document.getElementById("whereToDisplayMessages"));
-
 
 
         }
 
-        $(this).element += '    </div>';
         $('#whereToDisplayMessages').prepend(element);
-    };
-}
-//dragElement(document.getElementById("whereToDisplayMessages"));
-//Make the DIV element draggable:
 
+    }
 
-//function dragElement(elmnt) {
-//     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-//     if (document.getElementById(elmnt.id + "header")) {
-//         // if present, the header is where you move the DIV from:
-//         document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-//     } else {
-//         // otherwise, move the DIV from anywhere inside the DIV:
-//         elmnt.onmousedown = dragMouseDown;
-//     }
-//
-//     function dragMouseDown(e) {
-//         e = e || window.event;
-//         e.preventDefault();
-//         // get the mouse cursor position at startup:
-//         pos3 = e.clientX;
-//         pos4 = e.clientY;
-//         document.onmouseup = closeDragElement;
-//         // call a function whenever the cursor moves:
-//         document.onmousemove = elementDrag;
-//     }
-//
-//     function elementDrag(e) {
-//         e = e || window.event;
-//         e.preventDefault();
-//         // calculate the new cursor position:
-//         pos1 = pos3 - e.clientX;
-//         pos2 = pos4 - e.clientY;
-//         pos3 = e.clientX;
-//         pos4 = e.clientY;
-//         // set the element's new position:
-//         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-//         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-//     }
-//
-//     function closeDragElement() {
-//         // stop moving when mouse button is released:
-//         document.onmouseup = null;
-//         document.onmousemove = null;
-//     }
-// };
+};
 
 
 
