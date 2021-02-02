@@ -35,7 +35,7 @@ h1{
 
 .header-img{
     width: 100%;
-    height: 300px; /* this changes how big the image of the balloons is */
+    height: 300px;
     background: url('images/birthday_image8.png');
     background-size: cover;
     background-position: -0px,-800px;
