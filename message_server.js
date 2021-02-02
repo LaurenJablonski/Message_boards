@@ -87,6 +87,7 @@ function registerMessages(message, username) {
 
 
 
+
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     file.serve(request, response);
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
@@ -96,54 +97,47 @@ http.createServer(function(request,response){//create a server using the http li
 
         console.log("hello world");
 
-        async function toGetMessages() {
+        function toGetMessages() {
+
+            return new Promise(function (resolve, reject) {
+
+                if (request.statuscode == 200) {
+                    req.onload = function () {
+
+                        if (req.status == 200) {
+                            var sql = 'SELECT *'
+                            sql += 'FROM newMessages '
+
+                            DB.all(sql, [], function (error, rows) {
+                                if (error) {
+                                    console.log("errrorrrrr");
+                                    console.log("the error is" + error)
+                                    return error
 
 
-            var sql = 'SELECT *'
-            sql += 'FROM newMessages '
+                                }
+                                var showRows = rows;
+                                var showRowsInString = JSON.stringify(showRows);
+                                console.log(showRowsInString);
+                                return showRowsInString
+                                resolve(request.response);
+                            })
 
-             DB.all(sql, [], await function (error, rows) {
-                if (error) {
-                    console.log("errrorrrrr");
-                    console.log("the error is" + error)
-                    return error
+                        } else {
+                            reject(Error(req.statusText));
+                        }
+                    };
 
+
+                    request.onerror = function () {
+                        reject(Error("Network Error"));
+                    };
+
+                    request.send();
                 }
 
-                //console.log(rows);
-                var showRows = rows;
-                //console.log(showRows);
-                var showRowsInString = JSON.stringify(showRows);
-                console.log(showRowsInString);
-                //var buf = Buffer.from(JSON.stringify(showRows));
-                return showRowsInString
-
-
-
-            });
+            })
         }
-
-        // toGetMessages().then( function(){
-        //     var send = toGetMessages();
-        //     console.log("send is: " + send);
-        //     console.log(Promise.resolve(send));
-        //
-        // });
-
-        var send = toGetMessages();
-        console.log("send is: " + send);
-        console.log(Promise.resolve(send));
-
-
-        //console.log(showMessages())
-
-        //response.write(send);
-        //response.end();
-            //return showRows;
-
-
-
-
     }
 
     if (request.method === 'POST') {
