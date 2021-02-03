@@ -94,51 +94,43 @@ http.createServer(function(request,response){//create a server using the http li
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
 
     if (request.method === 'GET' && request.url === '/item') {
-
-        console.log("hello world");
-
         function toGetMessages() {
 
-            return new Promise(function (resolve, reject) {
+            return new Promise(async (resolve, reject) => {
+                queries = [];
+                var sql = 'SELECT * FROM newMessages'
+                //sql += 'FROM newMessages '
 
-                if (request.statuscode == 200) {
-                    req.onload = function () {
+                await DB.each(sql, [], (err, row) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        queries.push(row)
+                    }
+                }, (err, n) => {
+                    if (err) {
+                        reject(err); //resolve and reject are callbacks
+                    } else {
+                        resolve(queries);
 
-                        if (req.status == 200) {
-                            var sql = 'SELECT *'
-                            sql += 'FROM newMessages '
-
-                            DB.all(sql, [], function (error, rows) {
-                                if (error) {
-                                    console.log("errrorrrrr");
-                                    console.log("the error is" + error)
-                                    return error
-
-
-                                }
-                                var showRows = rows;
-                                var showRowsInString = JSON.stringify(showRows);
-                                console.log(showRowsInString);
-                                return showRowsInString
-                                resolve(request.response);
-                            })
-
-                        } else {
-                            reject(Error(req.statusText));
-                        }
-                    };
-
-
-                    request.onerror = function () {
-                        reject(Error("Network Error"));
-                    };
-
-                    request.send();
-                }
-
-            })
+                    }
+                });
+            });
         }
+
+        toGetMessages()
+            .then(function(value){
+                console.log('async success!', value);
+                return value;
+
+            }).catch(function(err){
+                console.log('caught an error!', err);
+            });
+        //response.write(toGetMessages())
+        response.end();
+        return toGetMessages();
     }
+
 
     if (request.method === 'POST') {
         //response.setHeader('Access-Control-Allow-Origin', '*');

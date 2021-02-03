@@ -27,10 +27,10 @@ function makeRequest(method, resource, body, successCb, errorCb) {
 function getItems(data) {
     makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
-        console.log(data);
+        console.log("the data being received is: " + data);
         //var items = data.body['items'];//object['properties of the object']
         var jsonData = JSON.stringify(data);
-        console.log("this is the jsonData.body" + JSON.parse(jsonData.body));
+        console.log("this is the jsonData.body" + jsonData.body);
         showItems(jsonData.body);
 
 
@@ -223,7 +223,6 @@ $().ready(function () { //* this function means that when the page has finished 
     getItems();
     //showItems(data);
 });
-
 
 
 
