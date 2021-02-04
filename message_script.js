@@ -38,7 +38,7 @@ function getItems(data) {
     }, function (error) {
         console.log("An error occured in getItems");
         console.log("the error is" + error);
-        callback([]);
+        //callback([]);
     });
 }
 

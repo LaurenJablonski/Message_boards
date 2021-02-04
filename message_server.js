@@ -94,31 +94,36 @@ http.createServer(function(request,response){//create a server using the http li
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
 
     if (request.method === 'GET' && request.url === '/item') {
-               function toGetMessages() {
-            try {
-                var sql = 'SELECT *'
-                sql += 'FROM newMessages '
 
-                DB.all(sql, [], function (error, rows) {
-                    if (error) {
-                        console.log("errrorrrrr");
-                        console.log("the error is" + error)
-                        return error
+        function toGetMessages(callback) {
+            var sql = 'SELECT *'
+            sql += 'FROM newMessages '
 
-                    }
-                    var showRows = rows;
-                    console.log('The messages from the database are', showRows);
-                    return showRows;
-                    response.write(JSON.stringify(showRows));
+            DB.all(sql, [], function (error, rows) {
+                if (error) {
+                    console.log("errrorrrrr");
+                    console.log("the error is" + error)
+                }
+
+                var showRows = rows
+                callback(showRows);
+
 
                 });
             }
-            catch (err) {
-                console.log('fetch failed', err);
-            }
+
+            toGetMessages(function(){
+                console.log("horay");
+                console.log(showRows);
+
+                response.write();
+            });
+
+
+
         }
-        toGetMessages();
-    }
+
+
 
 
     if (request.method === 'POST') {
@@ -167,6 +172,8 @@ http.createServer(function(request,response){//create a server using the http li
 }).listen(8000, function(){
     console.log("server listening on port 8000");
 });
+
+
 
 
 
