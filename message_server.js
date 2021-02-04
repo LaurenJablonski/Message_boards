@@ -94,41 +94,30 @@ http.createServer(function(request,response){//create a server using the http li
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
 
     if (request.method === 'GET' && request.url === '/item') {
-        function toGetMessages() {
+               function toGetMessages() {
+            try {
+                var sql = 'SELECT *'
+                sql += 'FROM newMessages '
 
-            return new Promise(async (resolve, reject) => {
-                queries = [];
-                var sql = 'SELECT * FROM newMessages'
-                //sql += 'FROM newMessages '
-
-                await DB.each(sql, [], (err, row) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        queries.push(row)
-                    }
-                }, (err, n) => {
-                    if (err) {
-                        reject(err); //resolve and reject are callbacks
-                    } else {
-                        resolve(queries);
+                DB.all(sql, [], function (error, rows) {
+                    if (error) {
+                        console.log("errrorrrrr");
+                        console.log("the error is" + error)
+                        return error
 
                     }
+                    var showRows = rows;
+                    console.log('The messages from the database are', showRows);
+                    return showRows;
+                    response.write(JSON.stringify(showRows));
+
                 });
-            });
+            }
+            catch (err) {
+                console.log('fetch failed', err);
+            }
         }
-
-        toGetMessages()
-            .then(function(value){
-                console.log('async success!', value);
-                return value;
-
-            }).catch(function(err){
-                console.log('caught an error!', err);
-            });
-        //response.write(toGetMessages())
-        response.end();
-        return toGetMessages();
+        toGetMessages();
     }
 
 
