@@ -95,33 +95,65 @@ http.createServer(function(request,response){//create a server using the http li
 
     if (request.method === 'GET' && request.url === '/item') {
 
-        function toGetMessages(callback) {
+        function getMessagesFromDb(callback){
+
             var sql = 'SELECT *'
             sql += 'FROM newMessages '
 
-            DB.all(sql, [], function (error, rows) {
+            DB.all(sql, [],  function (error, rows) {
                 if (error) {
                     console.log("errrorrrrr");
                     console.log("the error is" + error)
                 }
 
                 var showRows = rows
-                callback(showRows);
+                //console.log(showRows);
+                return(showRows);
+                callback();
 
 
-                });
-            }
-
-            toGetMessages(function(){
-                console.log("horay");
-                console.log(showRows);
-
-                response.write();
             });
+        }
 
+        var messages = getMessagesFromDb();
+
+        getMessagesFromDb(function(){
+                    console.log("horay");
+                    console.log(messages);
+
+                    response.write(messages);
+                });
 
 
         }
+
+        // function toGetMessages(callback) {
+        //     var sql = 'SELECT *'
+        //     sql += 'FROM newMessages '
+        //
+        //     DB.all(sql, [], function (error, rows) {
+        //         if (error) {
+        //             console.log("errrorrrrr");
+        //             console.log("the error is" + error)
+        //         }
+        //
+        //         var showRows = rows
+        //         callback(showRows);
+        //
+        //
+        //         });
+        //     }
+        //
+        //     toGetMessages(function(){
+        //         console.log("horay");
+        //         console.log(showRows);
+        //
+        //         response.write();
+        //     });
+
+
+
+
 
 
 
