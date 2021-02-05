@@ -26,7 +26,7 @@ function makeRequest(method, resource, body, successCb, errorCb) {
 
 function getItems(data) {
 
-    makeRequest('GET','/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+    makeRequest('GET','/api/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
         console.log("the data being received is: " + data);
         var jsonData = JSON.stringify(data);
@@ -48,12 +48,10 @@ function postItem(messageEntered, nameOfUser){
     console.log("helloooo");
     console.log([body]); //the message that the user entered is showing in the console of the page where it's written but I think this needs to be written in the console of the message board
 
-    makeRequest('POST', '/item', body, function (data) {
+    makeRequest('POST', '/api/item', body, function (data) {
         console.log('success');
         //getItems(body);
         console.log([body]);
-        // showItems(body);
-        // showItems(items);
 
     }, function () {
         console.log("An error occured in postItem");

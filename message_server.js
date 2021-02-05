@@ -4,6 +4,7 @@ var static = require('node-static');
 var file = new(static.Server)('.');
 const sqlite3 = require('sqlite3').verbose()
 const DB_PATH = './sqlite.db'
+const fetch = require("node-fetch");
 
 const DB = new sqlite3.Database(DB_PATH, function(err){
     if (err) {
@@ -89,76 +90,78 @@ function registerMessages(message, username) {
 
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
-    file.serve(request, response);
+    // if (request.method == 'GET' && request.url == '/' || request.url === '/message_script.js' || request.url === '/messagesboard_style.css'){
+    //     file.serve(request, response);
+    // }
+
+    if (request.method == 'GET' && !(request.url.includes('api'))){
+            file.serve(request, response);
+        }
+
+
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
 
-    if (request.method === 'GET' && request.url === '/item') {
 
-        function getMessagesFromDb(callback){
+
+    if (request.method === 'GET' && request.url === '/api/item' ) {
+
 
             var sql = 'SELECT *'
             sql += 'FROM newMessages '
 
-            DB.all(sql, [],  function (error, rows) {
+            DB.all(sql, [], function (error, rows) {
                 if (error) {
                     console.log("errrorrrrr");
                     console.log("the error is" + error)
                 }
 
-                var showRows = rows
-                //console.log(showRows);
-                return(showRows);
-                callback();
+                var showRows = JSON.stringify(rows);
+                response.write(showRows);
+                response.end();
 
 
             });
-        }
-
-        var messages = getMessagesFromDb();
-
-        getMessagesFromDb(function(){
-                    console.log("horay");
-                    console.log(messages);
-
-                    response.write(messages);
-                });
 
 
-        }
 
-        // function toGetMessages(callback) {
+    }
+
+        // function getMessagesFromDb(callback){
+        //
         //     var sql = 'SELECT *'
         //     sql += 'FROM newMessages '
         //
-        //     DB.all(sql, [], function (error, rows) {
+        //     DB.all(sql, [],  function (error, rows) {
         //         if (error) {
         //             console.log("errrorrrrr");
         //             console.log("the error is" + error)
         //         }
         //
         //         var showRows = rows
-        //         callback(showRows);
+        //         //console.log(showRows);
+        //         return(showRows);
+        //         callback();
         //
         //
-        //         });
-        //     }
-        //
-        //     toGetMessages(function(){
-        //         console.log("horay");
-        //         console.log(showRows);
-        //
-        //         response.write();
         //     });
+        // }
+        //
+        // var messages = getMessagesFromDb();
+        //
+        // getMessagesFromDb(function(){
+        //     console.log("horay");
+        //     console.log(messages);
+        //
+        //     response.write(messages);
+        // });
+        //
+        // // tried something else
+        // const data = getMessagesFromDb();
 
 
 
-
-
-
-
-
-    if (request.method === 'POST') {
+    if (request.method === 'POST' && request.url === '/api/item') {
         //response.setHeader('Access-Control-Allow-Origin', '*');
 
         let data = []; //the new item that's being added
