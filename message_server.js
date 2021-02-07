@@ -51,6 +51,43 @@ function registerMessages(message, username) {
     });
 }
 
+//registerMessages("message 3", "Christa")
+
+//the below gets one message from the username
+// function printUserMessage(message) {
+//     console.log("User's message is: " + message)
+// }
+//
+// function findUserByUsername(username) {
+//     var sql = 'SELECT message '
+//     sql += 'FROM newMessages '
+//     sql += 'WHERE username = ? '
+//
+//     DB.get(sql, username, function(error, row) {
+//         if (error) {
+//             console.log(error)
+//             return
+//         }
+//
+//         printUserMessage(row.message)
+//     });
+// }
+//
+// //findUserByUsername('Jessie')
+
+//now this is where we return all the messages from the database
+
+// function listUserMessages(userMesages) {
+//     userMesages.forEach(message => {
+//         //console.log(message) //this is whats allowing you to see hte messages in the terminal
+//         return message
+//
+//     });
+//}
+
+
+
+
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     if (request.method == 'GET' && !(request.url.includes('api'))){

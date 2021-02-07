@@ -104,13 +104,10 @@ function postMessage() {
         alert("Please enter a name!");
     }else {
         postItem(messageEntered, nameOfUser);
-        //self.close();
         console.log("the message inputted by the user is:" + messageEntered);
         console.log("the name of user is:" + nameOfUser);
         console.log("thanks for submitting a message");
-        document.getElementById("user_inputs_new_message").value = "";
-        document.getElementById("nameTextboxID").value = "";
-        //showItems(items);
+        window.location.replace("/thank_you.html");
 
 
     }

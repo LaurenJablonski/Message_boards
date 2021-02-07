@@ -1,0 +1,45 @@
+<!DOCTYPE html> <!-- this is where we want the user to input the message but we want to display the message on the messageboard.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="thank_you.css">
+    <!--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
+
+    <!--    <script>-->
+    <!--        tinymce.init({-->
+    <!--            selector: "#user-inputs-new-message",-->
+    <!--            plugins: "emoticons",-->
+    <!--            toolbar: "emoticons",-->
+    <!--            toolbar_location: "bottom",-->
+    <!--            menubar: false  //if set this to true then can attach files etc-->
+    <!--        });-->
+    <!--    </script>-->
+
+</head>
+<body>
+<form id="writeBirthdayMessages">
+
+    <div id="Modal">
+        <div id="formTitle" >
+            Your message has been submitted.
+        </div>
+        <a href="index.html" target="_blank"><button type="button" id="click_to_go_back_to_board"> View message board</button></a>
+
+
+    </div>
+</form>
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> <!-- for some reason without this you got the error "$ is not defined" -->
+<script src="message_script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+</html>
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="message_script.js"></script>
+</html>
