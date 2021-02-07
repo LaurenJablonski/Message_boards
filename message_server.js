@@ -51,61 +51,15 @@ function registerMessages(message, username) {
     });
 }
 
-//registerMessages("message 3", "Christa")
-
-//the below gets one message from the username
-// function printUserMessage(message) {
-//     console.log("User's message is: " + message)
-// }
-//
-// function findUserByUsername(username) {
-//     var sql = 'SELECT message '
-//     sql += 'FROM newMessages '
-//     sql += 'WHERE username = ? '
-//
-//     DB.get(sql, username, function(error, row) {
-//         if (error) {
-//             console.log(error)
-//             return
-//         }
-//
-//         printUserMessage(row.message)
-//     });
-// }
-//
-// //findUserByUsername('Jessie')
-
-//now this is where we return all the messages from the database
-
-// function listUserMessages(userMesages) {
-//     userMesages.forEach(message => {
-//         //console.log(message) //this is whats allowing you to see hte messages in the terminal
-//         return message
-//
-//     });
-//}
-
-
-
-
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
-    // if (request.method == 'GET' && request.url == '/' || request.url === '/message_script.js' || request.url === '/messagesboard_style.css'){
-    //     file.serve(request, response);
-    // }
-
     if (request.method == 'GET' && !(request.url.includes('api'))){
             file.serve(request, response);
         }
-
-
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method); //having this here tells you what the original request is and it is OPTIONS
 
-
-
     if (request.method === 'GET' && request.url === '/api/item' ) {
-
 
             var sql = 'SELECT *'
             sql += 'FROM newMessages '
@@ -119,47 +73,14 @@ http.createServer(function(request,response){//create a server using the http li
                 var showRows = JSON.stringify(rows);
                 response.write(showRows);
                 response.end();
+                return showRows;
 
 
             });
 
 
 
-    }
-
-        // function getMessagesFromDb(callback){
-        //
-        //     var sql = 'SELECT *'
-        //     sql += 'FROM newMessages '
-        //
-        //     DB.all(sql, [],  function (error, rows) {
-        //         if (error) {
-        //             console.log("errrorrrrr");
-        //             console.log("the error is" + error)
-        //         }
-        //
-        //         var showRows = rows
-        //         //console.log(showRows);
-        //         return(showRows);
-        //         callback();
-        //
-        //
-        //     });
-        // }
-        //
-        // var messages = getMessagesFromDb();
-        //
-        // getMessagesFromDb(function(){
-        //     console.log("horay");
-        //     console.log(messages);
-        //
-        //     response.write(messages);
-        // });
-        //
-        // // tried something else
-        // const data = getMessagesFromDb();
-
-
+    };
 
     if (request.method === 'POST' && request.url === '/api/item') {
         //response.setHeader('Access-Control-Allow-Origin', '*');

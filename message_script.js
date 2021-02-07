@@ -3,10 +3,6 @@ var textarea = document.querySelector('#user_inputs_new_message');
 
 var arrayOfItemIDs = []
 
-// input.addEventListener('click', function () {
-//     textarea.value = '';
-// }, false);
-
 function getToken() {
     return 'lauren2';
 }
@@ -29,16 +25,19 @@ function getItems(data) {
     makeRequest('GET','/api/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
         console.log("the data being received is: " + data);
-        var jsonData = JSON.stringify(data);
-        console.log("this is the jsonData.body" + jsonData.body);
-        showItems(jsonData.body);
+        var jsonData = JSON.parse(data);
+        console.log("the data1 is: " + jsonData[1].message);
+        // var jsonData1 = JSON.stringify(jsonData);
+        // console.log("the data1 is: " + jsonData1[1].message)
+        showItems(jsonData);
+
 
 
 
     }, function (error) {
         console.log("An error occured in getItems");
         console.log("the error is" + error);
-        //callback([]);
+        callback([]);
     });
 }
 
@@ -50,7 +49,6 @@ function postItem(messageEntered, nameOfUser){
 
     makeRequest('POST', '/api/item', body, function (data) {
         console.log('success');
-        //getItems(body);
         console.log([body]);
 
     }, function () {
@@ -122,49 +120,46 @@ function showItems(data) {
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
     console.log("you are reaching showItems");
-    console.log("the data is" + data[message]);
+    console.log("the data is" + data);
+
     var lengthOfMessages = data.length;
+    console.log("the lengths are :" + lengthOfMessages);
     for (var i = 0; i < lengthOfMessages; i++) {
-        if (i%1 == 0){ //even
+        if (i%1 == 0) {
+            console.log("the ids are " + data[0].id);
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['Message'];
-            element += data[i]['Name'];
+            element += data[i]['message'];
+            element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
             dragElement(document.getElementById("whereToDisplayMessages"));
             list += element;
-
-
-
-
         }
-        if (i%2 == 0){ //multiple of 3 but not even
+        if (i%2 == 0){
             element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['Message'];
-            element += data[i]['Name'];
+            element += data[i]['message'];
+            element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
             list += element;
 
 
         }
 
-        if (i%3 == 0){ //multiple of 3 but not even
+        if (i%3 == 0){
             element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['Message'];
-            element += data[i]['Name'];
+            element += data[i]['message'];
+            element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
             list += element;
 
 
         }
-        if (i%4 == 0){//odd
+        if (i%4 == 0){
             element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['Message'];
-            element += data[i]['Name'];
+            element += data[i]['message'];
+            element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
             list += element;
             //dragElement(document.getElementById("whereToDisplayMessages"));
-
-
 
         }
         $(this).element += '    </div>';
