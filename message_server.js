@@ -36,59 +36,6 @@ DB.exec(dbSchema, function(err){
         }
 });
 
-// think this bit will go in the POST request
-function registerMessages(message, username) {
-    var sql= "INSERT INTO newMessages (message, username) "
-    sql += "VALUES (? ,?) "
-
-    DB.run(sql, [message, username], function(error) {
-        if (error) {
-            console.log(error)
-        } else {
-            console.log("Last ID: " + this.lastID)
-            console.log("# of Row Changes: " + this.changes)
-        }
-    });
-}
-
-//registerMessages("message 3", "Christa")
-
-//the below gets one message from the username
-// function printUserMessage(message) {
-//     console.log("User's message is: " + message)
-// }
-//
-// function findUserByUsername(username) {
-//     var sql = 'SELECT message '
-//     sql += 'FROM newMessages '
-//     sql += 'WHERE username = ? '
-//
-//     DB.get(sql, username, function(error, row) {
-//         if (error) {
-//             console.log(error)
-//             return
-//         }
-//
-//         printUserMessage(row.message)
-//     });
-// }
-//
-// //findUserByUsername('Jessie')
-
-//now this is where we return all the messages from the database
-
-// function listUserMessages(userMesages) {
-//     userMesages.forEach(message => {
-//         //console.log(message) //this is whats allowing you to see hte messages in the terminal
-//         return message
-//
-//     });
-//}
-
-
-
-
-
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     if (request.method == 'GET' && !(request.url.includes('api'))){
             file.serve(request, response);
@@ -120,68 +67,33 @@ http.createServer(function(request,response){//create a server using the http li
     };
 
     if (request.method === 'POST' && request.url === '/api/item') {
-        //response.setHeader('Access-Control-Allow-Origin', '*');
-
-        let data = []; //the new item that's being added
-
-        request.on('data', chunk => { //request object is a stream => stream allows us to process data  by listening to the streams data and end events
-            data += chunk;
-            //console.log(data); the data here is the new item that needs to be added to the dictionary
-        })
-        request.on('end', () => {
-
-            function calculateNewIndex(){
-
-                var newItem = JSON.parse(data);
 
 
-                var length = Object.keys(items).length; //finds the length of the items in the dictionary
-                console.log(length);
-                var findLastItem = items[length - 1]; //finds the index of hte last item in the dictionary
-                console.log(findLastItem);
-                newItem['ID'] = findLastItem['ID'] + 1; //adds one to the last index in the dictionary to give you the index of the new item being added to hte dictionary
-                console.log(newItem['ID']);
-                return newItem
 
-            }
-            newItem = calculateNewIndex();
+            var sql= 'INSERT INTO newMessages (message, username)'
+            sql += 'VALUES (? ,?)'
 
-            items.push(newItem);
+            DB.run(sql, [message, username], function(error,rows) {
+                if (error) {
+                    console.log(error)
+                }
+                console.log("Last ID: " + this.lastID)
+                console.log("# of Row Changes: " + this.changes)
+                var showRows = JSON.stringify(rows);
+                response.write(showRows);
+                response.end();
+                return showRows;
 
-            fs.writeFile("message_dictionary.json", JSON.stringify(items), err => {
-                console.log("success writing to the dictionary")
-
-            })
+            });
 
 
-            response.statuscode = 200;
 
-            response.end();
-
-        });
 
 
     }
 }).listen(8000, function(){
     console.log("server listening on port 8000");
 });
-
-
-
-
-
-// .listen(8000, function(){
-//     console.log("server listening on port 8000");
-// });
-
-
-// server.listen(8000,function(error) {//tells the server to listen on port 8000
-//     if (error) {
-//         console.log('something went wrong', error)
-//     } else {
-//         console.log('server is listening on port 8000')
-//     }
-// });
 
 
 
