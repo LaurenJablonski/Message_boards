@@ -43,9 +43,9 @@ function getItems(data) {
 
 
 function postItem(messageEntered, nameOfUser){
-    var body = {'Message': messageEntered, 'Name': nameOfUser}; //maybe should get user to enter date message sent or name too?
+    var body = {'Message': messageEntered, 'Name': nameOfUser};
     console.log("helloooo");
-    console.log([body]); //the message that the user entered is showing in the console of the page where it's written but I think this needs to be written in the console of the message board
+    console.log([body]);
 
     makeRequest('POST', '/api/item', body, function (data) {
         console.log('success');
@@ -123,7 +123,6 @@ function showItems(data) {
     console.log("the lengths are :" + lengthOfMessages);
     for (var i = 0; i < lengthOfMessages; i++) {
         if (i%1 == 0) {
-            console.log("the ids are " + data[0].id);
             element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
