@@ -58,12 +58,9 @@ http.createServer(function(request,response){//create a server using the http li
             }
 
             var showRows = JSON.stringify(rows);
-            //console.log("THE LENGTH IN GET REQUEST IS: " + JSON.parse(showRows).length);
             response.write(showRows);
             response.end();
             return showRows;
-
-
         });
     }
 
@@ -82,14 +79,10 @@ http.createServer(function(request,response){//create a server using the http li
 
         request.on('end', () => {
 
-            var data1 = JSON.parse(data);
+            var newUserMessage = JSON.parse(data);
 
-            console.log("THE NEW ITEM IS: " + data1);
-            console.log("THE MESSAGE OF THE NEW ITEM IS: " + data1.message);
-
-
-            var newMessage = data1.message;
-            var newName = data1.username;
+            var newMessage =  newUserMessage.message;
+            var newName =  newUserMessage.username;
 
                 var sql= 'INSERT INTO newMessages(message, username)'
                 sql += 'VALUES(?,?)'
@@ -98,18 +91,31 @@ http.createServer(function(request,response){//create a server using the http li
                     if (error) {
                         console.log(error)
                     }
-                    console.log("Last ID: " + this.lastID)
-                    console.log("# of Row Changes: " + this.changes)
                     getMessagesFromDB();
                 });
-
-
-
-
             })
 
 
         };
+
+
+    if (request.method === 'DELETE' && request.url === '/api/item' ) {
+
+        var sql= 'DELETE FROM newMessages'
+        sql += 'VALUES(?)'
+
+        let id = 11;
+
+        DB.run(sql, id, function(error,rows) { //where the id here will be teh id of the incoming message you want to delete in this delete request.
+            if (error) {
+                console.log(error)
+            }
+            console.log(`Row(s) deleted ${this.changes}`);
+
+            getMessagesFromDB();
+        });
+
+    };
 
 
 

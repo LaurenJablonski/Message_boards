@@ -27,8 +27,6 @@ function getItems(data) {
         console.log("the data being received is: " + data);
         var jsonData = JSON.parse(data);
         console.log("the data1 is: " + jsonData[1].message);
-        // var jsonData1 = JSON.stringify(jsonData);
-        // console.log("the data1 is: " + jsonData1[1].message)
         showItems(jsonData);
 
 
@@ -160,6 +158,19 @@ function showItems(data) {
         $(this).element += '    </div>';
         $('#whereToDisplayMessages').prepend(element);
     };
+}
+
+function deleteMessage(id){
+    console.log(" this is deleteMessage");
+
+    var body = {'ID': id};
+
+    makeRequest('DELETE','/item/' + id, body, function (data){ //appends the id to the item parameter
+        console.log("sending delete request");
+    }, function () {
+        console.log("An error occured in deleteItem");// if unsuccessful then the console tells you that an error has occured
+        getItems(body);
+    });
 }
 
 
