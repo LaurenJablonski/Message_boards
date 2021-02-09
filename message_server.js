@@ -69,45 +69,41 @@ http.createServer(function(request,response){//create a server using the http li
 
     if (request.method === 'POST' && request.url === '/api/item') {
 
-        var sql = 'SELECT *'
-        sql += 'FROM newMessages '
-
-        DB.all(sql, [], function (error, rows) {
-            if (error) {
-                console.log("errrorrrrr");
-                console.log("the error is" + error)
-            }
-
-            var showRows = JSON.stringify(rows);
-            function calculateNewIndex(){
-
-                var newItem = showRows;
-
-
-                var length = JSON.parse(newItem).length; //finds the length of the items in the dictionary
-                console.log("the length is" + length);
-                var findLastItem = rows[length - 1]; //finds the index of hte last item in the dictionary
-                console.log("the last item is" + JSON.stringify(findLastItem));
-                newItem['ID'] = findLastItem['ID'] + 1; //adds one to the last index in the dictionary to give you the index of the new item being added to hte dictionary
-                console.log("the id of the new item is" + newItem['ID']);
-                return newItem
-
-            }
-
             let data = []; //the new item that's being added
 
-            request.on('data', chunk => { //request object is a stream => stream allows us to process data  by listening to the streams data and end events
+            request.on('data', chunk => {
                 data += chunk;
             })
 
-            request.on('end', () => {
-                console.log("data coming in to POST request is: " + data);
-                newItem = calculateNewIndex();
+        request.on('end', () => {
+
+                var sql = 'SELECT *'
+                sql += 'FROM newMessages '
+
+                DB.all(sql, [], function (error, rows) {
+                    if (error) {
+                        console.log("the error is" + error)
+                    }
+
+                    var showRows = JSON.stringify(rows);
+                    console.log("THE NEW ITEM IS: " + data);
+                    console.log("THE KEYS OF THE NEW ITEM ARE:" + Object.keys(data));
+                    console.log("THE VALUES OF THE NEW ITEM ARE:" + Object.values(data));
+
+                    function calculateNewIndex(){
+                        var newItem = data;
+                        console.log("the length is" + length);
+                        var findLastItem = rows[length - 1];
+                        newMessageId = findLastItem['id'] + 1;
+                        return data, newMessageId
+                    }
+
+                    newMessage = calculateNewIndex();
 
 
-
+                //
                 // var sql= 'INSERT INTO newMessages (message, username)'
-                // sql += 'VALUES (? ,?),', messageToAdd, nameToAdd
+                // sql += 'VALUES (? ,?),', newMessage, nameToAdd
                 //
                 // DB.run(sql, [message, username], function(error,rows) {
                 //     if (error) {
@@ -119,20 +115,20 @@ http.createServer(function(request,response){//create a server using the http li
                 //     response.write(showRows);
                 //     response.end();
                 //     return showRows;
-                //
-                // });
+
+                });
 
 
             })
 
 
-        });
+        };
 
 
 
 
 
-    }
+
 }).listen(8000, function(){
     console.log("server listening on port 8000");
 });
