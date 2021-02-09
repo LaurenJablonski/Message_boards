@@ -63,8 +63,6 @@ http.createServer(function(request,response){//create a server using the http li
 
             });
 
-
-
     };
 
     if (request.method === 'POST' && request.url === '/api/item') {
@@ -77,44 +75,26 @@ http.createServer(function(request,response){//create a server using the http li
 
         request.on('end', () => {
 
-                var sql = 'SELECT *'
-                sql += 'FROM newMessages '
+            console.log("THE NEW ITEM IS: " + data);
+            console.log("THE KEYS OF THE NEW ITEM ARE:" + Object.keys(data));
+            console.log("THE VALUES OF THE NEW ITEM ARE:" + Object.values(data));
 
-                DB.all(sql, [], function (error, rows) {
+            //newMessage = data.message;
+            //newName = data.username;
+
+                var sql= 'INSERT INTO newMessages (message, username)'
+                sql += 'VALUES (? ,?),', newMessage, newName
+
+                DB.run(sql, [message, username], function(error,rows) {
                     if (error) {
-                        console.log("the error is" + error)
+                        console.log(error)
                     }
-
+                    console.log("Last ID: " + this.lastID)
+                    console.log("# of Row Changes: " + this.changes)
                     var showRows = JSON.stringify(rows);
-                    console.log("THE NEW ITEM IS: " + data);
-                    console.log("THE KEYS OF THE NEW ITEM ARE:" + Object.keys(data));
-                    console.log("THE VALUES OF THE NEW ITEM ARE:" + Object.values(data));
-
-                    function calculateNewIndex(){
-                        var newItem = data;
-                        console.log("the length is" + length);
-                        var findLastItem = rows[length - 1];
-                        newMessageId = findLastItem['id'] + 1;
-                        return data, newMessageId
-                    }
-
-                    newMessage = calculateNewIndex();
-
-
-                //
-                // var sql= 'INSERT INTO newMessages (message, username)'
-                // sql += 'VALUES (? ,?),', newMessage, nameToAdd
-                //
-                // DB.run(sql, [message, username], function(error,rows) {
-                //     if (error) {
-                //         console.log(error)
-                //     }
-                //     console.log("Last ID: " + this.lastID)
-                //     console.log("# of Row Changes: " + this.changes)
-                //     var showRows = JSON.stringify(rows);
-                //     response.write(showRows);
-                //     response.end();
-                //     return showRows;
+                    response.write(showRows);
+                    response.end();
+                    return showRows;
 
                 });
 
