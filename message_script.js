@@ -179,6 +179,3 @@ $().ready(function () { //* this function means that when the page has finished 
     getItems();
     //showItems(data);
 });
-
-
-
