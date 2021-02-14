@@ -36,8 +36,6 @@ DB.exec(dbSchema, function(err){
         }
 });
 
-
-
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     if (request.method == 'GET' && !(request.url.includes('api'))){
             file.serve(request, response);
@@ -45,30 +43,25 @@ http.createServer(function(request,response){//create a server using the http li
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method);
 
-
-    function getMessagesFromDB(){
-
-        var sql = 'SELECT *'
-        sql += 'FROM newMessages '
-
-        DB.all(sql, [], function (error, rows) {
-            if (error) {
-                console.log("errrorrrrr");
-                console.log("the error is" + error)
-            }
-
-            var showRows = JSON.stringify(rows);
-            //console.log("THE LENGTH IN GET REQUEST IS: " + JSON.parse(showRows).length);
-            response.write(showRows);
-            response.end();
-            return showRows;
-
-
-        });
-    }
-
     if (request.method === 'GET' && request.url === '/api/item' ) {
-        getMessagesFromDB();
+
+            var sql = 'SELECT *'
+            sql += 'FROM newMessages '
+
+            DB.all(sql, [], function (error, rows) {
+                if (error) {
+                    console.log("errrorrrrr");
+                    console.log("the error is" + error)
+                }
+
+                var showRows = JSON.stringify(rows);
+                //console.log("THE LENGTH IN GET REQUEST IS: " + JSON.parse(showRows).length);
+                response.write(showRows);
+                response.end();
+                return showRows;
+
+
+            });
 
     };
 
@@ -82,28 +75,28 @@ http.createServer(function(request,response){//create a server using the http li
 
         request.on('end', () => {
 
-            var data1 = JSON.parse(data);
+            console.log("THE NEW ITEM IS: " + data);
+            console.log("THE KEYS OF THE NEW ITEM ARE:" + Object.keys(data));
+            console.log("THE VALUES OF THE NEW ITEM ARE:" + Object.values(data));
 
-            console.log("THE NEW ITEM IS: " + data1);
-            console.log("THE MESSAGE OF THE NEW ITEM IS: " + data1.message);
+            //newMessage = data.message;
+            //newName = data.username;
 
+                var sql= 'INSERT INTO newMessages (message, username)'
+                sql += 'VALUES (? ,?),', newMessage, newName
 
-            var newMessage = data1.message;
-            var newName = data1.username;
-
-                var sql= 'INSERT INTO newMessages(message, username)'
-                sql += 'VALUES(?,?)'
-
-                DB.run(sql, [newMessage,newName], function(error,rows) {
+                DB.run(sql, [message, username], function(error,rows) {
                     if (error) {
                         console.log(error)
                     }
                     console.log("Last ID: " + this.lastID)
                     console.log("# of Row Changes: " + this.changes)
-                    getMessagesFromDB();
+                    var showRows = JSON.stringify(rows);
+                    response.write(showRows);
+                    response.end();
+                    return showRows;
+
                 });
-
-
 
 
             })
