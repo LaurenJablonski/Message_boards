@@ -551,7 +551,7 @@ body{
 }
 
 #whereToDisplayMessages {
-    position: absolute;
+    /*position: relative;*/
     z-index: 9;
 }
 
