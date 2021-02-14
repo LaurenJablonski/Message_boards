@@ -31,78 +31,85 @@ dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
         );`
 
 DB.exec(dbSchema, function(err){
-        if (err) {
-            console.log("the error is" + err)
-        }
+    if (err) {
+        console.log("the error is" + err)
+    }
 });
+
+
 
 http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
     if (request.method == 'GET' && !(request.url.includes('api'))){
-            file.serve(request, response);
-        }
+        file.serve(request, response);
+    }
     const {headers, method, url} = request; //this request object is an instant of an Incoming Message
     console.log(request.method);
 
+
+    function getMessagesFromDB(){
+
+        var sql = 'SELECT *'
+        sql += 'FROM newMessages '
+
+        DB.all(sql, [], function (error, rows) {
+            if (error) {
+                console.log("errrorrrrr");
+                console.log("the error is" + error)
+            }
+
+            var showRows = JSON.stringify(rows);
+            //console.log("THE LENGTH IN GET REQUEST IS: " + JSON.parse(showRows).length);
+            response.write(showRows);
+            response.end();
+            return showRows;
+
+
+        });
+    }
+
     if (request.method === 'GET' && request.url === '/api/item' ) {
-
-            var sql = 'SELECT *'
-            sql += 'FROM newMessages '
-
-            DB.all(sql, [], function (error, rows) {
-                if (error) {
-                    console.log("errrorrrrr");
-                    console.log("the error is" + error)
-                }
-
-                var showRows = JSON.stringify(rows);
-                //console.log("THE LENGTH IN GET REQUEST IS: " + JSON.parse(showRows).length);
-                response.write(showRows);
-                response.end();
-                return showRows;
-
-
-            });
+        getMessagesFromDB();
 
     };
 
     if (request.method === 'POST' && request.url === '/api/item') {
 
-            let data = []; //the new item that's being added
+        let data = []; //the new item that's being added
 
-            request.on('data', chunk => {
-                data += chunk;
-            })
+        request.on('data', chunk => {
+            data += chunk;
+        })
 
         request.on('end', () => {
 
-            console.log("THE NEW ITEM IS: " + data);
-            console.log("THE KEYS OF THE NEW ITEM ARE:" + Object.keys(data));
-            console.log("THE VALUES OF THE NEW ITEM ARE:" + Object.values(data));
+            var data1 = JSON.parse(data);
 
-            //newMessage = data.message;
-            //newName = data.username;
-
-                var sql= 'INSERT INTO newMessages (message, username)'
-                sql += 'VALUES (? ,?),', newMessage, newName
-
-                DB.run(sql, [message, username], function(error,rows) {
-                    if (error) {
-                        console.log(error)
-                    }
-                    console.log("Last ID: " + this.lastID)
-                    console.log("# of Row Changes: " + this.changes)
-                    var showRows = JSON.stringify(rows);
-                    response.write(showRows);
-                    response.end();
-                    return showRows;
-
-                });
+            console.log("THE NEW ITEM IS: " + data1);
+            console.log("THE MESSAGE OF THE NEW ITEM IS: " + data1.message);
 
 
-            })
+            var newMessage = data1.message;
+            var newName = data1.username;
+
+            var sql= 'INSERT INTO newMessages(message, username)'
+            sql += 'VALUES(?,?)'
+
+            DB.run(sql, [newMessage,newName], function(error,rows) {
+                if (error) {
+                    console.log(error)
+                }
+                console.log("Last ID: " + this.lastID)
+                console.log("# of Row Changes: " + this.changes)
+                getMessagesFromDB();
+            });
 
 
-        };
+
+
+        })
+
+
+    };
 
 
 
@@ -112,6 +119,18 @@ http.createServer(function(request,response){//create a server using the http li
 }).listen(8000, function(){
     console.log("server listening on port 8000");
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
