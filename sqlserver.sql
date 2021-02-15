@@ -10,3 +10,5 @@ Select @JSON
 
 If (ISJSON(@JSON)=1)
 Print 'Valid JSON'
+
+
