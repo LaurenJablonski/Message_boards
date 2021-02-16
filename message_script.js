@@ -130,8 +130,6 @@ function showItems(data) {
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
-            //element += '</div>';
-            //element += '</div>';
             list += element;
         }
         if (i%2 == 0){
