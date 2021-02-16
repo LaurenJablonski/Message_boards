@@ -162,7 +162,9 @@ function showItems(data) {
         }
         $(this).element += '    </div>';
         $('.row g-4').append();
+        //$('.col-6').append(element); with this the envelopes fill first column then when fill they move onto the second column but we want to fill in rows so the below
         $('.row').append(element);
+
     };
 }
 
