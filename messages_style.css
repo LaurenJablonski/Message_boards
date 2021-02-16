@@ -17,25 +17,27 @@ body {
     font-size: 39px;
     padding: 40px; /*this changes the position of the title*/
     top: 10px;
-    width: 100%;
+    width: 90%;
     position: relative;
     left: 5px;
     top: 1px;
 
+
 }
-#user-inputs-new-message {
+#user_inputs_new_message {
     text-align: center;
     font-size: 14px;
     font-family: "Lato", sans-serif;
     border-radius: 5px;
-    resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*/
+    resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*!*/
+    position: relative;
 
 }
 
 #Modal {
     background: white;
     border-radius: 25px;
-    padding: 50px;
+    padding: 75px;
     width: 600px;
     position: relative;
     left:575px;
@@ -75,8 +77,8 @@ body {
 
     margin: 0;
     position: relative;
-    top: 25px;
-    left: 7%;
+    top: 55px;
+    left: -25%;
 }
 
 #post_message_button:hover{
@@ -106,8 +108,8 @@ body {
 
     margin: 0;
     position: relative;
-    top: 25px;
-    left: 33%;
+    top: 55px;
+    left: 3%;
 }
 
 #clear_message_button:hover{

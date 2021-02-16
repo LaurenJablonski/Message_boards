@@ -151,7 +151,6 @@ function showItems(data) {
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
-
             list += element;
 
 
@@ -172,13 +171,13 @@ function showItems(data) {
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
             list += element;
-            //dragElement(document.getElementById("whereToDisplayMessages"));
+
 
         }
 
 
         $(this).element += '    </div>';
-        $('.row g-4').append();
+        $('.row g-4').append(element);
         //$('.col-6').append(element); with this the envelopes fill first column then when fill they move onto the second column but we want to fill in rows so the below
         $('.row').append(element);
 
