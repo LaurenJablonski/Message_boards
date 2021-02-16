@@ -161,6 +161,7 @@ function showItems(data) {
 
         }
         $(this).element += '    </div>';
+        $('.row g-4').append();
         $('.row').append(element);
     };
 }
