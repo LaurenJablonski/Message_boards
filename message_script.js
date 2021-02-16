@@ -94,8 +94,9 @@ function deleteMessage(id){
     console.log(" this is deleteMessage");
 
     var body = {'ID': id};
+    console.log("the body is:" + JSON.stringify(body));
 
-    makeRequest('DELETE','/item/' + id, body, function (data){ //appends the id to the item parameter
+    makeRequest('DELETE','/api/item/' + id , body, function (data){ //appends the id to the item parameter
         console.log("sending delete request");
     }, function () {
         console.log("An error occured in deleteItem");// if unsuccessful then the console tells you that an error has occured
@@ -150,6 +151,7 @@ function showItems(data) {
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
+
             list += element;
 
 
@@ -173,6 +175,8 @@ function showItems(data) {
             //dragElement(document.getElementById("whereToDisplayMessages"));
 
         }
+
+
         $(this).element += '    </div>';
         $('.row g-4').append();
         //$('.col-6').append(element); with this the envelopes fill first column then when fill they move onto the second column but we want to fill in rows so the below
