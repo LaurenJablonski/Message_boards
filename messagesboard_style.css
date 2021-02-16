@@ -19,7 +19,7 @@ h1{
     font-style: normal;
     color: white;
     text-decoration: none;
-    height: 5px;
+    height: 10px;
     width: 100%;
     display:inline-block;
     padding-top:3rem; /* this adjusts the position of the header up and down */
@@ -30,6 +30,9 @@ h1{
     line-height:0.75em;
     overflow:hidden;
     margin: 0 auto;
+}
+.display-4 font-weight-bold{
+    height: 200px
 }
 
 

@@ -90,6 +90,19 @@ function myFunction(button) {
     }
 }
 
+function deleteMessage(id){
+    console.log(" this is deleteMessage");
+
+    var body = {'ID': id};
+
+    makeRequest('DELETE','/item/' + id, body, function (data){ //appends the id to the item parameter
+        console.log("sending delete request");
+    }, function () {
+        console.log("An error occured in deleteItem");// if unsuccessful then the console tells you that an error has occured
+        getItems(body);
+    });
+}
+
 
 
 function postMessage() {

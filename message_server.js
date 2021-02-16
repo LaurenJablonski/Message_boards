@@ -111,6 +111,25 @@ http.createServer(function(request,response){//create a server using the http li
 
     };
 
+    if (request.method === 'DELETE' && request.url === '/api/item' ) {
+
+        var sql= 'DELETE FROM newMessages'
+        sql += 'VALUES(?)'
+
+
+    let id = 11;
+
+    DB.run(sql, id, function(error,rows) { //where the id here will be teh id of the incoming message you want to delete in this delete request.
+        if (error) {
+            console.log(error)
+        }
+        console.log(`Row(s) deleted ${this.changes}`);
+
+        getMessagesFromDB();
+    });
+
+};
+
 
 
 
