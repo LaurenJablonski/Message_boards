@@ -125,8 +125,8 @@ function showItems(data) {
 
 
         if (i%1 == 0) {
-            element = '<div class = "row"><div class = "col">';
-            element += '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
+            //element = '<div class = "row"><div class = "col-sm">';
+            element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
@@ -163,7 +163,7 @@ function showItems(data) {
 
         }
         $(this).element += '    </div>';
-        $('.col-sm').append(element);
+        $('.row').append(element);
     };
 }
 
