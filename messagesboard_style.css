@@ -26,13 +26,10 @@ h1{
     text-align: center;
     font-size: 70px;
     font-style: italic;
-    height: 1em;
+    height: 2.5em;
     line-height:0.75em;
     overflow:hidden;
     margin: 0 auto;
-}
-.display-4 font-weight-bold{
-    height: 200px
 }
 
 
@@ -561,6 +558,7 @@ body{
 .container{
     max-width:2500px;
     margin-top: 80px;
+    position: relative;
 
 }
 
