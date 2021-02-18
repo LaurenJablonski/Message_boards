@@ -186,10 +186,37 @@ function showItems(data) {
 
 
 
+
+
+//########################################################HERE IS ALL THE CHANGE IN THEME STUFF ################################################//
+// function to set a given theme/color-scheme
+function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.documentElement.className = themeName;
+}
+
+// function to toggle between light and dark theme
+function toggleTheme() {
+    if (localStorage.getItem('theme') === 'theme-dark') {
+        setTheme('theme-light');
+    } else {
+        setTheme('theme-dark');
+    }
+}
+
+// Immediately invoked function to set the theme on initial load
+(function () {
+    if (localStorage.getItem('theme') === 'theme-dark') {
+        setTheme('theme-dark');
+        document.getElementById('slider').checked = false;
+    } else {
+        setTheme('theme-light');
+        document.getElementById('slider').checked = true;
+    }
+})();
+
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
     //showItems(data);
 });
-
-
 

@@ -23,7 +23,7 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
     });
 });
 
-//here we create the table to store hte messages - note changed name to newMessages as added a new column for the name
+
 dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
             id INTEGER NOT NULL PRIMARY KEY,
             message TEXT NOT NULL,
