@@ -115,7 +115,7 @@ http.createServer(function(request,response){//create a server using the http li
 
         var sql= 'DELETE FROM newMessages WHERE id = (?)'
 
-        let id = 11;
+        let id = 1;
 
         DB.run(sql, id, function(error,rows) { //where the id here will be teh id of the incoming message you want to delete in this delete request.
             if (error) {
