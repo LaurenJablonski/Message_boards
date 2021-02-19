@@ -220,3 +220,5 @@ $().ready(function () { //* this function means that when the page has finished 
     //showItems(data);
 });
 
+window.EmojiPicker.init()
+
