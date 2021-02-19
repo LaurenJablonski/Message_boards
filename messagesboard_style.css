@@ -15,9 +15,9 @@ p{
 }
 
 h1{
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
-    color: white;
+    color: black;
     text-decoration: none;
     height: 10px;
     width: 100%;
@@ -25,20 +25,21 @@ h1{
     padding-top:3rem; /* this adjusts the position of the header up and down */
     text-align: center;
     font-size: 70px;
-    font-style: italic;
-    height: 2.5em;
+    font-style: bold;
+    height: 3.5em;
     line-height:0.75em;
     overflow:hidden;
     margin: 0 auto;
+    top: 500px;
 }
 
 
 .header-img{
     width: 100%;
     height: 300px; /* this changes how big the image of the balloons is */
-    background: url('images/birthday_image8.png');
-    background-size: cover;
-    background-position: -0px,-800px;
+    background: url('images/bunting.jpg');
+    positon: absolute;
+    top: 0;
 
 }
 
@@ -46,12 +47,13 @@ h1{
     color: white;
     font-weight: 400;
     font-style: normal;
-    color: white;
+    color: black;
     text-decoration: none;
     height: 50px;
     text-align:center;
-    padding-top:1rem;
+    padding-top:2rem;
     font-size: 20px;
+
 
 }
 
@@ -64,19 +66,19 @@ h1{
 
 
     font-family: "Lato", sans-serif;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 500;
     justify-content: center;
 
     outline: none;
     padding: 10px 9px 10px 11px;
     text-transform: uppercase;
-    width: 180px;
-    height: 40px;
+    width: 240px;
+    height: 50px;
 
     margin: 0;
     position: relative;
-    top: 10px;
+    top: 0px;
     left: 85%;
 }
 
@@ -86,13 +88,6 @@ h1{
 
 }
 
-*{
-    margin:0;
-    padding:0;
-}
-body{
-    background:url('images/backdrop.jpg')
-}
 
 .wrapper{
     position:absolute;
@@ -105,7 +100,7 @@ body{
 .mail{
     width: 300px;
     height: 200px;
-    background: #95E0E8;
+    background: #FFA500;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -119,9 +114,9 @@ body{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #95E0E8;
+    border-right: 150px solid #FFA500;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid  #95E0E8; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid  #FFA500; /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -133,10 +128,10 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #95E0E8;
+    border-left: 150px solid #FFA500;
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #95E0E8;
+    border-bottom: 100px solid #FFA500;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4; /*gets or returns the stack order of a positioned element - the higher the stack property the more infront it is */
@@ -150,7 +145,7 @@ body{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #7ED4E6;
+    border-top: 100px solid #FF8C00;
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -218,12 +213,12 @@ body{
 
 }
 
-.mail:active .cover:before{
+.mail:hover .cover:before{
     transform: rotateX(180deg);
     transition: all 1s ease;
 }
 
-.mail:active .letter{
+.mail:hover .letter{
     top: -200px; /* this controls how much the letter comes out of the envelope */
     transition: all 1s 1s ease;
 }
@@ -237,7 +232,7 @@ body{
 .mail2{
     width: 300px;
     height: 200px;
-    background: #93DFB8;
+    background: #7BA428;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -251,9 +246,9 @@ body{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #93DFB8;
+    border-right: 150px solid #9ACD32;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid  #93DFB8; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid  #9ACD32; /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -265,10 +260,10 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #93DFB8;
+    border-left: 150px solid #9ACD32;
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #93DFB8;
+    border-bottom: 100px solid #9ACD32;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
@@ -292,7 +287,7 @@ body{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #5FA777;
+    border-top: 100px solid #7BA428;
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -358,9 +353,9 @@ body{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #F7C3F2;
+    border-right: 150px solid #C71585;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #F7C3F2 ; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid #C71585 ; /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -372,10 +367,10 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #F7C3F2;
+    border-left: 150px solid #C71585;
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #F7C3F2;
+    border-bottom: 100px solid #C71585;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
@@ -399,7 +394,7 @@ body{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #EBB0D7;
+    border-top: 100px solid #d71868;
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -467,9 +462,9 @@ body{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #DDA0DD;
+    border-right: 150px solid #8A2BE2;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #DDA0DD; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid #8A2BE2; /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -481,10 +476,10 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #DDA0DD;
+    border-left: 150px solid #8A2BE2;
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #DDA0DD;
+    border-bottom: 100px solid #8A2BE2;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
@@ -508,7 +503,7 @@ body{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #DA70D6;
+    border-top: 100px solid #9400D3;
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -577,6 +572,11 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
+
+    display: flex;
+    background: var(--color-secondary);
+    flex-direction: column;
+
 }
 
 
@@ -588,30 +588,21 @@ body {
 }
 .theme-dark {
     --color-primary: #17ed90;
-    --color-secondary: #2a2c2d;
+    --color-secondary: #D0D0D0;
     --color-accent: #12cdea;
     --font-color: #ffffff;
 }
-.container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: var(--color-secondary);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.container h1 {
-    color: var(--font-color);
-    font-family: sans-serif;
-}
-.container button {
-    color: var(--font-color);
-    background: var(--color-primary);
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 5px;
-}
+/*.container {*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: var(--color-secondary);*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+
 
 /* The switch - the box around the slider */
 .switch {
@@ -619,8 +610,8 @@ body {
     display: inline-block;
     width: 60px;
     height: 34px;
-    top: 15px;
-    left: 92%;
+    top: 207px;
+    left: 95%;
 }
 
 /* Hide default HTML checkbox */
@@ -659,16 +650,16 @@ body {
     box-shadow: 0 0px 15px #2020203d;
     background: white url('https://i.ibb.co/FxzBYR9/night.png');
     background-repeat: no-repeat;
-    /*background-position: center;*/
+    background-position: center;
 
 }
 
 input:checked + .slider {
-    background-color: #2196f3;
+    background-color: #95E0E8;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
+    box-shadow: 0 0 1px #95E0E8;
 }
 
 input:checked + .slider:before {
@@ -677,7 +668,7 @@ input:checked + .slider:before {
     transform: translateX(24px);
     background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
     background-repeat: no-repeat;
-    /*background-position: center;*/
+    background-position: center;
 }
 
 /* Rounded sliders */

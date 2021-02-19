@@ -10,26 +10,24 @@
 </head>
 <body>
 
-
-
-
-
 <!-- Bootstrap Static Header -->
 
 <div class="header-img">
+
+    <h1 class="display-4 font-weight-bold" contenteditable="true" >Happy Birthday Becky!</h1>
     <p class="birthday-date" contenteditable="true" >26/12/2020</p>
-    <h1 class="display-4 font-weight-bold" contenteditable="true" >Happy Birthday Christa!</h1>
     <a href="message_index.html" target="_blank"><button type="button" id="press_to_post_message"> + Add message</button></a>
     <input type="button" id="delete_envelope" value="delete envelope with id 11" onclick="deleteMessage(11)">
 
 </div>
 
 
-<div class="container">
+    <div class="container_for_button">
     <label id="switch" class="switch">
         <input type="checkbox" onchange="toggleTheme()" id="slider">
         <span class="slider round"></span>
     </label>
+    </div>
     <div id="whereToDisplayMessages">
         <div class="container">
             <div class="row g-4">
@@ -40,18 +38,6 @@
 
         </div>
 </div>
-
-
-
-
-
-
-
-
-<div id="display">
-</div>
-
-
 
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
