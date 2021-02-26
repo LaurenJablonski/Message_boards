@@ -1,0 +1,197 @@
+@import "https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900";
+
+
+/*Styles*/
+body {
+    /*background-color: white;*/
+    background: url('images/birthday_image4.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #3e363f;
+    font-family: "Lato", sans-serif;
+    height: 100vh; /* changing this changes where the image is focused */
+    overflow: hidden;
+
+}
+
+#formTitle {
+    font-size: 59px;
+    padding: 20px; /*this changes the position of the title*/
+    top: 5px;
+    width: 90%;
+    position: relative;
+    left: 5px;
+    top: 1px;
+    font-family: museo-sans,Helvetica Neue,Helvetica,Arial,sans-serif ;
+
+
+}
+#user_inputs_new_message {
+    text-align: center;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    border-radius: 5px;
+    resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*!*/
+    position: relative;
+
+}
+
+#Modal {
+    background: white;
+    border-radius: 25px;
+    padding: 55px;
+
+    position: relative;
+    top: 5%;
+    left: 25%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 1450px;
+    height: 400px;
+
+}
+#Modal:hover{
+    cursor: pointer;
+
+}
+
+#Modal1 {
+    background: white;
+    border-radius: 25px;
+    padding: 55px;
+
+    position: relative;
+    top: 10%;
+    left: 25%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 1450px;
+    height: 400px;
+
+}
+#Modal1:hover{
+    cursor: pointer;
+
+}
+
+
+
+#profile_pic{
+    position: absolute;
+    top: 20%;
+    left: 75%;
+
+}
+#profile_pic1{
+    position: absolute;
+    top: 25%;
+    left: 75%;
+
+}
+
+h1{
+    font-weight: bold;
+    font-style: normal;
+    font-family: museo-sans,Helvetica Neue,Helvetica,Arial,sans-serif ;
+    color: black;
+    text-decoration: none;
+    height: 50px;
+    width: 100%;
+    display:inline-block;
+    padding-top:8rem; /* this adjusts the position of the header up and down */
+    text-align: center;
+    font-size: 100px;
+    height: 3.5em;
+    line-height:0.1em;
+    overflow:hidden;
+    margin: 0 auto;
+    top: 500px;
+}
+
+
+
+p{
+    font-family: museo-sans,Helvetica Neue,Helvetica,Arial,sans-serif ;
+    font-size: 30px;
+    position: absolute;
+    top: 70%;
+    left: 6%;
+
+}
+
+/*// Inputs*/
+.Input {
+    display: flex;
+    flex-direction: row-reverse;
+    /*border-bottom: 1px solid rgba(#fffce8, 0.1);*/
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+}
+
+/*Button*/
+#post_message_button {
+    text-align: center;
+    background-color: #6b4d15;
+    border: none;
+    border-radius: 3px;
+    color: white;
+
+
+    font-family: "Lato", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 180px;
+    height: 40px;
+
+    margin: 0;
+    position: relative;
+    top: 55px;
+    left: -25%;
+}
+
+#post_message_button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+
+}
+
+#clear_message_button {
+    text-align: center;
+    background-color: #6b4d15;
+    border: none;
+    border-radius: 3px;
+    color: white;
+
+
+    font-family: "Lato", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 180px;
+    height: 40px;
+
+    margin: 0;
+    position: relative;
+    top: 55px;
+    left: 3%;
+}
+
+#clear_message_button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+
+}
+
+
+
+
