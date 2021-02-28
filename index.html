@@ -2,47 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="messagesboard_style.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
-<div class="header-img">
-
-    <h1 class="display-4 font-weight-bold" contenteditable="true" >Happy Birthday Becky!</h1>
-    <p class="birthday-date" contenteditable="true" >21/02/2021</p>
-    <a href="message_index.html" target="_blank"><button type="button" id="press_to_post_message"> + Add message</button></a>
-    <input type="button" id="delete_envelope" value="delete envelope with id 11" onclick="deleteMessage(11)">
-
-</div>
+<h1>NxJ Message Boards</h1>
 
 
-<div class="container_for_button">
-    <label id="switch" class="switch">
-        <input type="checkbox" onchange="toggleTheme()" id="slider">
-        <span class="slider round"></span>
-    </label>
-</div>
 
-<div class="parallax">
-<div id="whereToDisplayMessages">
 
-    <div class="container">
-        <div class="row g-4">
+    <div id="Modal" onclick="location.href='messageboard_index.html'">
+        <div id="formTitle">Happy Birthday Becky!</div>
+        <img id ="profile_pic" src="images/Becky.png" width="275" height="250">
 
-        </div>
 
+        <p> Posts: 9 </p>
     </div>
-<!--    <div class="parallax"></div></div>-->
-
-</div>
-</div>
 
 
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <div id="Modal1" onclick="location.href='index.html'">
+        <div id="formTitle">Happy Birthday Jas!</div>
+        <img id ="profile_pic1" src="images/Jas.png" width="275" height="250">
+
+
+        <p> Posts: 5 </p>
+    </div>
+
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> <!-- for some reason without this you got the error "$ is not defined" -->
 <script src="message_script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>
