@@ -546,19 +546,7 @@ h1{
     transition: all 1s 1s ease;
 }
 
-.parallax {
-    /* The image used */
-    background-image: url("images/birthday_image7.png");
 
-    /* Set a specific height */
-    min-height: 1000px;
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 
 .container{
@@ -578,26 +566,40 @@ h1{
 }
 
 html,
-body {
+.parallax {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
 
     display: flex;
-    background: var(--color-secondary);
+    background: var(--background-image);
     flex-direction: column;
+
+    /*background-image: url("images/birthday_image7.png");*/
+
+    /* Set a specific height */
+    min-height: 1000px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 
 
 .theme-light {
+    --background-image: url('images/birthday_image7.png');
     --color-primary: #0060df;
     --color-secondary: #fbfbfe;
     --color-accent: #fd6f53;
     --font-color: #000000;
+
 }
 .theme-dark {
+    --background-image:url('images/birthday_image3.png');
     --color-primary: #17ed90;
     --color-secondary: #D0D0D0;
     --color-accent: #12cdea;
