@@ -17,15 +17,15 @@ p{
 h1{
     font-weight: bold;
     font-style: normal;
-    color: black;
+    color: var(--font-color);
     text-decoration: none;
-    height: 30px;
     width: 100%;
     display:inline-block;
-    padding-top:6rem; /* this adjusts the position of the header up and down */
+    padding-top:9rem; /* this adjusts the position of the header up and down */
     text-align: center;
-    font-size: 100px;
-    height: 3.5em;
+    font-size: 900px;
+    font-family: 'Oswald', sans-serif;
+    height: 4.5em;
     line-height:0.1em;
     overflow:hidden;
     margin: 0 auto;
@@ -35,8 +35,8 @@ h1{
 
 .header-img{
     width: 100%;
-    height: 300px; /* this changes how big the image of the balloons is */
-    background: url('images/bunting.jpg');
+    height: 350px; /* this changes how big the image of the balloons is */
+    background: var(--background-image1);
     positon: absolute;
     top: 0;
 
@@ -44,16 +44,16 @@ h1{
 }
 
 .birthday-date{
-    color: white;
     font-weight: 400;
     font-style: normal;
-    color: black;
+    color: var(--font-color);
     text-decoration: none;
-    height: 50px;
+    height: 80px;
     text-align:center;
     padding-top:2rem;
-    font-size: 20px;
+    font-size: 30px;
     background-position: fixed;
+    font-family: 'Oswald', sans-serif;
 
 
 }
@@ -79,7 +79,7 @@ h1{
 
     margin: 0;
     position: relative;
-    top: 0px;
+    top: -40px;
     left: 85%;
 }
 
@@ -101,7 +101,7 @@ h1{
 .mail{
     width: 300px;
     height: 200px;
-    background: #FFA500;
+    background: var(--color-seven);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -115,9 +115,9 @@ h1{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #FFA500;
+    border-right: 150px solid var(--color-secondary);
     border-top: 100px solid transparent;
-    border-bottom: 100px solid  #FFA500; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid  var(--color-secondary); /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -129,10 +129,10 @@ h1{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #FFA500;
+    border-left: 150px solid var(--color-secondary);
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #FFA500;
+    border-bottom: 100px solid ;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4; /*gets or returns the stack order of a positioned element - the higher the stack property the more infront it is */
@@ -146,7 +146,7 @@ h1{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #FF8C00;
+    border-top: 100px solid var(--color-seven);
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -163,7 +163,7 @@ h1{
     left: 10px;
     background: white;
     width: 280px;
-    height: 180px;
+    height: 190px;
     border-radius: 20px;
     transition: all 0.5s ease;
 }
@@ -175,7 +175,7 @@ h1{
     transform: translate(-50%, -50%);
     font-size: 20px;
     color: black;
-    font-weight: 900;
+    font-weight: 600;
     border-radius: 20px;
 
 }
@@ -187,7 +187,7 @@ h1{
     transform: translate(-50%, -50%);
     font-size: 20px;
     color: black;
-    font-weight: 900;
+    font-weight: 600;
     border-radius: 20px;
 
 }
@@ -199,7 +199,19 @@ h1{
     transform: translate(-50%, -50%);
     font-size: 20px;
     color: black;
-    font-weight: 900;
+    font-weight: 600;
+    border-radius: 20px;
+
+}
+
+.letter4 textarea{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: black;
+    font-weight: 600;
     border-radius: 20px;
 
 }
@@ -233,7 +245,7 @@ h1{
 .mail2{
     width: 300px;
     height: 200px;
-    background: #7BA428;
+    background: var(--color-six);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -247,9 +259,9 @@ h1{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #9ACD32;
+    border-right: 150px solid var(--color-primary);
     border-top: 100px solid transparent;
-    border-bottom: 100px solid  #9ACD32; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid  var(--color-primary); /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -261,10 +273,10 @@ h1{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #9ACD32;
+    border-left: 150px solid var(--color-primary);
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #9ACD32;
+    border-bottom: 100px solid var(--color-six);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
@@ -288,7 +300,7 @@ h1{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #7BA428;
+    border-top: 100px solid var(--color-six);
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -304,7 +316,7 @@ h1{
     left: 10px;
     background: white;
     width: 280px;
-    height: 180px;
+    height: 190px;
     border-radius: 20px;
     transition: all 0.5s ease;
 }
@@ -340,7 +352,7 @@ h1{
 .mail3{
     width: 300px;
     height: 200px;
-    background: #EBB0D7;
+    background: var(--color-eight);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -354,9 +366,9 @@ h1{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #C71585;
+    border-right: 150px solid var(--color-tertiary);
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #C71585 ; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid var(--color-tertiary) ; /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -368,10 +380,10 @@ h1{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #C71585;
+    border-left: 150px solid var(--color-tertiary);
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #C71585;
+    border-bottom: 100px solid var(--color-tertiary);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
@@ -395,7 +407,7 @@ h1{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #d71868;
+    border-top: 100px solid var(--color-eight);
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -411,7 +423,7 @@ h1{
     left: 10px;
     background: white;
     width: 280px;
-    height: 180px;
+    height: 190px;
     border-radius: 20px;
     transition: all 0.5s ease;
 }
@@ -449,7 +461,7 @@ h1{
 .mail4{
     width: 300px;
     height: 200px;
-    background: #EBB0D7;
+    background: var(--color-five);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
@@ -463,9 +475,9 @@ h1{
     top: 0;
     right: 0;
     border-left: 150px solid transparent;
-    border-right: 150px solid #8A2BE2;
+    border-right: 150px solid var(--color-four);
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #8A2BE2; /* 100px as thats half the value of the height */
+    border-bottom: 100px solid var(--color-four); /* 100px as thats half the value of the height */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 5;
@@ -477,10 +489,10 @@ h1{
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid #8A2BE2;
+    border-left: 150px solid var(--color-four);
     border-right: 150px solid transparent;
     border-top: 100px solid transparent;
-    border-bottom: 100px solid #8A2BE2;
+    border-bottom: 100px solid var(--color-four);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     z-index: 4;
@@ -504,7 +516,7 @@ h1{
     left: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 100px solid #9400D3;
+    border-top: 100px solid var(--color-five);
     border-bottom: 100px solid transparent;
     z-index: 6;
     transform-origin: top;
@@ -520,7 +532,7 @@ h1{
     left: 10px;
     background: white;
     width: 280px;
-    height: 180px;
+    height: 190px;
     border-radius: 20px;
     transition: all 0.5s ease;
 }
@@ -592,18 +604,32 @@ html,
 
 .theme-light {
     --background-image: url('images/birthday_image7.png');
-    --color-primary: #0060df;
-    --color-secondary: #fbfbfe;
+    --background-image1: url('images/bunting.jpg');
     --color-accent: #fd6f53;
+    --color-primary: #C71585;
+    --color-secondary: #9ACD32;
+    --color-tertiary: #8A2BE2;
+    --color-four: #FFA500;
+    --color-five: #FF8C00;
+    --color-six: #D71868;
+    --color-seven: #7BA428;
+    --color-eight: #9400D3;
     --font-color: #000000;
 
 }
 .theme-dark {
-    --background-image:url('images/birthday_image3.png');
-    --color-primary: #17ed90;
-    --color-secondary: #D0D0D0;
+    --background-image:url('images/colour_explosion3.jpg');
+    --background-image1: white;
+    --color-primary: #6666FF;
+    --color-secondary: #FF33CC;
+    --color-tertiary: #3399FF;
+    --color-four: #CC0033;
+    --color-five: #CC0000;
+    --color-six: #6633FF;
+    --color-seven: #FF0099;
+    --color-eight: #3366FF;
     --color-accent: #12cdea;
-    --font-color: #ffffff;
+    --font-color: #3399FF;
 }
 
 /* The switch - the box around the slider */
@@ -631,7 +657,7 @@ html,
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #FFA500;
+    background-color: var(--color-primary);
     -webkit-transition: 0.4s;
     transition: 0.4s;
 
@@ -657,11 +683,11 @@ html,
 }
 
 input:checked + .slider {
-    background-color: #8A2BE2;
+    background-color: var(--color-tertiary);
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #8A2BE2;
+    box-shadow: 0 0 1px var(--color-tertiary);
 }
 
 input:checked + .slider:before {

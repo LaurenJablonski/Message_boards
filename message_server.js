@@ -38,11 +38,11 @@ DB.exec(dbSchema, function(err){
 
 
 
-http.createServer(function(request,response){//create a server using the http library you just imported and call the create server function on this object. The create server function takes a function that has 2 parameters, request and response which is going to handle all the activity on our server. SO everytime someone requests a page on our server, it is going to call this function.
+http.createServer(function(request,response){
     if (request.method == 'GET' && !(request.url.includes('api'))){
         file.serve(request, response);
     }
-    const {headers, method, url} = request; //this request object is an instant of an Incoming Message
+    const {headers, method, url} = request;
     console.log(request.method);
 
 
@@ -58,7 +58,6 @@ http.createServer(function(request,response){//create a server using the http li
             }
 
             var showRows = JSON.stringify(rows);
-            //console.log("THE LENGTH IN GET REQUEST IS: " + JSON.parse(showRows).length);
             response.write(showRows);
             response.end();
             return showRows;
@@ -83,11 +82,6 @@ http.createServer(function(request,response){//create a server using the http li
         request.on('end', () => {
 
             var data1 = JSON.parse(data);
-
-            console.log("THE NEW ITEM IS: " + data1);
-            console.log("THE MESSAGE OF THE NEW ITEM IS: " + data1.message);
-
-
             var newMessage = data1.message;
             var newName = data1.username;
 
@@ -102,9 +96,6 @@ http.createServer(function(request,response){//create a server using the http li
                 console.log("# of Row Changes: " + this.changes)
                 getMessagesFromDB();
             });
-
-
-
 
         })
 
