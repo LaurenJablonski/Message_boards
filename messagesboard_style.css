@@ -14,6 +14,7 @@ p{
     margin: 0 auto;
 }
 
+
 h1{
     font-weight: bold;
     font-style: normal;
@@ -66,7 +67,7 @@ h1{
     color: 	white;
 
 
-    font-family: "Lato", sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-size: 18px;
     font-weight: 500;
     justify-content: center;
@@ -177,6 +178,7 @@ h1{
     color: black;
     font-weight: 600;
     border-radius: 20px;
+
 
 }
 
@@ -562,9 +564,15 @@ h1{
 
 
 .container{
-    max-width:2500px;
+    max-width:1500px;
     margin-top: 200px;
     position: relative;
+    /*margin: auto;*/
+    /*max-width: 300px;*/
+    float: none;
+    margin: 20 auto;
+
+
 
 }
 
