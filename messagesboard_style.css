@@ -16,27 +16,27 @@ p{
 
 
 h1{
-    font-weight: bold;
-    font-style: normal;
-    color: var(--font-color);
+    /*font-weight: bold;*/
+    /*font-style: normal;*/
+    color: black;
     text-decoration: none;
     width: 100%;
-    display:inline-block;
-    padding-top:9rem; /* this adjusts the position of the header up and down */
+    /*display:inline-block;*/
+    padding-top:6.5rem; /* this adjusts the position of the header up and down */
     text-align: center;
-    font-size: 900px;
+    font-size: 100px;
     font-family: 'Oswald', sans-serif;
-    height: 4.5em;
-    line-height:0.1em;
+    height: 2em;
+    line-height:0em;
     overflow:hidden;
     margin: 0 auto;
-    top: 500px;
+    top: 400px;
 }
 
 
 .header-img{
     width: 100%;
-    height: 350px; /* this changes how big the image of the balloons is */
+    height: 300px; /* this changes how big the image of the balloons is */
     background: var(--background-image1);
     positon: absolute;
     top: 0;
@@ -51,7 +51,7 @@ h1{
     text-decoration: none;
     height: 80px;
     text-align:center;
-    padding-top:2rem;
+    padding-top:2.5rem;
     font-size: 30px;
     background-position: fixed;
     font-family: 'Oswald', sans-serif;
@@ -611,7 +611,7 @@ html,
 
 
 .theme-light {
-    --background-image: url('images/birthday_image7.png');
+    --background-image: #E8E8E8;
     --background-image1: url('images/bunting.jpg');
     --color-accent: #fd6f53;
     --color-primary: #C71585;
@@ -627,8 +627,9 @@ html,
 }
 .theme-dark {
     --background-image:url('images/colour_explosion3.jpg');
-    --background-image1: white;
+    --background-image1: #5D71AC;
     --color-primary: #6666FF;
+    --color-primary1: black;
     --color-secondary: #FF33CC;
     --color-tertiary: #3399FF;
     --color-four: #CC0033;
@@ -637,7 +638,7 @@ html,
     --color-seven: #FF0099;
     --color-eight: #3366FF;
     --color-accent: #12cdea;
-    --font-color: #3399FF;
+    --font-color: black;
 }
 
 /* The switch - the box around the slider */
@@ -646,8 +647,8 @@ html,
     display: inline-block;
     width: 60px;
     height: 34px;
-    top: 207px;
-    left: 95%;
+    top: 247px;
+    left: 97%;
 }
 
 /* Hide default HTML checkbox */
@@ -665,7 +666,7 @@ html,
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--color-primary);
+    background-color: var(--color-primary1);
     -webkit-transition: 0.4s;
     transition: 0.4s;
 
