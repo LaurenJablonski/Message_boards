@@ -39,9 +39,9 @@ body {
     border-radius: 25px;
     padding: 75px;
     width: 600px;
-    position: relative;
-    left:575px;
-    top: 200px;
+    position: absolute;
+    left:35%;
+    top: 27%;
 
 }
 
