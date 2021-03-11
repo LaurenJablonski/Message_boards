@@ -97,17 +97,23 @@ h1{
     left:20%;
     transform: translate(-50%,-50%);
 }
-
-
-.mail{
+.envelope{
     width: 300px;
     height: 200px;
-    background: var(--color-seven);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: relative;
     transform-style: preserve-3d; /*The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., elements.*/
     cursor: pointer;
+    margin-left: 50px;
+    transform: rotateX(10deg);
+
+}
+
+
+.mail {
+    background: var(--color-seven);
+    transform: rotate(10deg) !important;
 }
 
 .mail:before{
@@ -245,14 +251,10 @@ h1{
 }
 
 .mail2{
-    width: 300px;
-    height: 200px;
+
     background: var(--color-six);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: relative;
-    transform-style: preserve-3d;
-    cursor: pointer;
+    transform: rotate(5deg) !important;
+
 }
 
 .mail2:before{
@@ -352,14 +354,10 @@ h1{
 }
 
 .mail3{
-    width: 300px;
-    height: 200px;
     background: var(--color-eight);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: relative;
-    transform-style: preserve-3d;
-    cursor: pointer;
+
+    transform: rotate(-10deg) !important;
+
 }
 
 .mail3:before{
@@ -461,14 +459,9 @@ h1{
 }
 
 .mail4{
-    width: 300px;
-    height: 200px;
     background: var(--color-five);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: relative;
-    transform-style: preserve-3d;
-    cursor: pointer;
+
+    transform: rotate(-5deg) !important;
 }
 
 .mail4:before{
@@ -564,7 +557,7 @@ h1{
 
 
 .container{
-    max-width:1500px;
+    max-width:2000px;
     margin-top: 200px;
     position: relative;
     /*margin: auto;*/

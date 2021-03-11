@@ -8,7 +8,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     color: #3e363f;
-    font-family: "Lato", sans-serif;
+    font-family: 'Oswald', sans-serif;
     height: 100vh; /* changing this changes where the image is focused */
     overflow: hidden;
 }
@@ -27,7 +27,7 @@ body {
 #user_inputs_new_message {
     text-align: center;
     font-size: 14px;
-    font-family: "Lato", sans-serif;
+    font-family: 'Oswald', sans-serif;
     border-radius: 5px;
     resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*!*/
     position: relative;
@@ -64,7 +64,7 @@ body {
     color: white;
 
 
-    font-family: "Lato", sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-size: 13px;
     font-weight: 500;
     justify-content: center;

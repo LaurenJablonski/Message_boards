@@ -138,26 +138,15 @@ function showItems(data) {
     for (var i = 0; i < lengthOfMessages; i++) {
 
 
-        if (i%1 == 0) {
-            //element = '<div class = "row"><div class = "col-sm">';
-            element = '<div class="mail"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
+        if (i%2 == 0) {
+            element = '<div class="mail envelope"><div class="cover"></div><div class="letter"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
             list += element;
         }
-        if (i%2 == 0){
-            element = '<div class="mail3"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['message'];
-            element += "\n From - " + data[i]['username'];
-            element += '</textarea></div>';
-            list += element;
-
-
-        }
-
-        if (i%3 == 0){
-            element = '<div class="mail4"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
+        else{
+            element = '<div class="mail3 envelope"><div class="cover3"></div><div class="letter3"><textarea rows = "9" cols="28" id="where_messages_appear">';
             element += data[i]['message'];
             element += "\n From - " + data[i]['username'];
             element += '</textarea></div>';
@@ -165,15 +154,25 @@ function showItems(data) {
 
 
         }
-        if (i%4 == 0){
-            element = '<div class="mail2"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
-            element += data[i]['message'];
-            element += "\n From - " + data[i]['username'];
-            element += '</textarea></div>';
-            list += element;
 
-
-        }
+        // if (i%3 == 0){
+        //     element = '<div class="mail4 envelope"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
+        //     element += data[i]['message'];
+        //     element += "\n From - " + data[i]['username'];
+        //     element += '</textarea></div>';
+        //     list += element;
+        //
+        //
+        // }
+        // if (i%4 == 0){
+        //     element = '<div class="mail2 envelope"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
+        //     element += data[i]['message'];
+        //     element += "\n From - " + data[i]['username'];
+        //     element += '</textarea></div>';
+        //     list += element;
+        //
+        //
+        // }
 
 
         $(this).element += '    </div>';
