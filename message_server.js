@@ -117,7 +117,7 @@ http.createServer(function(request,response){
             getMessagesFromDB();
         });
 
-};
+    };
 
 
 
@@ -127,7 +127,6 @@ http.createServer(function(request,response){
 }).listen(8000, function(){
     console.log("server listening on port 8000");
 });
-
 
 
 

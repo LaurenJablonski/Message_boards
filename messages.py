@@ -54,7 +54,6 @@ def main():
     sql_create_messagetable = """ CREATE TABLE IF NOT EXISTS storemessages (
                                         id integer PRIMARY KEY,
                                         Message text NOT NULL
-
                                     ); """
 
     conn = create_connection(database)
