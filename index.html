@@ -1,3 +1,4 @@
+<script src="message_script.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +15,22 @@
 
 <h1>NxJ Message Boards</h1>
 
+<form id="writeNewBoard">
+
+    <div id="Modal">
+        <div id="formTitle" contenteditable="true" >
+            new board
+        </div>
+        <input id="nameTextboxID" type="name" class="add name" placeholder="Your name">
+        <input id="dateID" type="date" class="date">
+        <input type="button" id="post_message_button" value="Post your message" onclick="postMessageboard()">
 
 
 
-<div id="Modal" onclick="location.href='messageboard_index.html'">
+    </div>
+</form>
+
+<div id="Modal" onclick="location.href='messageboard_index.html'" onclick = "getItems(data,12345)">
     <div id="formTitle">Happy 1 year anniversary Ellie and Paola!</div>
     <img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">
 
@@ -36,8 +49,8 @@
 
 
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> <!-- for some reason without this you got the error "$ is not defined" -->
-<script src="message_script.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>

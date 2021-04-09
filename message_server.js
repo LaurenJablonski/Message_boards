@@ -102,6 +102,37 @@ http.createServer(function(request,response){
 
     };
 
+    if (request.method === 'POST' && request.url === '/api/newboard') {
+
+        let data = []; //the new item that's being added
+
+        request.on('data', chunk => {
+            data += chunk;
+        })
+
+        request.on('end', () => {
+
+            var data1 = JSON.parse(data);
+            var birthday = data1.birthday;
+            var recipient = data1.recipient;
+
+            var sql= 'INSERT INTO users(recipient,birthday)'
+            sql += 'VALUES(?,?)'
+
+            DB.run(sql, [recipient,birthday], function(error,rows) {
+                if (error) {
+                    console.log(error)
+                }
+                console.log("Last ID: " + this.lastID)
+                console.log("# of Row Changes: " + this.changes)
+                getMessagesFromDB();
+            });
+
+        })
+
+
+    };
+
     if (request.method === 'DELETE') {
 
         var sql= 'DELETE FROM newMessages WHERE id = (?)'

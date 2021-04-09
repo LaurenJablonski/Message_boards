@@ -20,11 +20,12 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
-function getItems(data) {
+function getItems(data,uid) {
 
-    makeRequest('GET','/api/item',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+    makeRequest('GET','/api/item',null, function (data,uid) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
         console.log("the data being received is: " + data);
+        console.log("the UID of the recipient is: " + uid);
         var jsonData = JSON.parse(data);
         console.log("the data1 is: " + jsonData[1].message);
         // var jsonData1 = JSON.stringify(jsonData);
@@ -42,6 +43,8 @@ function getItems(data) {
 }
 
 
+
+
 function postItem(messageEntered, nameOfUser){
     var body = {'message': messageEntered, 'username': nameOfUser};
     console.log("helloooo");
@@ -53,6 +56,23 @@ function postItem(messageEntered, nameOfUser){
 
     }, function () {
         console.log("An error occured in postItem");
+
+    });
+}
+
+function postMessageboard(){
+
+    var recipient = document.getElementById("nameTextboxID").value;//gets the data entered by the user
+    var birthday =  document.getElementById("dateID").value;
+
+    console.log("reaching postmessageboard function");
+    var body = {'recipient': recipient, 'birthday': birthday};
+
+    makeRequest('POST', '/api/newboard', body, function (data) {
+
+
+    }, function () {
+
 
     });
 }
@@ -126,6 +146,7 @@ function postMessage() {
 
     }
 }
+
 
 function showItems(data) {
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
