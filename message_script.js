@@ -32,8 +32,20 @@ function getItems(data,uid) {
         // console.log("the data1 is: " + jsonData1[1].message)
         showItems(jsonData);
 
+        }, function (error) {
+        console.log("An error occured in getItems");
+        console.log("the error is" + error);
+        callback([]);
+    });
+}
 
+function getBoards(data) {
 
+    makeRequest('GET','/api/newboard',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+        console.log("this is get boards");
+        console.log("the data being received is: " + data);
+        var jsonData = JSON.parse(data);
+        displayBoards(jsonData);
 
     }, function (error) {
         console.log("An error occured in getItems");
@@ -69,6 +81,8 @@ function postMessageboard(){
     var body = {'recipient': recipient, 'birthday': birthday};
 
     makeRequest('POST', '/api/newboard', body, function (data) {
+
+        console.log("is making the post request");
 
 
     }, function () {
@@ -205,6 +219,28 @@ function showItems(data) {
 }
 
 
+function displayBoards(data) {
+    console.log("you are reaching displayBoards");
+    var list = document.getElementById("displayboards"); //this is where we want to show the dashboard white boxes
+
+    console.log("you are reaching displayBoards");
+    console.log("the data is" + data);
+
+    var lengthOfMessages = data.length;
+    console.log("the lengths are :" + lengthOfMessages);
+    for (var i = 0; i < lengthOfMessages; i++) {
+
+        element = '<div id="addNewBoards">';
+        element += data[i]['recipient'];
+        element += data[i]['birthday'];
+        list += element;
+
+
+        $(this).element += '    </div>';
+    };
+}
+
+
 
 
 
@@ -237,6 +273,7 @@ function toggleTheme() {
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
+    getBoards();
     //showItems(data);
 });
 

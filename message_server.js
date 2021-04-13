@@ -71,6 +71,26 @@ http.createServer(function(request,response){
 
     };
 
+    if (request.method === 'GET' && request.url === '/api/newboard' ) {
+        var sql = 'SELECT *'
+        sql += 'FROM users '
+
+        DB.all(sql, [], function (error, rows) {
+            if (error) {
+                console.log("errrorrrrr");
+                console.log("the error is" + error)
+            }
+
+            var showRows = JSON.stringify(rows);
+            response.write(showRows);
+            response.end();
+            return showRows;
+
+
+        });
+
+    };
+
     if (request.method === 'POST' && request.url === '/api/item') {
 
         let data = []; //the new item that's being added
@@ -94,7 +114,8 @@ http.createServer(function(request,response){
                 }
                 console.log("Last ID: " + this.lastID)
                 console.log("# of Row Changes: " + this.changes)
-                getMessagesFromDB();
+
+
             });
 
         })
@@ -125,7 +146,25 @@ http.createServer(function(request,response){
                 }
                 console.log("Last ID: " + this.lastID)
                 console.log("# of Row Changes: " + this.changes)
-                getMessagesFromDB();
+
+                //once you've posted the items you then want to get them back and display them:
+
+                var sql = 'SELECT *'
+                sql += 'FROM users '
+
+                DB.all(sql, [], function (error, rows) {
+                    if (error) {
+                        console.log("errrorrrrr");
+                        console.log("the error is" + error)
+                    }
+
+                    var showRows = JSON.stringify(rows);
+                    response.write(showRows);
+                    response.end();
+                    return showRows;
+
+
+                });
             });
 
         })

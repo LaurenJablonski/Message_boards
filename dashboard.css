@@ -3,8 +3,8 @@
 
 /*Styles*/
 body {
-    /*background-color: white;*/
-    background: url('images/colour_explosion1.jpg');
+    background-color: lightskyblue;
+    /*background: url('images/colour_explosion1.jpg');*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -35,6 +35,14 @@ body {
     resize: none; /*without this line the user can adjust the size of the boz where they want to enter their message*!*/
     position: relative;
 
+}
+
+#displayboards{
+    background-color: pink;
+}
+
+#addNewBoards{
+    background-color: yellow;
 }
 
 
