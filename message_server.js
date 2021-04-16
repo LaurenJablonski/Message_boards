@@ -66,14 +66,12 @@ http.createServer(function(request,response){
         });
     }
 
-    if (request.method === 'GET' && request.url === '/api/item' ) {
-        getMessagesFromDB();
 
-    };
 
     if (request.method === 'GET' && request.url === '/api/newboard' ) {
+        console.log("reaching GET request for newboard");
         var sql = 'SELECT *'
-        sql += 'FROM users '
+        sql += 'FROM users'
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -82,12 +80,18 @@ http.createServer(function(request,response){
             }
 
             var showRows = JSON.stringify(rows);
+            console.log(rows);
             response.write(showRows);
             response.end();
             return showRows;
 
 
         });
+
+    };
+
+    if (request.method === 'GET' && request.url === '/api/item' ) {
+        getMessagesFromDB();
 
     };
 

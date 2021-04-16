@@ -28,8 +28,6 @@ function getItems(data,uid) {
         console.log("the UID of the recipient is: " + uid);
         var jsonData = JSON.parse(data);
         console.log("the data1 is: " + jsonData[1].message);
-        // var jsonData1 = JSON.stringify(jsonData);
-        // console.log("the data1 is: " + jsonData1[1].message)
         showItems(jsonData);
 
         }, function (error) {
@@ -45,6 +43,7 @@ function getBoards(data) {
         console.log("this is get boards");
         console.log("the data being received is: " + data);
         var jsonData = JSON.parse(data);
+        console.log(jsonData);
         displayBoards(jsonData);
 
     }, function (error) {
@@ -102,16 +101,6 @@ function myFunction(button) {
     }
 }
 
-function myFunction(button) {
-    var x = document.getElementsByClassName("display-4 font-weight-bold");
-    if (x.contentEditable == "true") {
-        x.contentEditable = "false";
-        button.innerHTML = "Enable content of p to be editable!";
-    } else {
-        x.contentEditable = "true";
-        button.innerHTML = "Disable content of p to be editable!";
-    }
-}
 
 function myFunction(button) {
     var x = document.getElementsByClassName("birthday-date");
@@ -189,26 +178,6 @@ function showItems(data) {
 
 
         }
-
-        // if (i%3 == 0){
-        //     element = '<div class="mail4 envelope"><div class="cover4"></div><div class="letter4"><textarea rows = "9" cols="28" id="where_messages_appear">';
-        //     element += data[i]['message'];
-        //     element += "\n From - " + data[i]['username'];
-        //     element += '</textarea></div>';
-        //     list += element;
-        //
-        //
-        // }
-        // if (i%4 == 0){
-        //     element = '<div class="mail2 envelope"><div class="cover2"></div><div class="letter2"><textarea rows = "9" cols="28" id="where_messages_appear">';
-        //     element += data[i]['message'];
-        //     element += "\n From - " + data[i]['username'];
-        //     element += '</textarea></div>';
-        //     list += element;
-        //
-        //
-        // }
-
 
         $(this).element += '    </div>';
         $('.row g-4').append(element);
