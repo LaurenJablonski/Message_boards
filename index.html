@@ -19,18 +19,22 @@
 
 <form id="writeNewBoard">
 
-<!--    <div id="Modal">-->
-
-        <div id="formTitle" contenteditable="true" >
-            new board
+        <input id="add_new_board" type="button" value="+ Add New Message Board">
+        <div id="myDiv">
+            <form>
+                <input id="nameTextboxID" type="name" class="Recipients name" placeholder="add recipients name">
+                <input id="dateID" type="date" class="date" placeholder="dd/mm/yyyy">
+                <input type="button" id="post_message_button" value=" + " onclick="postMessageboard()">
+            </form>
         </div>
-        <input id="nameTextboxID" type="name" class="add name" placeholder="add name">
-        <input id="dateID" type="date" class="date">
-        <input type="button" id="post_message_button" value="Post your message" onclick="postMessageboard()">
 
-<!--    </div>-->
+
+
+
+
 
 </form>
+
 
 <!--<div id="Modal" onclick="location.href='messageboard_index' + '/id/' + " onclick = "getItems(data,12345)">-->
 <!--    <div id="formTitle">Happy 1 year anniversary Ellie and Paola!</div>-->

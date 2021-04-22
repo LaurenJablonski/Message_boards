@@ -88,6 +88,81 @@ body {
 
 }
 
+#add_new_board {
+    text-align: center;
+    background-color: #8C6ECE;
+    border: none;
+    border-radius: 3px;
+    color: 	white;
+
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 240px;
+    height: 50px;
+
+    margin: 0;
+    position: relative;
+    top: -40px;
+    left: 85%;
+}
+
+#nameTextboxID{
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    color: 	white;
+
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 240px;
+    height: 50px;
+
+    margin: 0;
+    position: relative;
+    top: -20px;
+    left: 85%;
+
+}
+
+#dateID{
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    color: 	white;
+
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 240px;
+    height: 50px;
+
+    margin: 0;
+    position: relative;
+    top: 70px;
+    left: 75.5%;
+
+}
+
 
 
 #profile_pic{
@@ -149,27 +224,27 @@ p{
 /*Button*/
 #post_message_button {
     text-align: center;
-    background-color: #6b4d15;
+    background-color: #8C6ECE;
     border: none;
     border-radius: 3px;
     color: white;
 
 
     font-family: 'Oswald', sans-serif;
-    font-size: 13px;
+    font-size: 30px;
     font-weight: 500;
     justify-content: center;
 
     outline: none;
-    padding: 10px 9px 10px 11px;
+    /*padding: 10px 9px 10px 11px;*/
     text-transform: uppercase;
-    width: 180px;
+    width: 60px;
     height: 40px;
 
     margin: 0;
     position: relative;
-    top: 55px;
-    left: -25%;
+    top: 150px;
+    left: 69.5%;
 }
 
 #post_message_button:hover{

@@ -20,6 +20,30 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
+var button = document.getElementById("add_new_board");
+var myDiv = document.getElementById("myDiv");
+
+function show() {
+    myDiv.style.visibility = "visible";
+}
+
+function hide() {
+    myDiv.style.visibility = "hidden";
+}
+
+function toggle() {
+    if (myDiv.style.visibility === "hidden") {
+        show();
+    } else {
+        hide();
+    }
+}
+
+hide();
+
+button.addEventListener("click", toggle, false);
+
+
 function getBoards(data) {
 
     makeRequest('GET','/api/newboard',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
@@ -36,23 +60,32 @@ function getBoards(data) {
     });
 }
 
-function postMessageboard(){
+function postMessageboard() {
 
     var recipient = document.getElementById("nameTextboxID").value;//gets the data entered by the user
-    var birthday =  document.getElementById("dateID").value;
-
-    console.log("reaching postmessageboard function");
+    var birthday = document.getElementById("dateID").value;
     var body = {'recipient': recipient, 'birthday': birthday};
 
-    makeRequest('POST', '/api/newboard', body, function (data) {
+    if (recipient == "" || recipient == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+        alert("Please enter the recipients name!");
+    }
+    if (birthday == "" || birthday == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+        alert("Please enter the recipients birthday date ");
+    }
+    if (birthday == "" && recipient == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+        alert("Please enter the recipients name and birthday date ");
+    }else {
 
-        console.log("is making the post request");
+        makeRequest('POST', '/api/newboard', body, function (data) {
+
+            console.log("is making the post request");
 
 
-    }, function () {
+        }, function () {
 
 
-    });
+        });
+    }
 }
 
 
