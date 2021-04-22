@@ -3,15 +3,15 @@
 
 /*Styles*/
 body {
-    background-color: lightskyblue;
-    /*background: url('images/colour_explosion1.jpg');*/
+    /*background-color: lightskyblue;*/
+    background: url('images/colour_explosion1.jpg');
     background-position: center;
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
     background-size: cover;
     color: black;
     font-family: 'Oswald', sans-serif;
     height: 100vh; /* changing this changes where the image is focused */
-    overflow: hidden;
+    /*overflow: hidden;*/
 
 }
 
@@ -51,7 +51,7 @@ body {
 #Modal {
     background: white;
     border-radius: 25px;
-    padding: 55px;
+    margin-bottom: 250px;
 
     position: relative;
     top: 5vh;

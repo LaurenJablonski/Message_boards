@@ -71,9 +71,9 @@ function displayBoards(data) {
         console.log("reaching for loop");
 
         element += '<div id="addNewBoards"> ';
-        element += '<div id="Modal" onclick="location.href=\'messageboard_index.html\'" onclick = "getItems(data,12345)">';
-        element += '<div id="formTitle">' + data[i]['recipient'] + '</div>'
-        element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
+        element += '<div id="Modal" onclick="location.href=\'messageboard_index\' + \'/id/\' + data[i][\'id\']">';
+        element += '<div id="formTitle">' + data[i]['recipient'] + '</div>';
+        // element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
         element += data[i]['birthday'];
         element += '    </div>'
         console.log(list);
@@ -82,6 +82,24 @@ function displayBoards(data) {
     };
     list.innerHTML = element;
 }
+
+function getItems(data,uid) {
+
+    makeRequest('GET','/api/item',null, function (data,uid) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+        console.log("this is get items");
+        console.log("the data being received is: " + data);
+        console.log("the UID of the recipient is: " + uid);
+        var jsonData = JSON.parse(data);
+        console.log("the data1 is: " + jsonData[1].message);
+        showItems(jsonData);
+
+    }, function (error) {
+        console.log("An error occured in getItems");
+        console.log("the error is" + error);
+        callback([]);
+    });
+}
+
 
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
