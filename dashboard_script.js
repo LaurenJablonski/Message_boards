@@ -63,11 +63,15 @@ function getBoards(data) {
 function postMessageboard() {
 
     var recipient = document.getElementById("nameTextboxID").value;//gets the data entered by the user
+    var title = document.getElementById("titleTextboxID").value;
     var birthday = document.getElementById("dateID").value;
-    var body = {'recipient': recipient, 'birthday': birthday};
+    var body = {'recipient': recipient, 'title': title, 'birthday': birthday};
 
     if (recipient == "" || recipient == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter the recipients name!");
+    }
+    if (title == "" || title == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+        alert("Please enter a title for the messageboard!");
     }
     if (birthday == "" || birthday == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter the recipients birthday date ");
@@ -105,7 +109,7 @@ function displayBoards(data) {
 
         element += '<div id="addNewBoards"> ';
         element += '<div id="Modal" onclick="location.href=\'messageboard_index\' + \'/id/\' + data[i][\'id\']">';
-        element += '<div id="formTitle">' + data[i]['recipient'] + '</div>';
+        element += '<div id="formTitle">' + data[i]['title'] + '</div>';
         // element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
         element += data[i]['birthday'];
         element += '    </div>'

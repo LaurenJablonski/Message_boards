@@ -30,6 +30,13 @@ dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
             username TEXT NOT NULL
         );`
 
+dbSchema = `CREATE TABLE IF NOT EXISTS userId(
+            id INTEGER NOT NULL PRIMARY KEY,
+            recipient TEXT NOT NULL,
+            title SUBSTRING NOT NULL,
+            birthday TEXT NOT NULL
+        );`
+
 DB.exec(dbSchema, function(err){
     if (err) {
         console.log("the error is" + err)
@@ -71,7 +78,7 @@ http.createServer(function(request,response){
     if (request.method === 'GET' && request.url === '/api/newboard' ) {
         console.log("reaching GET request for newboard");
         var sql = 'SELECT *'
-        sql += 'FROM users'
+        sql += 'FROM userId'
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -140,11 +147,12 @@ http.createServer(function(request,response){
             var data1 = JSON.parse(data);
             var birthday = data1.birthday;
             var recipient = data1.recipient;
+            var title = data1.title;
 
-            var sql= 'INSERT INTO users(recipient,birthday)'
-            sql += 'VALUES(?,?)'
+            var sql= 'INSERT INTO userId(recipient,title,birthday)'
+            sql += 'VALUES(?,?,?)'
 
-            DB.run(sql, [recipient,birthday], function(error,rows) {
+            DB.run(sql, [recipient,title,birthday], function(error,rows) {
                 if (error) {
                     console.log(error)
                 }
@@ -154,7 +162,7 @@ http.createServer(function(request,response){
                 //once you've posted the items you then want to get them back and display them:
 
                 var sql = 'SELECT *'
-                sql += 'FROM users '
+                sql += 'FROM userId '
 
                 DB.all(sql, [], function (error, rows) {
                     if (error) {

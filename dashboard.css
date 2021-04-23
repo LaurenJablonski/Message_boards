@@ -117,7 +117,7 @@ body {
     text-align: center;
     border: none;
     border-radius: 3px;
-    color: 	white;
+    color: 	black;
 
 
     font-family: 'Oswald', sans-serif;
@@ -138,11 +138,11 @@ body {
 
 }
 
-#dateID{
+#titleTextboxID{
     text-align: center;
     border: none;
     border-radius: 3px;
-    color: 	white;
+    color: 	black;
 
 
     font-family: 'Oswald', sans-serif;
@@ -158,8 +158,33 @@ body {
 
     margin: 0;
     position: relative;
-    top: 70px;
+    top: 50px;
     left: 75.5%;
+
+}
+
+#dateID{
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    color: 	black;
+
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 240px;
+    height: 50px;
+
+    margin: 0;
+    position: relative;
+    top: 120px;
+    left: 66%;
 
 }
 
@@ -243,8 +268,8 @@ p{
 
     margin: 0;
     position: relative;
-    top: 150px;
-    left: 69.5%;
+    top: 190px;
+    left: 60%;
 }
 
 #post_message_button:hover{
