@@ -111,7 +111,7 @@ function displayBoards(data) {
         element += '<div id="Modal" onclick="location.href=\'messageboard_index\' + \'/id/\' + data[i][\'id\']">';
         element += '<div id="formTitle">' + data[i]['title'] + '</div>';
         // element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
-        element += data[i]['birthday'];
+        element += '<div id="birthdayDate">' + data[i]['birthday'] + '</div>';
         element += '    </div>'
         console.log(list);
 

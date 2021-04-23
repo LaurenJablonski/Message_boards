@@ -16,16 +16,27 @@ body {
 }
 
 #formTitle {
-    font-size: 59px;
+    font-size: 79px;
     padding: 20px; /*this changes the position of the title*/
     width: 90%;
     position: relative;
-    left: 5%;
+    left: 25%;
     top: 1%;
     font-family: 'Oswald', sans-serif;
     color: black;
 
 
+}
+
+#birthdayDate{
+    font-size: 30px;
+    padding: 20px; /*this changes the position of the title*/
+    width: 90%;
+    position: relative;
+    left: 42%;
+    top: 1%;
+    font-family: 'Oswald', sans-serif;
+    color: black;
 }
 #user_inputs_new_message {
     text-align: center;
