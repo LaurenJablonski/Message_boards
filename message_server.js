@@ -30,11 +30,16 @@ dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
             username TEXT NOT NULL
         );`
 
-dbSchema = `CREATE TABLE IF NOT EXISTS userId(
+dbSchema = `CREATE TABLE IF NOT EXISTS user(
             id INTEGER NOT NULL PRIMARY KEY,
-            recipient TEXT NOT NULL,
-            title SUBSTRING NOT NULL,
-            birthday TEXT NOT NULL
+            name TEXT NOT NULL
+        );`
+
+dbSchema = `CREATE TABLE IF NOT EXISTS messageboard(
+            id INTEGER NOT NULL PRIMARY KEY,
+            recipientId NOT NULL,
+            title STRING NOT NULL,
+            eventDate TEXT NOT NULL
         );`
 
 DB.exec(dbSchema, function(err){
@@ -78,7 +83,7 @@ http.createServer(function(request,response){
     if (request.method === 'GET' && request.url === '/api/newboard' ) {
         console.log("reaching GET request for newboard");
         var sql = 'SELECT *'
-        sql += 'FROM userId'
+        sql += 'FROM messageboard'
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -149,7 +154,7 @@ http.createServer(function(request,response){
             var recipient = data1.recipient;
             var title = data1.title;
 
-            var sql= 'INSERT INTO userId(recipient,title,birthday)'
+            var sql= 'INSERT INTO user(recipient,title,birthday)'
             sql += 'VALUES(?,?,?)'
 
             DB.run(sql, [recipient,title,birthday], function(error,rows) {
@@ -162,7 +167,7 @@ http.createServer(function(request,response){
                 //once you've posted the items you then want to get them back and display them:
 
                 var sql = 'SELECT *'
-                sql += 'FROM userId '
+                sql += 'FROM user '
 
                 DB.all(sql, [], function (error, rows) {
                     if (error) {
@@ -210,6 +215,7 @@ http.createServer(function(request,response){
     console.log("server listening on port 8000");
 });
 
+// DB.close();
 
 
 

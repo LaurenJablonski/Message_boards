@@ -64,8 +64,8 @@ function postMessageboard() {
 
     var recipient = document.getElementById("nameTextboxID").value;//gets the data entered by the user
     var title = document.getElementById("titleTextboxID").value;
-    var birthday = document.getElementById("dateID").value;
-    var body = {'recipient': recipient, 'title': title, 'birthday': birthday};
+    var eventDate = document.getElementById("dateID").value;
+    var body = {'recipient': recipient, 'title': title, 'eventDate': eventDate};
 
     if (recipient == "" || recipient == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter the recipients name!");
@@ -73,10 +73,10 @@ function postMessageboard() {
     if (title == "" || title == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter a title for the messageboard!");
     }
-    if (birthday == "" || birthday == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+    if (eventDate == "" || eventDate == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter the recipients birthday date ");
     }
-    if (birthday == "" && recipient == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
+    if (eventDate == "" && recipient == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
         alert("Please enter the recipients name and birthday date ");
     }else {
 
@@ -108,11 +108,12 @@ function displayBoards(data) {
         console.log("reaching for loop");
 
         element += '<div id="addNewBoards"> ';
-        element += '<div id="Modal" onclick="location.href=\'messageboard_index\' + \'/id/\' + data[i][\'id\']">';
+        element += '<a href="messageboard_index/id/' + data[i]['id'] + '">';
+        element += '<div id="Modal">';
         element += '<div id="formTitle">' + data[i]['title'] + '</div>';
         // element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
-        element += '<div id="birthdayDate">' + data[i]['birthday'] + '</div>';
-        element += '    </div>'
+        element += '<div id="birthdayDate">' + data[i]['eventDate'] + '</div>';
+        element += '    </div></a>'
         console.log(list);
 
 
