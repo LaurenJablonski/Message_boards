@@ -24,8 +24,9 @@ const DB = new sqlite3.Database(DB_PATH, function(err){
 });
 
 
-dbSchema = `CREATE TABLE IF NOT EXISTS newMessages(
+dbSchema = `CREATE TABLE IF NOT EXISTS messagesForRecipient(
             id INTEGER NOT NULL PRIMARY KEY,
+            recipientId NOT NULL,
             message TEXT NOT NULL,
             username TEXT NOT NULL
         );`
@@ -61,7 +62,7 @@ http.createServer(function(request,response){
     function getMessagesFromDB(){
 
         var sql = 'SELECT *'
-        sql += 'FROM newMessages '
+        sql += 'FROM messagesForRecipient WHERE recipientId = 1 '
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -83,7 +84,7 @@ http.createServer(function(request,response){
     if (request.method === 'GET' && request.url === '/api/newboard' ) {
         console.log("reaching GET request for newboard");
         var sql = 'SELECT *'
-        sql += 'FROM messageboard'
+        sql += 'FROM user JOIN messageboard ON user.id = messageboard.recipientId'
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -102,7 +103,7 @@ http.createServer(function(request,response){
 
     };
 
-    if (request.method === 'GET' && request.url === '/api/item' ) {
+    if (request.method === 'GET' && request.url === '/api/item'  ) {
         getMessagesFromDB();
 
     };
@@ -120,11 +121,13 @@ http.createServer(function(request,response){
             var data1 = JSON.parse(data);
             var newMessage = data1.message;
             var newName = data1.username;
+            var recipientId = data1.recipientId
 
-            var sql= 'INSERT INTO newMessages(message, username)'
-            sql += 'VALUES(?,?)'
 
-            DB.run(sql, [newMessage,newName], function(error,rows) {
+            var sql= 'INSERT INTO messagesForRecipient(message, username,recipientId)'
+            sql += 'VALUES(?,?,?)'
+
+            DB.run(sql, [newMessage,newName,recipientId], function(error,rows) {
                 if (error) {
                     console.log(error)
                 }
@@ -191,7 +194,7 @@ http.createServer(function(request,response){
 
     if (request.method === 'DELETE') {
 
-        var sql= 'DELETE FROM newMessages WHERE id = (?)'
+        var sql= 'DELETE FROM messagesForRecipient WHERE recipientId = (?)'
 
         let id = 2;
 
@@ -215,7 +218,8 @@ http.createServer(function(request,response){
     console.log("server listening on port 8000");
 });
 
-// DB.close();
+//
+
 
 
 

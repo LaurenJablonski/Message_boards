@@ -22,6 +22,10 @@ function makeRequest(method, resource, body, successCb, errorCb) {
 
 function getItems(data,uid) {
 
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id');
+
     makeRequest('GET','/api/item',null, function (data,uid) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
         console.log("the data being received is: " + data);
@@ -37,21 +41,21 @@ function getItems(data,uid) {
     });
 }
 
-function getBoards(data) {
-
-    makeRequest('GET','/api/newboard',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
-        console.log("this is get boards");
-        console.log("the data being received is: " + data);
-        var jsonData = JSON.parse(data);
-        console.log(jsonData);
-        displayBoards(jsonData);
-
-    }, function (error) {
-        console.log("An error occured in getItems");
-        console.log("the error is" + error);
-        callback([]);
-    });
-}
+// function getBoards(data) {
+//
+//     makeRequest('GET','/api/newboard',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
+//         console.log("this is get boards");
+//         console.log("the data being received is: " + data);
+//         var jsonData = JSON.parse(data);
+//         console.log(jsonData);
+//         displayBoards(jsonData);
+//
+//     }, function (error) {
+//         console.log("An error occured in getItems");
+//         console.log("the error is" + error);
+//         callback([]);
+//     });
+// }
 
 
 
@@ -157,6 +161,12 @@ function showItems(data) {
     console.log("you are reaching showItems");
     console.log("the data is" + data);
 
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const id = urlParams.get('id');
+    // console.log("THE ID IS:" + id);
+
+
     var lengthOfMessages = data.length;
     console.log("the lengths are :" + lengthOfMessages);
     for (var i = 0; i < lengthOfMessages; i++) {
@@ -242,7 +252,12 @@ function toggleTheme() {
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
     getItems();
-    getBoards();
-    //showItems(data);
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id');
+
+    document.getElementById("addMessageButton").href = 'message_index.html?id=' + id;
+
 });
 

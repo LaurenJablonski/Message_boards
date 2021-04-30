@@ -108,7 +108,7 @@ function displayBoards(data) {
         console.log("reaching for loop");
 
         element += '<div id="addNewBoards"> ';
-        element += '<a href="messageboard_index/id/' + data[i]['id'] + '">';
+        element += '<a href="messageboard_index.html?id='+ data[i]['id'] + '">';
         element += '<div id="Modal">';
         element += '<div id="formTitle">' + data[i]['title'] + '</div>';
         // element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
