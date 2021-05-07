@@ -20,18 +20,21 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
-function getItems(data,uid) {
+function getItems(data,uid,id) {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get('id');
+    const idFromUrl = urlParams.get('id');
 
     makeRequest('GET','/api/item',null, function (data,uid) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
         console.log("this is get items");
         console.log("the data being received is: " + data);
+
         console.log("the UID of the recipient is: " + uid);
+        // console.log("THE ID IS " + idFromUrl);
         var jsonData = JSON.parse(data);
-        console.log("the data1 is: " + jsonData[1].message);
+
+        // console.log("the data1 is: " + jsonData[1].message);
         showItems(jsonData);
 
         }, function (error) {
@@ -251,13 +254,14 @@ function toggleTheme() {
 })();
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
-    getItems();
+
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get('id');
 
     document.getElementById("addMessageButton").href = 'message_index.html?id=' + id;
+    getItems(id);
 
 });
 

@@ -62,7 +62,7 @@ http.createServer(function(request,response){
     function getMessagesFromDB(){
 
         var sql = 'SELECT *'
-        sql += 'FROM messagesForRecipient WHERE recipientId = 1 '
+        sql += 'FROM messagesForRecipient WHERE recipientId = 1'
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -71,6 +71,7 @@ http.createServer(function(request,response){
             }
 
             var showRows = JSON.stringify(rows);
+            console.log("these are the rows" + rows);
             response.write(showRows);
             response.end();
             return showRows;
@@ -104,6 +105,11 @@ http.createServer(function(request,response){
     };
 
     if (request.method === 'GET' && request.url === '/api/item'  ) {
+
+        // const queryString = window.location.search;
+        // const urlParams = new URLSearchParams(queryString);
+        // const idFromUrl = urlParams.get('id');
+
         getMessagesFromDB();
 
     };
