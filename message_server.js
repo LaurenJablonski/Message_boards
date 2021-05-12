@@ -119,7 +119,7 @@ http.createServer(function(request,response){
         console.log("the id from the URL is:" + idFromUrl);
 
 
-        var sql = 'SELECT title '
+        var sql = 'SELECT * '
         sql += 'FROM messageboard WHERE recipientId = ' + idFromUrl
 
         DB.all(sql, [], function (error, rows) {

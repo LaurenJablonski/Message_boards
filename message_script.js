@@ -36,10 +36,11 @@ function getItems(id) {
 function getTitle(id) {
     console.log("you are getting to the getTitle function")  ;
     makeRequest('GET','/api/title?id=' + id,null, function (data) {
-        // var jsonData = JSON.parse(data);
-        // console.log(data);
-        console.log("the data is(should be title)" + data['title']);
-        showTitle(data)
+        var jsonData = JSON.parse(data);
+
+        // console.log("the data is(should be title)" + data);
+        // console.log("the data is(should be title)" + jsonData['title']);
+        showTitle(jsonData);
 
     }, function (error) {
         console.log("An error occured in getItems");
@@ -177,9 +178,12 @@ function showItems(data) {
     };
 }
 
-function showTitle(data,id) {
+function showTitle(data) {
+    var lengthOfMessages = data.length;
+    for (var i = 0; i < lengthOfMessages; i++) {
 
-    document.getElementById("titleOfMessageBoard").innerHTML = data;
+        document.getElementById("titleOfMessageBoard").innerHTML = data[i]['title'];
+    }
 }
 
 //########################################################HERE IS ALL THE CHANGE IN THEME STUFF ################################################//
