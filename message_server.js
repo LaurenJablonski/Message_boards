@@ -59,19 +59,17 @@ http.createServer(function(request,response){
     console.log(request.method);
 
 
-    function getMessagesFromDB(){
-
+    function getMessagesFromDB(id){
         var sql = 'SELECT *'
-        sql += 'FROM messagesForRecipient WHERE recipientId = 1'
+        sql += 'FROM messagesForRecipient WHERE recipientId = ' + id;
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
-                console.log("errrorrrrr");
                 console.log("the error is" + error)
             }
 
             var showRows = JSON.stringify(rows);
-            console.log("these are the rows" + rows);
+            console.log("the showRows is " + showRows);
             response.write(showRows);
             response.end();
             return showRows;
@@ -79,6 +77,7 @@ http.createServer(function(request,response){
 
         });
     }
+
 
 
 
@@ -104,15 +103,44 @@ http.createServer(function(request,response){
 
     };
 
-    if (request.method === 'GET' && request.url === '/api/item'  ) {
+    if (request.method === 'GET' && request.url.includes('/api/item?id=') ){
 
-        // const queryString = window.location.search;
-        // const urlParams = new URLSearchParams(queryString);
-        // const idFromUrl = urlParams.get('id');
-
-        getMessagesFromDB();
+        var urlParams = new URLSearchParams(request.url);
+        var idFromUrl = urlParams.get('/api/item?id');
+        console.log("the id from the URL is:" + idFromUrl);
+        getMessagesFromDB(idFromUrl);
 
     };
+
+    if (request.method === 'GET' && request.url.includes('/api/title?id=') ){
+
+        var urlParams = new URLSearchParams(request.url);
+        var idFromUrl = urlParams.get('/api/title?id');
+        console.log("the id from the URL is:" + idFromUrl);
+
+
+        var sql = 'SELECT title '
+        sql += 'FROM messageboard WHERE recipientId = ' + idFromUrl
+
+        DB.all(sql, [], function (error, rows) {
+            if (error) {
+                console.log("the error is" + error)
+            }
+
+            var showRows = JSON.stringify(rows);
+            console.log("the showRows is from the bit where you get the title are " + showRows);
+            response.write(showRows);
+            response.end();
+            return showRows;
+
+
+        });
+
+
+    };
+
+
+
 
     if (request.method === 'POST' && request.url === '/api/item') {
 

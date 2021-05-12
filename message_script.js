@@ -7,10 +7,9 @@ function getToken() {
     return 'lauren2';
 }
 
-function makeRequest(method, resource, body, successCb, errorCb) {
+function makeRequest(method, resource,body,successCb, errorCb) {
     var baseUrl = 'http://localhost:8000';
-    //console.log(JSON.stringify(body));
-    $.ajax({ //ajax= techinique for accessing web servers from a webpage so this is where the connection is being made to the API. It sends teh http requests easily and quickly as you don't have to reload the page.
+    $.ajax({
         method: method,
         url: baseUrl + resource,
         headers: {'token': getToken()},
@@ -20,21 +19,11 @@ function makeRequest(method, resource, body, successCb, errorCb) {
     });
 }
 
-function getItems(data,uid,id) {
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const idFromUrl = urlParams.get('id');
-
-    makeRequest('GET','/api/item',null, function (data,uid) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
-        console.log("this is get items");
-        console.log("the data being received is: " + data);
-
-        console.log("the UID of the recipient is: " + uid);
-        // console.log("THE ID IS " + idFromUrl);
+function getItems(id) {
+        console.log("you are getting to the getItems function")  ;
+        makeRequest('GET','/api/item?id=' + id,null, function (data) {
         var jsonData = JSON.parse(data);
-
-        // console.log("the data1 is: " + jsonData[1].message);
+        console.log("the data is" + jsonData);
         showItems(jsonData);
 
         }, function (error) {
@@ -44,24 +33,20 @@ function getItems(data,uid,id) {
     });
 }
 
-// function getBoards(data) {
-//
-//     makeRequest('GET','/api/newboard',null, function (data) {// what I seem to put as the body here (null) is appended to the end of the http so it becomes http://localhost:8080/item?%22hello%22
-//         console.log("this is get boards");
-//         console.log("the data being received is: " + data);
-//         var jsonData = JSON.parse(data);
-//         console.log(jsonData);
-//         displayBoards(jsonData);
-//
-//     }, function (error) {
-//         console.log("An error occured in getItems");
-//         console.log("the error is" + error);
-//         callback([]);
-//     });
-// }
+function getTitle(id) {
+    console.log("you are getting to the getTitle function")  ;
+    makeRequest('GET','/api/title?id=' + id,null, function (data) {
+        // var jsonData = JSON.parse(data);
+        // console.log(data);
+        console.log("the data is(should be title)" + data['title']);
+        showTitle(data)
 
-
-
+    }, function (error) {
+        console.log("An error occured in getItems");
+        console.log("the error is" + error);
+        callback([]);
+    });
+}
 
 function postItem(messageEntered, nameOfUser){
     var body = {'message': messageEntered, 'username': nameOfUser};
@@ -126,7 +111,7 @@ function deleteMessage(id){
     var body = {'ID': id};
     console.log("the body is:" + JSON.stringify(body));
 
-    makeRequest('DELETE','/api/item/' + id , body, function (data){ //appends the id to the item parameter
+    makeRequest('DELETE','/api/item' + id , body, function (data){ //appends the id to the item parameter
         console.log("sending delete request");
     }, function () {
         console.log("An error occured in deleteItem");// if unsuccessful then the console tells you that an error has occured
@@ -162,14 +147,6 @@ function showItems(data) {
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
     console.log("you are reaching showItems");
-    console.log("the data is" + data);
-
-    // const queryString = window.location.search;
-    // const urlParams = new URLSearchParams(queryString);
-    // const id = urlParams.get('id');
-    // console.log("THE ID IS:" + id);
-
-
     var lengthOfMessages = data.length;
     console.log("the lengths are :" + lengthOfMessages);
     for (var i = 0; i < lengthOfMessages; i++) {
@@ -200,31 +177,10 @@ function showItems(data) {
     };
 }
 
+function showTitle(data,id) {
 
-function displayBoards(data) {
-    console.log("you are reaching displayBoards");
-    var list = document.getElementById("displayboards"); //this is where we want to show the dashboard white boxes
-
-    console.log("you are reaching displayBoards");
-    console.log("the data is" + data);
-
-    var lengthOfMessages = data.length;
-    console.log("the lengths are :" + lengthOfMessages);
-    for (var i = 0; i < lengthOfMessages; i++) {
-
-        element = '<div id="addNewBoards">';
-        element += data[i]['recipient'];
-        element += data[i]['birthday'];
-        list += element;
-
-
-        $(this).element += '    </div>';
-    };
+    document.getElementById("titleOfMessageBoard").innerHTML = data;
 }
-
-
-
-
 
 //########################################################HERE IS ALL THE CHANGE IN THEME STUFF ################################################//
 // function to set a given theme/color-scheme
@@ -255,13 +211,12 @@ function toggleTheme() {
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
 
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get('id');
-
+    var urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get('id');
     document.getElementById("addMessageButton").href = 'message_index.html?id=' + id;
     getItems(id);
+    getTitle(id)
+    // getBoards(id)
 
 });
 
