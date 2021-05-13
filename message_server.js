@@ -69,7 +69,6 @@ http.createServer(function(request,response){
             }
 
             var showRows = JSON.stringify(rows);
-            console.log("the showRows is " + showRows);
             response.write(showRows);
             response.end();
             return showRows;
@@ -93,7 +92,6 @@ http.createServer(function(request,response){
             }
 
             var showRows = JSON.stringify(rows);
-            console.log(rows);
             response.write(showRows);
             response.end();
             return showRows;
@@ -107,7 +105,6 @@ http.createServer(function(request,response){
 
         var urlParams = new URLSearchParams(request.url);
         var idFromUrl = urlParams.get('/api/item?id');
-        console.log("the id from the URL is:" + idFromUrl);
         getMessagesFromDB(idFromUrl);
 
     };
@@ -128,7 +125,6 @@ http.createServer(function(request,response){
             }
 
             var showRows = JSON.stringify(rows);
-            console.log("the showRows is from the bit where you get the title are " + showRows);
             response.write(showRows);
             response.end();
             return showRows;
@@ -142,7 +138,13 @@ http.createServer(function(request,response){
 
 
 
-    if (request.method === 'POST' && request.url === '/api/item') {
+
+    if (request.method === 'POST' && request.url.includes('/api/item?id=')) {
+        console.log("YOU ARE GETTING INTO THE POST REQUEST FOR /API/ITEM");
+
+        var urlParams = new URLSearchParams(request.url);
+        var idFromUrl = urlParams.get('/api/item?id');
+        console.log("the id in the end of the url is: " + idFromUrl);
 
         let data = []; //the new item that's being added
 
@@ -155,17 +157,15 @@ http.createServer(function(request,response){
             var data1 = JSON.parse(data);
             var newMessage = data1.message;
             var newName = data1.username;
-            var recipientId = data1.recipientId
+            // var recipientId = data1.recipientId
 
+            var sql= 'INSERT INTO messagesForRecipient(recipientId,message, username)'
+            sql += 'VALUES(?,?,?) '
 
-            var sql= 'INSERT INTO messagesForRecipient(message, username,recipientId)'
-            sql += 'VALUES(?,?,?)'
-
-            DB.run(sql, [newMessage,newName,recipientId], function(error,rows) {
+            DB.run(sql, [idFromUrl,newMessage,newName], function(error,rows) {
                 if (error) {
                     console.log(error)
                 }
-                console.log("Last ID: " + this.lastID)
                 console.log("# of Row Changes: " + this.changes)
 
 
@@ -201,14 +201,11 @@ http.createServer(function(request,response){
                 console.log("Last ID: " + this.lastID)
                 console.log("# of Row Changes: " + this.changes)
 
-                //once you've posted the items you then want to get them back and display them:
-
                 var sql = 'SELECT *'
                 sql += 'FROM user '
 
                 DB.all(sql, [], function (error, rows) {
                     if (error) {
-                        console.log("errrorrrrr");
                         console.log("the error is" + error)
                     }
 

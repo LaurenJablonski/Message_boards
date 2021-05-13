@@ -37,9 +37,6 @@ function getTitle(id) {
     console.log("you are getting to the getTitle function")  ;
     makeRequest('GET','/api/title?id=' + id,null, function (data) {
         var jsonData = JSON.parse(data);
-
-        // console.log("the data is(should be title)" + data);
-        // console.log("the data is(should be title)" + jsonData['title']);
         showTitle(jsonData);
 
     }, function (error) {
@@ -49,12 +46,37 @@ function getTitle(id) {
     });
 }
 
-function postItem(messageEntered, nameOfUser){
-    var body = {'message': messageEntered, 'username': nameOfUser};
-    console.log("helloooo");
+function postMessage() {
+    console.log("you are getting into the postMessage function");
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var idFromUrl = urlParams.get('id');
+
+    let messageEntered = document.getElementById("user_inputs_new_message").value;
+    let nameOfUser =  document.getElementById("nameTextboxID").value;
+
+    if (messageEntered == "" || messageEntered == null) {
+        alert("Please enter a message!");
+    }
+    if (nameOfUser == "" || nameOfUser == null) {
+        alert("Please enter a name!");
+    }else {
+        postItem(messageEntered, nameOfUser,idFromUrl);
+        // console.log("the message inputted by the user is:" + messageEntered);
+        // console.log("the name of user is:" + nameOfUser);
+        // console.log("thanks for submitting a message");
+        // window.location.replace("/thank_you.html");
+
+
+    }
+}
+
+function postItem(messageEntered, nameOfUser,idFromUrl){
+    console.log("you are getting into the postItem function");
+    var body = {'message': messageEntered, 'username': nameOfUser,'recipientId': idFromUrl};
     console.log([body]);
 
-    makeRequest('POST', '/api/item', body, function (data) {
+    makeRequest('POST', '/api/item?id=' + idFromUrl, body, function (data) {
         console.log('success');
         console.log([body]);
 
@@ -122,29 +144,11 @@ function deleteMessage(id){
 
 
 
-function postMessage() {
 
-    let messageEntered = document.getElementById("user_inputs_new_message").value;//gets the data entered by the user
-    let nameOfUser =  document.getElementById("nameTextboxID").value;
-
-    if (messageEntered == "" || messageEntered == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
-        alert("Please enter a message!");
-    }
-    if (nameOfUser == "" || nameOfUser == null) {// series for statements that give alerts if the user has forgotten to enter the name. description or task
-        alert("Please enter a name!");
-    }else {
-        postItem(messageEntered, nameOfUser);
-        console.log("the message inputted by the user is:" + messageEntered);
-        console.log("the name of user is:" + nameOfUser);
-        console.log("thanks for submitting a message");
-        window.location.replace("/thank_you.html");
-
-
-    }
-}
 
 
 function showItems(data) {
+
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
     console.log("you are reaching showItems");
@@ -183,6 +187,8 @@ function showTitle(data) {
     for (var i = 0; i < lengthOfMessages; i++) {
 
         document.getElementById("titleOfMessageBoard").innerHTML = data[i]['title'];
+        document.getElementById("dateOfEvent").innerHTML = data[i]['eventDate'];
+
     }
 }
 

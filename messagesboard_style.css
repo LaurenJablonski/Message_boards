@@ -74,6 +74,30 @@ h1{
 
 
 }
+#addMessageButton {
+    text-align: center;
+    background-color: #8C6ECE;
+    border: none;
+    border-radius: 3px;
+    color: 	white;
+
+
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+
+    outline: none;
+    padding: 10px 9px 10px 11px;
+    text-transform: uppercase;
+    width: 340px;
+    height: 100px;
+
+    margin: 0;
+    position: relative;
+    top: -40px;
+    left: 85%;
+}
 
 #press_to_post_message {
     text-align: center;
