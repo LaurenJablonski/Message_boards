@@ -138,6 +138,32 @@ function getItems(data,uid) {
     });
 }
 
+function postMessageboard(idFromUrl){
+
+    var recipient = document.getElementById("nameTextboxID").value;//gets the data entered by the user
+    var birthday =  document.getElementById("dateID").value;
+    var title =  document.getElementById("titleTextboxID").value;
+
+    var body = {'recipient': recipient, 'birthday': birthday, 'title': title};
+
+    console.log("in postmessageboard");
+    makeRequest('POST', '/api/newboard?id=' + idFromUrl, body, function (data) {
+
+        $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
+            getBoards();
+        });
+
+
+    }, function () {
+
+
+    });
+
+    $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
+        getBoards();
+    });
+}
+
 
 
 $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */

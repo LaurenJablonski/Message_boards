@@ -20,34 +20,29 @@ function makeRequest(method, resource,body,successCb, errorCb) {
 }
 
 function getItems(id) {
-        console.log("you are getting to the getItems function")  ;
+
         makeRequest('GET','/api/item?id=' + id,null, function (data) {
         var jsonData = JSON.parse(data);
-        console.log("the data is" + jsonData);
         showItems(jsonData);
 
         }, function (error) {
-        console.log("An error occured in getItems");
         console.log("the error is" + error);
         callback([]);
     });
 }
 
 function getTitle(id) {
-    console.log("you are getting to the getTitle function")  ;
     makeRequest('GET','/api/title?id=' + id,null, function (data) {
         var jsonData = JSON.parse(data);
         showTitle(jsonData);
 
     }, function (error) {
-        console.log("An error occured in getItems");
         console.log("the error is" + error);
         callback([]);
     });
 }
 
 function postMessage() {
-    console.log("you are getting into the postMessage function");
 
     var urlParams = new URLSearchParams(window.location.search);
     var idFromUrl = urlParams.get('id');
@@ -62,22 +57,16 @@ function postMessage() {
         alert("Please enter a name!");
     }else {
         postItem(messageEntered, nameOfUser,idFromUrl);
-        // console.log("the message inputted by the user is:" + messageEntered);
-        // console.log("the name of user is:" + nameOfUser);
-        // console.log("thanks for submitting a message");
-        // window.location.replace("/thank_you.html");
+        window.location.replace("/thank_you.html");
 
 
     }
 }
 
 function postItem(messageEntered, nameOfUser,idFromUrl){
-    console.log("you are getting into the postItem function");
     var body = {'message': messageEntered, 'username': nameOfUser,'recipientId': idFromUrl};
-    console.log([body]);
 
     makeRequest('POST', '/api/item?id=' + idFromUrl, body, function (data) {
-        console.log('success');
         console.log([body]);
 
     }, function () {
@@ -86,24 +75,7 @@ function postItem(messageEntered, nameOfUser,idFromUrl){
     });
 }
 
-function postMessageboard(){
 
-    var recipient = document.getElementById("nameTextboxID").value;//gets the data entered by the user
-    var birthday =  document.getElementById("dateID").value;
-
-    console.log("reaching postmessageboard function");
-    var body = {'recipient': recipient, 'birthday': birthday};
-
-    makeRequest('POST', '/api/newboard', body, function (data) {
-
-        console.log("is making the post request");
-
-
-    }, function () {
-
-
-    });
-}
 
 function myFunction(button) {
     var x = document.getElementsByClassName("display-4 font-weight-bold");
@@ -224,9 +196,9 @@ $().ready(function () { //* this function means that when the page has finished 
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get('id');
     document.getElementById("addMessageButton").href = 'message_index.html?id=' + id;
+    // document.getElementById("click_to_go_back_to_board").href = 'messageboard_index.html?id=' + id;
     getItems(id);
     getTitle(id)
-    // getBoards(id)
 
 });
 

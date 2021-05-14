@@ -56,12 +56,10 @@ http.createServer(function(request,response){
         file.serve(request, response);
     }
     const {headers, method, url} = request;
-    console.log(request.method);
-
 
     function getMessagesFromDB(id){
         var sql = 'SELECT *'
-        sql += 'FROM messagesForRecipient WHERE recipientId = ' + id;
+        sql += 'FROM messagesForRecipient  WHERE recipientId = ' + id;
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
@@ -81,13 +79,11 @@ http.createServer(function(request,response){
 
 
     if (request.method === 'GET' && request.url === '/api/newboard' ) {
-        console.log("reaching GET request for newboard");
         var sql = 'SELECT *'
         sql += 'FROM user JOIN messageboard ON user.id = messageboard.recipientId'
 
         DB.all(sql, [], function (error, rows) {
             if (error) {
-                console.log("errrorrrrr");
                 console.log("the error is" + error)
             }
 
@@ -113,8 +109,6 @@ http.createServer(function(request,response){
 
         var urlParams = new URLSearchParams(request.url);
         var idFromUrl = urlParams.get('/api/title?id');
-        console.log("the id from the URL is:" + idFromUrl);
-
 
         var sql = 'SELECT * '
         sql += 'FROM messageboard WHERE recipientId = ' + idFromUrl
@@ -140,11 +134,9 @@ http.createServer(function(request,response){
 
 
     if (request.method === 'POST' && request.url.includes('/api/item?id=')) {
-        console.log("YOU ARE GETTING INTO THE POST REQUEST FOR /API/ITEM");
 
         var urlParams = new URLSearchParams(request.url);
         var idFromUrl = urlParams.get('/api/item?id');
-        console.log("the id in the end of the url is: " + idFromUrl);
 
         let data = []; //the new item that's being added
 
@@ -157,29 +149,37 @@ http.createServer(function(request,response){
             var data1 = JSON.parse(data);
             var newMessage = data1.message;
             var newName = data1.username;
-            // var recipientId = data1.recipientId
 
             var sql= 'INSERT INTO messagesForRecipient(recipientId,message, username)'
             sql += 'VALUES(?,?,?) '
 
-            DB.run(sql, [idFromUrl,newMessage,newName], function(error,rows) {
+            DB.run(sql, [parseInt(idFromUrl),newMessage,newName], function(error,rows) {
                 if (error) {
                     console.log(error)
                 }
                 console.log("# of Row Changes: " + this.changes)
+                getMessagesFromDB(idFromUrl);
 
 
             });
+
 
         })
 
 
     };
 
-    if (request.method === 'POST' && request.url === '/api/newboard') {
+    function addUser(){
+        var sql= 'INSERT recipient INTO user'
+    }
 
-        let data = []; //the new item that's being added
+    if (request.method === 'POST' && request.url.includes('/api/newboard?id=') ) {
 
+        console.log("first gets into POST request");
+        var urlParams = new URLSearchParams(request.url);
+        var idFromUrl = urlParams.get('/api/item?id');
+
+        let data = [];
         request.on('data', chunk => {
             data += chunk;
         })
@@ -187,24 +187,26 @@ http.createServer(function(request,response){
         request.on('end', () => {
 
             var data1 = JSON.parse(data);
-            var birthday = data1.birthday;
+            var eventDate = data1.birthday;
             var recipient = data1.recipient;
             var title = data1.title;
 
-            var sql= 'INSERT INTO user(recipient,title,birthday)'
-            sql += 'VALUES(?,?,?)'
+            var sql= 'INSERT INTO user(name)'
+            sql += 'VALUES(?)'
 
-            DB.run(sql, [recipient,title,birthday], function(error,rows) {
+            console.log("getting into POST");
+
+            DB.run(sql, [recipient], function(error,rows) {
                 if (error) {
                     console.log(error)
                 }
-                console.log("Last ID: " + this.lastID)
-                console.log("# of Row Changes: " + this.changes)
 
-                var sql = 'SELECT *'
-                sql += 'FROM user '
 
-                DB.all(sql, [], function (error, rows) {
+                var sql = 'INSERT INTO messageboard(recipientId,title,eventDate)'
+                sql += 'VALUES(?,?,?)'
+
+
+                DB.all(sql, [this.lastID,title,eventDate], function (error, rows) {
                     if (error) {
                         console.log("the error is" + error)
                     }
@@ -249,7 +251,6 @@ http.createServer(function(request,response){
     console.log("server listening on port 8000");
 });
 
-//
 
 
 
