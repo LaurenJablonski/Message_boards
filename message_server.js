@@ -110,6 +110,8 @@ http.createServer(function(request,response){
         var urlParams = new URLSearchParams(request.url);
         var idFromUrl = urlParams.get('/api/title?id');
 
+
+
         var sql = 'SELECT * '
         sql += 'FROM messageboard WHERE recipientId = ' + idFromUrl
 
@@ -137,6 +139,8 @@ http.createServer(function(request,response){
 
         var urlParams = new URLSearchParams(request.url);
         var idFromUrl = urlParams.get('/api/item?id');
+
+
 
         let data = []; //the new item that's being added
 

@@ -32,8 +32,10 @@ function getItems(id) {
 }
 
 function getTitle(id) {
+    console.log("YOU ARE GETTING TO THE GET TITLE FUNCTION");
     makeRequest('GET','/api/title?id=' + id,null, function (data) {
         var jsonData = JSON.parse(data);
+        console.log("the jsondata for getting the title is:" + jsonData);
         showTitle(jsonData);
 
     }, function (error) {
@@ -123,9 +125,7 @@ function showItems(data) {
 
     var list = document.getElementById("whereToDisplayMessages"); //or just empty div
 
-    console.log("you are reaching showItems");
     var lengthOfMessages = data.length;
-    console.log("the lengths are :" + lengthOfMessages);
     for (var i = 0; i < lengthOfMessages; i++) {
 
 
@@ -155,8 +155,12 @@ function showItems(data) {
 }
 
 function showTitle(data) {
+    console.log("YOU ARE GETTING TO THE SHOW TITLE FUNCTION");
     var lengthOfMessages = data.length;
+    console.log("the lengths of the messages are: " + lengthOfMessages);
     for (var i = 0; i < lengthOfMessages; i++) {
+
+        console.log("the title here is: ");
 
         document.getElementById("titleOfMessageBoard").innerHTML = data[i]['title'];
         document.getElementById("dateOfEvent").innerHTML = data[i]['eventDate'];
@@ -197,8 +201,9 @@ $().ready(function () { //* this function means that when the page has finished 
     var id = urlParams.get('id');
     document.getElementById("addMessageButton").href = 'message_index.html?id=' + id;
     // document.getElementById("click_to_go_back_to_board").href = 'messageboard_index.html?id=' + id;
+    getTitle(1)
     getItems(id);
-    getTitle(id)
+
 
 });
 

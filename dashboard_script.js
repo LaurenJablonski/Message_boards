@@ -9,7 +9,6 @@ function getToken() {
 
 function makeRequest(method, resource, body, successCb, errorCb) {
     var baseUrl = 'http://localhost:8000';
-    //console.log(JSON.stringify(body));
     $.ajax({ //ajax= techinique for accessing web servers from a webpage so this is where the connection is being made to the API. It sends teh http requests easily and quickly as you don't have to reload the page.
         method: method,
         url: baseUrl + resource,
@@ -151,6 +150,10 @@ function postMessageboard(idFromUrl){
 
         $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
             getBoards();
+            document.getElementById("nameTextboxID").value = "";
+            document.getElementById("dateID").value = "";
+            document.getElementById("titleTextboxID").value = "";
+
         });
 
 
@@ -161,6 +164,7 @@ function postMessageboard(idFromUrl){
 
     $().ready(function () { //* this function means that when the page has finished loading, it calls the refreshlist function, where this refreshlist function calls the getItems function with fucnction createItemTable as a function. (it's passing a function as an argument) */
         getBoards();
+
     });
 }
 
