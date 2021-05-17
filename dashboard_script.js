@@ -111,7 +111,10 @@ function displayBoards(data) {
         element += '<div id="Modal">';
         element += '<div id="formTitle">' + data[i]['title'] + '</div>';
         // element += '<img id ="profile_pic" src="images/ellie_and_paola.png" width="275" height="250">'
-        element += '<div id="birthdayDate">' + data[i]['eventDate'] + '</div>';
+
+        var date = "2016-10-15";
+        console.log(date);
+        element += '<div id="birthdayDate">' + data[i]['eventDate'].split("-").reverse().join("-") + '</div>';
         element += '    </div></a>'
         console.log(list);
 

@@ -199,9 +199,10 @@ $().ready(function () { //* this function means that when the page has finished 
 
     var urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get('id');
+    console.log("THE ID IN THE URLLLLL ISSSS" + id);
     document.getElementById("addMessageButton").href = 'message_index.html?id=' + id;
     // document.getElementById("click_to_go_back_to_board").href = 'messageboard_index.html?id=' + id;
-    getTitle(1)
+    getTitle(id);
     getItems(id);
 
 
