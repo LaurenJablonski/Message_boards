@@ -109,6 +109,7 @@ http.createServer(function(request,response){
 
         var urlParams = new URLSearchParams(request.url);
         var idFromUrl = urlParams.get('/api/title?id');
+        console.log("hallloooo the id from the url is:" + idFromUrl);
 
 
 
